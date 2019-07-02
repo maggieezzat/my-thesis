@@ -172,10 +172,23 @@ TODO: \ac{GRUs}
 
 %3rd section
 \section{Speech Recognition} \label{bg:s3}
+
 \subsection{End-to-End Speech Recognition} 
 \label{bg:sub4}
+
 \subsection{Feature Extraction} 
 \label{bg:sub5}
+
+The premier step in any \ac{ASR} system is to extract features. That is to turn the raw speech waveforms into a sequence of numerical vectors. The issue, however, lies in the fact that the audio signals are constantly changing. For us to be able to deal with them, we make the assumption that for sufficiently small period of time the signals are stationary. Therefore we sample the signal into 25ms frames, with a step of about 10ms which so that the frames are overlapping. Then we apply some operations on each frame to extract features. The most widely used feature extraction method is \ac{MFCC}, which we explain in brief.
+
+For each frame, we calculate the \ac{FFT}, in order to move from the time domain to the spectral domain. Human ears cannot distinguish between two closely spaced frequencies, specially for higher frequencies. To mimic this effect, we need to know how much energy exists in different frequency regions. This is done by applying special filters called Mel filterbanks. The first filter is the narrowest, and indicates how much energy exists around 0 Hertz. Then the filters become wider as the frequencies get higher because we become less concerned about variations. 
+Afterward, we take the log of the filterbank energies. This is also done to mimic the human ear as we do not hear loudness on a linear scale. 
+Then we compute the \ac{DCT} of the log filterbank energies. This is due to the fact that the filterbanks are overlapping, so we compute \ac{DCT} to reduce the correlation between filter bank amplitudes. The resulting \ac{DCT} coefficients are referred to as MFCC coefficients. Only 12 coefficients are kept and the rest are dropped, this is proven to improve the \ac{ASR} performance. These 12 coefficients, together with the normalized energy, they form the feature vector.
+
+
+
+
+
 \subsection{Building the Model} 
 \label{bg:sub6}
 \subsection{Computing the Loss} 
