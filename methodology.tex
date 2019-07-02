@@ -9,7 +9,8 @@
 \subsection{\ac{ASR} Datasets}
 \label{meth:sub1}
 
-End-to-End \ac{ASR} systems require large amounts of transcribed audio data. For this purpose we make use of three open-source German datasets and clean them. We list the three datasets here with the cleaning operations performed for each.
+End-to-End \ac{ASR} systems require large amounts of transcribed audio data. For this purpose we make use of three open-source German datasets and clean them. We list the three datasets here with the cleaning operations performed for each. 
+%#TODO Transcriptions cleaning
 
 
 \subsubsection{\RomanNumeralCaps{1}. Common Voice}
@@ -17,11 +18,12 @@ End-to-End \ac{ASR} systems require large amounts of transcribed audio data. For
 
 Common Voice is the largest open source, multi-language dataset of voices available for use. It is managed by Mozilla and was collected by volunteers on-line who were either recording samples or validating other samples. Mozilla began work on this project in 2017 and contribution to the dataset continues up till now. 
 For our \ac{ASR}, the German subset of the dataset was selected. It incorporates 340 total hours, with 325 validated hours and 15 invalidated hours which we excluded. The dataset has 5007 speakers but as we discarded the invalidated utterances we end up with only 4800 speakers. 
-All the utterances were in \enquote{mp3} format and sampled using a sampling rate of $44 KHz$ so we converted them to \enquote{wav} format and we performed down-sampling to obtain sample rate of $16 KHz$. We checked for any corrupted files but there were none.
+All the utterances were in \enquote{mp3} format and sampled using a sampling rate of $44 kHz$ so we converted them to \enquote{wav} format and we performed down-sampling to obtain sample rate of $16 kHz$. We checked for any corrupted files but there were none.
 
 
-\subsubsection{\RomanNumeralCaps{2}. M-AILABS}
+\subsubsection{\RomanNumeralCaps{2}. M-AILABS Speech Dataset}
 \label{meth:subsub2}
+M-AILABS Speech Dataset is an open-source multi-lingual dataset provided by Munich Artificial Intelligence Laboratories GmbH. Most of the data is based on LibriVox and Project Gutenberg. We make use of the German subset which is 237 hours 22 minutes with a total of 5 speakers. The data is available in \enquote{wav} format and sample rate of $16 kHz$ so we perform no modifications. We also check for corrupted files but all of them were healthy.
 
 \subsubsection{\RomanNumeralCaps{3}. German Speech Data - Tuda-De}
 \label{meth:subsub3}
