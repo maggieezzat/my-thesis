@@ -11,22 +11,21 @@
 \BOOKMARK [1][-]{section.2.3}{Speech Recognition}{chapter.2}% 11
 \BOOKMARK [2][-]{subsection.2.3.1}{End-to-End Speech Recognition}{section.2.3}% 12
 \BOOKMARK [2][-]{subsection.2.3.2}{Feature Extraction}{section.2.3}% 13
-\BOOKMARK [2][-]{subsection.2.3.3}{Building the Model}{section.2.3}% 14
-\BOOKMARK [2][-]{subsection.2.3.4}{Computing the Loss}{section.2.3}% 15
-\BOOKMARK [1][-]{section.2.4}{Text Analytics}{chapter.2}% 16
-\BOOKMARK [2][-]{subsection.2.4.1}{Encoder-Decoder Architecture}{section.2.4}% 17
-\BOOKMARK [2][-]{subsection.2.4.2}{Attention Mechanism}{section.2.4}% 18
-\BOOKMARK [2][-]{subsection.2.4.3}{The Transformer}{section.2.4}% 19
-\BOOKMARK [2][-]{subsection.2.4.4}{Bidirectional Encoder from Transformer \(BERT\)}{section.2.4}% 20
-\BOOKMARK [0][-]{chapter.3}{Methodology}{}% 21
-\BOOKMARK [1][-]{section.3.1}{Datasets}{chapter.3}% 22
-\BOOKMARK [2][-]{subsection.3.1.1}{ASR Datasets}{section.3.1}% 23
-\BOOKMARK [2][-]{subsection.3.1.2}{Text Classifier Datasets}{section.3.1}% 24
-\BOOKMARK [0][-]{chapter.4}{Results}{}% 25
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 26
-\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 27
-\BOOKMARK [0][-]{section*.51}{Appendix}{}% 28
-\BOOKMARK [0][-]{appendix.A}{Lists}{}% 29
-\BOOKMARK [1][-]{section*.52}{List of Abbreviations}{appendix.A}% 30
-\BOOKMARK [1][-]{appendix*.53}{List of Figures}{appendix.A}% 31
-\BOOKMARK [0][-]{appendix*.54}{References}{}% 32
+\BOOKMARK [2][-]{subsection.2.3.3}{Connectionist Temporal Classification graves2006connectionist}{section.2.3}% 14
+\BOOKMARK [1][-]{section.2.4}{Text Analytics}{chapter.2}% 15
+\BOOKMARK [2][-]{subsection.2.4.1}{Encoder-Decoder Architecture}{section.2.4}% 16
+\BOOKMARK [2][-]{subsection.2.4.2}{Attention Mechanism}{section.2.4}% 17
+\BOOKMARK [2][-]{subsection.2.4.3}{The Transformer}{section.2.4}% 18
+\BOOKMARK [2][-]{subsection.2.4.4}{Bidirectional Encoder from Transformer \(BERT\)}{section.2.4}% 19
+\BOOKMARK [0][-]{chapter.3}{Methodology}{}% 20
+\BOOKMARK [1][-]{section.3.1}{Datasets}{chapter.3}% 21
+\BOOKMARK [2][-]{subsection.3.1.1}{ASR Datasets}{section.3.1}% 22
+\BOOKMARK [2][-]{subsection.3.1.2}{Text Classifier Datasets}{section.3.1}% 23
+\BOOKMARK [0][-]{chapter.4}{Results}{}% 24
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 25
+\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 26
+\BOOKMARK [0][-]{section*.52}{Appendix}{}% 27
+\BOOKMARK [0][-]{appendix.A}{Lists}{}% 28
+\BOOKMARK [1][-]{section*.53}{List of Abbreviations}{appendix.A}% 29
+\BOOKMARK [1][-]{appendix*.54}{List of Figures}{appendix.A}% 30
+\BOOKMARK [0][-]{appendix*.55}{References}{}% 31

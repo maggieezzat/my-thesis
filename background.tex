@@ -187,12 +187,24 @@ Then we compute the \ac{DCT} of the log filterbank energies. This is due to the 
 
 
 
-
-
-\subsection{Building the Model} 
-\label{bg:sub6}
-\subsection{Computing the Loss} 
+\subsection{Connectionist Temporal Classification \cite{graves2006connectionist}} 
 \label{bg:sub7}
+
+Although \ac{RNN}s seemed to be the best suit for sequence models, their use in speech recognition has been limited to hybrid models which do not make use of the full capabilities of the \ac{RNN}s
+
+%%%%%%%%%%%%%% Problems with hybrid models
+
+PROBLEMS WITH HYBRID MODELS
+THE NEED TO SEGMENT THE DATA
+
+
+In 2006, Graves et al introduced a novel way of using \ac{RNN}s for labelling unsegmented sequence data which they called \ac{CTC} and which we explain in this section. 
+The basic idea is to model the \ac{RNN} outputs as a conditional probability distribution over all possible sequences of labels given a certain input sequence. With that, an objective function is defined that tries to maximize the probability of the correct label sequence. The neural network then can be trained using standard \ac{BPTT}.
+
+The basic idea is: given $L$ which is a finite alphabet of labels, and a set $S$ of training examples which comprises pairs of sequences $(\mathbf{x},\mathbf{z})$, with $\mathbf{x} = (x_1, x_2,..., x_T)$ being an input sequence of real-valued feature vectors, and $\mathbf{z} = (z_1, z_2,..., z_U) \in L^*$ is a target sequence of labels which is at most the same length as the input sequence $x$. \textit{i}.\textit{e}. $U \leq T$, the outputs of the neural network define a conditional probability distribution over all possible label sequences, given a certain input sequence. 
+
+
+Note that $L^*$ is the set of all sequences over the alphabet $L$
 
 
 
