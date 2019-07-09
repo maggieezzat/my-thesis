@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2019.3.13)  4 JUL 2019 14:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2019.3.13)  5 JUL 2019 15:01
 entering extended mode
 **./bachelor.tex
 (bachelor.tex
@@ -691,51 +691,51 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package acronym Info: Label `acro:RNN' newly defined as it shall be overridden
 although it is yet undefined on input line 193.
 Package acronym Info: Label `acro:CTC' newly defined as it shall be overridden
-although it is yet undefined on input line 200.
-[9]
+although it is yet undefined on input line 201.
+[9] [10]
 Package acronym Info: Label `acro:BRNN' newly defined as it shall be overridden
 
-although it is yet undefined on input line 252.
- [10] [11]) [12]
+although it is yet undefined on input line 285.
+ [11] [12]) [13]
 \openout2 = `methodology.aux'.
 
- (methodology.tex
-Chapter 3.
-) [13
+ (methodology.tex [14
 
 
 
 ]
+Chapter 3.
+) [15]
 \openout2 = `results.aux'.
 
- (results.tex [14
+ (results.tex [16
 
 
 
 ]
 Chapter 4.
-) [15]
+) [17]
 \openout2 = `conclusion.aux'.
 
- (conclusion.tex [16
+ (conclusion.tex [18
 
 
 
 ]
 Chapter 5.
-) [17]
+) [19]
 \openout2 = `future_work.aux'.
 
- (future_work.tex [18
+ (future_work.tex [20
 
 
 
 ]
 Chapter 6.
-) [19]
+) [21]
 \openout2 = `appendix.aux'.
 
- (appendix.tex [20
+ (appendix.tex [22
 
 
 
@@ -745,21 +745,21 @@ Appendix A.
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 9.
 
-[21
+[23
 
 ] (bachelor.lof)
 \tf@lof=\write6
 \openout6 = `bachelor.lof'.
 
-) [22
+) [24
 
 
-] (bachelor.bbl [23
+] (bachelor.bbl [25
 
 
 ])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 114.
- [24]
+ [26]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 114.
  (bachelor.aux
 (GUC_TitlePage.aux) (acknowledgments.aux) (abstract.aux) (introduction.aux)
@@ -771,10 +771,10 @@ Package rerunfilecheck Info: File `bachelor.out' has not changed.
 (rerunfilecheck)             Checksum: 265192A300B8473C81B73D8DE6C92D98;2058.
  ) 
 Here is how much of TeX's memory you used:
- 9747 strings out of 493308
- 144144 string characters out of 3138750
- 263907 words of memory out of 3000000
- 12909 multiletter control sequences out of 15000+200000
+ 9757 strings out of 493308
+ 144228 string characters out of 3138750
+ 264102 words of memory out of 3000000
+ 12913 multiletter control sequences out of 15000+200000
  10782 words of font info for 40 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,15n,45p,2080b,513s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -793,9 +793,9 @@ iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
 ic/doublestroke/dsrom12.pfb>
-Output written on bachelor.pdf (33 pages, 5937278 bytes).
+Output written on bachelor.pdf (35 pages, 5948680 bytes).
 PDF statistics:
- 642 PDF objects out of 1000 (max. 8388607)
- 174 named destinations out of 1000 (max. 500000)
+ 661 PDF objects out of 1000 (max. 8388607)
+ 180 named destinations out of 1000 (max. 500000)
  284 words of extra memory for PDF output out of 10000 (max. 10000000)
 

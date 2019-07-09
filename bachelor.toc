@@ -17,39 +17,39 @@
 \contentsline {subsection}{\numberline {2.3.1}End-to-End Speech Recognition}{8}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Feature Extraction}{8}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}Connectionist Temporal Classification \cite {graves2006connectionist}}{9}{subsection.2.3.3}
-\contentsline {section}{\numberline {2.4}Text Analytics}{9}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Encoder-Decoder Architecture}{9}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Attention Mechanism}{10}{subsection.2.4.2}
-\contentsline {subsubsection}{\MakeUppercase {i}. Encoder}{10}{section*.32}
-\contentsline {subsubsection}{\MakeUppercase {ii}. Decoder}{10}{section*.34}
-\contentsline {subsubsection}{\MakeUppercase {iii}. Additive Attention}{11}{section*.35}
-\contentsline {subsection}{\numberline {2.4.3}The Transformer}{11}{subsection.2.4.3}
-\contentsline {subsubsection}{\MakeUppercase {i}. Problem with Recurrence}{11}{section*.36}
-\contentsline {subsubsection}{\MakeUppercase {ii}. Encoder}{11}{section*.37}
-\contentsline {subsubsection}{\MakeUppercase {iii}. Decoder}{12}{section*.38}
-\contentsline {subsubsection}{\MakeUppercase {iv}. Scaled Dot-Product Attention}{12}{section*.39}
-\contentsline {subsubsection}{\MakeUppercase {v}. Positional Encodings}{12}{section*.40}
-\contentsline {subsection}{\numberline {2.4.4}Bidirectional Encoder from Transformer (BERT)}{12}{subsection.2.4.4}
-\contentsline {subsubsection}{Word Embeddings}{12}{section*.41}
-\contentsline {subsubsection}{Transfer Learning}{12}{section*.42}
-\contentsline {paragraph}{Feature Extraction}{12}{section*.43}
-\contentsline {paragraph}{Fine Tuning}{12}{section*.44}
-\contentsline {subsubsection}{Bidirectional vs uni-directional}{12}{section*.45}
-\contentsline {subsubsection}{PreTraining Tasks}{12}{section*.46}
-\contentsline {chapter}{\numberline {3}Methodology}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}Datasets}{13}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}\ac {ASR} Datasets}{13}{subsection.3.1.1}
-\contentsline {subsubsection}{\MakeUppercase {i}. Common Voice}{13}{section*.47}
-\contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{13}{section*.48}
-\contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data \cite {radeck2015open}}{13}{section*.49}
-\contentsline {subsection}{\numberline {3.1.2}Text Classifier Datasets}{13}{subsection.3.1.2}
-\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{13}{section*.50}
-\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{13}{section*.51}
-\contentsline {chapter}{\numberline {4}Results}{15}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusion}{17}{chapter.5}
-\contentsline {chapter}{\numberline {6}Future Work}{19}{chapter.6}
-\contentsline {chapter}{Appendix}{20}{section*.52}
-\contentsline {chapter}{\numberline {A}Lists}{21}{appendix.A}
-\contentsline {section}{List of Abbreviations}{21}{section*.53}
-\contentsline {section}{List of Figures}{22}{appendix*.54}
-\contentsline {chapter}{References}{24}{appendix*.55}
+\contentsline {section}{\numberline {2.4}Text Analytics}{10}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Encoder-Decoder Architecture}{10}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Attention Mechanism}{11}{subsection.2.4.2}
+\contentsline {subsubsection}{\MakeUppercase {i}. Encoder}{11}{section*.32}
+\contentsline {subsubsection}{\MakeUppercase {ii}. Decoder}{11}{section*.34}
+\contentsline {subsubsection}{\MakeUppercase {iii}. Additive Attention}{12}{section*.35}
+\contentsline {subsection}{\numberline {2.4.3}The Transformer}{12}{subsection.2.4.3}
+\contentsline {subsubsection}{\MakeUppercase {i}. Problem with Recurrence}{12}{section*.36}
+\contentsline {subsubsection}{\MakeUppercase {ii}. Encoder}{12}{section*.37}
+\contentsline {subsubsection}{\MakeUppercase {iii}. Decoder}{13}{section*.38}
+\contentsline {subsubsection}{\MakeUppercase {iv}. Scaled Dot-Product Attention}{13}{section*.39}
+\contentsline {subsubsection}{\MakeUppercase {v}. Positional Encodings}{13}{section*.40}
+\contentsline {subsection}{\numberline {2.4.4}Bidirectional Encoder from Transformer (BERT)}{13}{subsection.2.4.4}
+\contentsline {subsubsection}{Word Embeddings}{13}{section*.41}
+\contentsline {subsubsection}{Transfer Learning}{13}{section*.42}
+\contentsline {paragraph}{Feature Extraction}{13}{section*.43}
+\contentsline {paragraph}{Fine Tuning}{13}{section*.44}
+\contentsline {subsubsection}{Bidirectional vs uni-directional}{13}{section*.45}
+\contentsline {subsubsection}{PreTraining Tasks}{13}{section*.46}
+\contentsline {chapter}{\numberline {3}Methodology}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}Datasets}{15}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}\ac {ASR} Datasets}{15}{subsection.3.1.1}
+\contentsline {subsubsection}{\MakeUppercase {i}. Common Voice}{15}{section*.47}
+\contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{15}{section*.48}
+\contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data \cite {radeck2015open}}{15}{section*.49}
+\contentsline {subsection}{\numberline {3.1.2}Text Classifier Datasets}{15}{subsection.3.1.2}
+\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{15}{section*.50}
+\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{15}{section*.51}
+\contentsline {chapter}{\numberline {4}Results}{17}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{19}{chapter.5}
+\contentsline {chapter}{\numberline {6}Future Work}{21}{chapter.6}
+\contentsline {chapter}{Appendix}{22}{section*.52}
+\contentsline {chapter}{\numberline {A}Lists}{23}{appendix.A}
+\contentsline {section}{List of Abbreviations}{23}{section*.53}
+\contentsline {section}{List of Figures}{24}{appendix*.54}
+\contentsline {chapter}{References}{26}{appendix*.55}

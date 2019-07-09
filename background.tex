@@ -198,14 +198,43 @@ PROBLEMS WITH HYBRID MODELS
 THE NEED TO SEGMENT THE DATA
 
 
-In 2006, Graves et al introduced a novel way of using \ac{RNN}s for labelling unsegmented sequence data which they called \ac{CTC} and which we explain in this section. 
-The basic idea is to model the \ac{RNN} outputs as a conditional probability distribution over all possible sequences of labels given a certain input sequence. With that, an objective function is defined that tries to maximize the probability of the correct label sequence. The neural network then can be trained using standard \ac{BPTT}.
+In 2006, Graves \textit{et al.} introduced a novel way of using \ac{RNN}s for labeling unsegmented sequence data which they called \ac{CTC}. We shall demonstrate their paper in this section. 
+The basic idea is to model the \ac{RNN} outputs as a conditional probability distribution over all possible sequences of labels given a certain input sequence. With that, an objective function is defined that tries to maximize the probability of the correct label sequence. The neural network can then be trained using standard \ac{BPTT}.
 
-The basic idea is: given $L$ which is a finite alphabet of labels, and a set $S$ of training examples which comprises pairs of sequences $(\mathbf{x},\mathbf{z})$, with $\mathbf{x} = (x_1, x_2,..., x_T)$ being an input sequence of real-valued feature vectors, and $\mathbf{z} = (z_1, z_2,..., z_U) \in L^*$ is a target sequence of labels which is at most the same length as the input sequence $x$. \textit{i}.\textit{e}. $U \leq T$, the outputs of the neural network define a conditional probability distribution over all possible label sequences, given a certain input sequence. 
+Let $L$ be a finite alphabet of labels and $L^*$ is the set of all sequences over the alphabet $L$. Likewise, let $S$ be a set of training examples which comprises pairs of sequences $(\mathbf{x},\mathbf{z})$, with $\mathbf{x} = (x_1, x_2,..., x_T)$ being an input sequence of real-valued feature vectors, and $\mathbf{z} = (z_1, z_2,..., z_U) \in L^*$ is a target sequence of labels which is at most the same length as the input sequence $x$. \textit{i}.\textit{e}. $U \leq T$. Our goal is to train a classifier $h$ that uses the training examples set $S$ to classify formerly unseen input sequences in a manner that minimizes our \enquote{label error rate}. Label error rate is defined as the minimum number of insertions, deletions and substitutions required to change the predicted word into the ground-truth word.
+
+The \ac{RNN} output layer is a softmax layer, consisting of $|L|+1$ units. The first $L$ units correspond to the probabilities of the $L$ labels of our alphabet, the extra unit correspond to the probability of the output being no label, or \enquote{blank}. This softmax layer corresponds to the probabilities of the entire possible permutations of labels, hence giving us the probabilities of all possible label sequences for a given input sequence.
 
 
-Note that $L^*$ is the set of all sequences over the alphabet $L$
+For the purpose of investigating the matter in a more formal way, let us define alphabet $L^{'} = \{L \cup {blank}\}$, and let ${L^{'}T}$ be all the label sequences of $L^{'}$ of length $T$, we refer to elements of ${L^{'}T}$ as \enquote{paths} and denote them as $\pi$. Also let $y_{k}^{t}$ be the probability of the output being label $k$ at time step $t$. With this, the probability of a certain path, given the input sequence is given by equation \ref{eq:21}
 
+\begin{equation}
+\label{eq:21}
+P(\pi|x) = \prod_{t=1}^{T} y_{\pi_t}^{t}, \; \forall \pi \in {{L^{'}}^T}
+\end{equation}
+
+In equation \ref{eq:21}, it is assumed that the network outputs at different time steps are independent. This is achieved by not allowing any feedback connection from the outputs to the network itself.
+
+The next step is to remove all blanks and repeated labels from every path. This gives us a new set $L^{\leq T}$ which is the set of all possible label sequences having length less than or equal $T$ defined over the alphabet $L$ without the blank. We then can calculate the probability of a given label sequence $l$ by simply summing the probabilities of all the paths producing that label sequence $l$. Note that after removing all blanks and repeated labels, many paths would generate the same label sequence. Hence, the probability of a certain label $l$ is given by equation \ref{eq:22}
+
+\begin{equation}
+\label{eq:22}
+P(l|x) = \sum P(\pi|x), \; \;  \forall \; \pi \; generating \; l
+\end{equation}
+
+
+The output of our classifier should be the label sequence with the highest probability $h(x) = {arg \, max}_{l \in {L^{\leq T}}} P(l|x)$.
+
+There are two efficient mechanisms for finding the most probable label sequence:
+\begin{enumerate}
+	\item \textbf{Best Path Decoding} \mbox{}\\
+	 Best Path Decoding is a greedy algorithm based on the assumption that the most probable path, corresponds to the most probable label sequence. The advantage of Best Path Decoding is that it is remarkably easy to compute; the most probable path is the concatenation of the most probable labels for every time step. The disadvantage is that does not ensure finding the most probable label sequence.
+	\item \textbf{Prefix Search Decoding} \mbox{}\\
+	Prefix Search Decoding works by calculating the probabilities of successive extensions of prefixes of label sequences. Despite Prefix Search Decoding being slower, it is guaranteed to identify the most probable label sequence. The drawback here is that the number of prefixes that must be expanded grows exponentially with the length of the input sequence. To overcome this issue, the authors of the paper make use of an observation which is that the outputs of a \ac{CTC} network form spikes of labels with strongly predicted blanks. Using this observation, a certain threshold is chosen, and points with blank probabilities higher than that threshold are chosen as boundary points, forming sections or regions. For every region, we calculate the most probable label sequence for each region separately, and then we concatenate the results to get the final label sequence. 
+\end{enumerate} 
+
+
+%The first one is called \enquote{Best Path Decoding}. It is a greedy algorithm based on the assumption that the most probable path, corresponds to the most probable label sequence. The advantage of Best Path Decoding is that it is remarkably easy to compute: the most probable path is the concatenation of the most probable labels for every time step. The disadvantage is that does not ensure finding the most probable label sequence.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
