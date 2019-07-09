@@ -1,7 +1,5 @@
 \contentsline {chapter}{Acknowledgments}{V}{chapter*.1}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Section Name}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Another Section}{1}{section.1.2}
 \contentsline {chapter}{\numberline {2}Literature Review}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Natural Language Processing}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Artificial Neural Networks}{3}{section.2.2}
@@ -37,19 +35,21 @@
 \contentsline {subsubsection}{Bidirectional vs uni-directional}{13}{section*.45}
 \contentsline {subsubsection}{PreTraining Tasks}{13}{section*.46}
 \contentsline {chapter}{\numberline {3}Methodology}{15}{chapter.3}
-\contentsline {section}{\numberline {3.1}Datasets}{15}{section.3.1}
+\contentsline {section}{\numberline {3.1}System Overview and Datasets}{15}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}\ac {ASR} Datasets}{15}{subsection.3.1.1}
-\contentsline {subsubsection}{\MakeUppercase {i}. Common Voice}{15}{section*.47}
-\contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{15}{section*.48}
-\contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data \cite {radeck2015open}}{15}{section*.49}
-\contentsline {subsection}{\numberline {3.1.2}Text Classifier Datasets}{15}{subsection.3.1.2}
-\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{15}{section*.50}
-\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{15}{section*.51}
-\contentsline {chapter}{\numberline {4}Results}{17}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusion}{19}{chapter.5}
-\contentsline {chapter}{\numberline {6}Future Work}{21}{chapter.6}
-\contentsline {chapter}{Appendix}{22}{section*.52}
-\contentsline {chapter}{\numberline {A}Lists}{23}{appendix.A}
-\contentsline {section}{List of Abbreviations}{23}{section*.53}
-\contentsline {section}{List of Figures}{24}{appendix*.54}
-\contentsline {chapter}{References}{26}{appendix*.55}
+\contentsline {subsubsection}{\MakeUppercase {i}. Common Voice}{15}{section*.48}
+\contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{16}{section*.49}
+\contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data \cite {radeck2015open}}{16}{section*.50}
+\contentsline {subsection}{\numberline {3.1.2}Text Classifier Datasets}{16}{subsection.3.1.2}
+\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{16}{section*.51}
+\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{16}{section*.52}
+\contentsline {section}{\numberline {3.2}Automatic Speech Recognition Unit}{16}{section.3.2}
+\contentsline {section}{\numberline {3.3}Text Classifier Unit}{16}{section.3.3}
+\contentsline {chapter}{\numberline {4}Results}{19}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{21}{chapter.5}
+\contentsline {chapter}{\numberline {6}Future Work}{23}{chapter.6}
+\contentsline {chapter}{Appendix}{24}{section*.53}
+\contentsline {chapter}{\numberline {A}Lists}{25}{appendix.A}
+\contentsline {section}{List of Abbreviations}{25}{section*.54}
+\contentsline {section}{List of Figures}{26}{appendix*.55}
+\contentsline {chapter}{References}{28}{appendix*.56}

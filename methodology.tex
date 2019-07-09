@@ -1,29 +1,20 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
-Natural Language Processing (NLP) and contextual analysis
-techniques have matured greatly over the last decade, with
-applications rising in many industries. The evolution of transport
-network operators to more automation requires an AI-enabled
-control center room.
-In this project, we aim to enhance the capability of our system,
-enabling it to understand human speech from vehicle driver input and
-trigger dispatcher actions automatically. As such, an AI dispatcher
-agent needs to understand a message/call from a driver in order to
-trigger the necessary action.
-
-A second valuable application of such NLP engine, is increased automation inside the control center. As such, an artificially-intelligent (AI) dispatcher agent needs to understand a message/call from a driver in order to trigger the necessary action.
-
-
-\includefig{0.8}{Automated Dispatcher actions System}{Automated Dispatcher actions System comprised of two sub-systems: Automatic Speech Recognition unit }{Fig:4}
+In this chapter, the methodology used to implement the system is illustrated. Firstly, an overview of the system is discussed, along with the datasets used. Secondly, an interpretation of the choice of architecture and decisions is elaborated. Eventually, the system implementation steps are demonstrated in detail.
 
 
 
-
-
-
-\section{Datasets} 
+\section{System Overview and Datasets} 
 \label{meth:s1}
+
+\includefig{0.6}{automated_dispatcher_actions_system.png}{Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.}{Fig:10}
+
+As discussed earlier, the main purpose of this study is to implement a system able to issue dispatcher actions automatically when provided with audio signals from the vehicle driver, hence, introducing more automaton in the control-center. 
+
+Our system consists of two sub-systems, as shown in figure \ref{Fig:10}, the first sub-system is the \ac{ASR} unit, which takes as input raw speech waveforms produced by the driver, and produces the information in a text form. Then the text is passed to a trained Text Classifier, which given the text information from the \ac{ASR}, issues the corresponding appropriate dispatcher action.
+
+TODO IN THE CHOICE OF ARCHITECTURE NLP PROBLEMS TO MAKE AN END TO END SYSTEM
 
 
 \subsection{\ac{ASR} Datasets}
@@ -37,7 +28,7 @@ End-to-End \ac{ASR} systems require large amounts of transcribed audio data. For
 \label{meth:subsubsub1}
 
 Common Voice is the largest open source, multi-language dataset of voices available for use. It is managed by Mozilla and was collected by volunteers on-line who were either recording samples or validating other samples. Mozilla began work on this project in 2017 and contribution to the dataset continues up till now. 
-For our \ac{ASR}, the German subset of the dataset was selected. It incorporates 340 total hours, with 325 validated hours and 15 invalidated hours which we excluded. The dataset has 5007 speakers but as we discarded the invalidated utterances we end up with only 4800 speakers. 
+For our \ac{ASR}, the German subset of the dataset was selected. It incorporates 340 total hours, with 325 validated hours and 15 invalidated hours which we excluded. The dataset has 5007 speakers but as we discarded the invalidated utterances we end up with only 4823 speakers. 
 All the utterances were in \enquote{mp3} format and sampled using a sampling rate of $44 kHz$ so we converted them to \enquote{wav} format and we performed down-sampling to obtain sample rate of $16 kHz$. We checked for any corrupted files but there were none.
 
 
@@ -57,3 +48,10 @@ M-AILABS Speech Dataset is an open-source multi-lingual dataset provided by Muni
 \label{meth:subsub4}
 \subsubsection{\RomanNumeralCaps{2}. 10K German Articles}
 \label{meth:subsub5}
+
+
+\section{Automatic Speech Recognition Unit} 
+\label{meth:s3}
+
+\section{Text Classifier Unit} 
+\label{meth:s4}
