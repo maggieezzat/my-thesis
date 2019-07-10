@@ -34,10 +34,16 @@ All the utterances were in \enquote{mp3} format and sampled using a sampling rat
 
 \subsubsection{\RomanNumeralCaps{2}. M-AILABS Speech Dataset}
 \label{meth:subsub2}
-M-AILABS Speech Dataset is an open-source multi-lingual dataset provided by Munich Artificial Intelligence Laboratories GmbH. Most of the data is based on LibriVox and Project Gutenberg. We make use of the German subset which is 237 hours 22 minutes with a total of 5 speakers. The data is available in \enquote{wav} format and sample rate of $16 kHz$ so we perform no modifications. We also check for corrupted files but all of them were healthy.
+M-AILABS Speech Dataset is an open-source multi-lingual dataset provided by Munich Artificial Intelligence Laboratories GmbH. Most of the data is based on LibriVox \footnote{https://librivox.org} and Project Gutenberg \footnote{https://www.gutenberg.org}. We make use of the German subset which is 237 hours 22 minutes with a total of 5 speakers. The data is available in \enquote{wav} format and sample rate of $16 kHz$ so we perform no modifications. We also check for corrupted files but all of them were healthy.
 
 \subsubsection{\RomanNumeralCaps{3}. German Speech Data \cite{radeck2015open}}
 \label{meth:subsub3}
+
+This open-source corpus is provided by Technische Universit{\"a}t Darmstadt. It has 36 hours read by 180 speakers, and recorded using 5 different microphones simultaneously. They made use of the KisRecord \footnote{http://kisrecord.sourceforge.net} toolkit, which allows for recording with multiple microphones concurrently. Their target was distant speech recognition, thus a distance of one meter between speakers and microphones was chosen. The sentences which volunteers were provided to read were extracted randomly from three text resources: German Wikipedia, German section of the European Parliament transcriptions, short commands for command-and-control settings. Unfortunately, there were some corrupted files in the dataset, which we discarded.
+
+
+
+TODO SPEAKER INDEPENDENT CLASSIFICATION
 
 
 
