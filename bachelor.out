@@ -7,9 +7,9 @@
 \BOOKMARK [2][-]{subsection.2.2.2}{Recurrent Neural Networks}{section.2.2}% 7
 \BOOKMARK [2][-]{subsection.2.2.3}{Convolution Neural Networks}{section.2.2}% 8
 \BOOKMARK [1][-]{section.2.3}{Speech Recognition}{chapter.2}% 9
-\BOOKMARK [2][-]{subsection.2.3.1}{End-to-End Speech Recognition}{section.2.3}% 10
-\BOOKMARK [2][-]{subsection.2.3.2}{Feature Extraction}{section.2.3}% 11
-\BOOKMARK [2][-]{subsection.2.3.3}{Connectionist Temporal Classification graves2006connectionist}{section.2.3}% 12
+\BOOKMARK [2][-]{subsection.2.3.1}{HMM-Based ASR Systems}{section.2.3}% 10
+\BOOKMARK [2][-]{subsection.2.3.2}{Hybrid Systems}{section.2.3}% 11
+\BOOKMARK [2][-]{subsection.2.3.3}{End-to-End Systems - Connectionist Temporal Classification graves2006connectionist}{section.2.3}% 12
 \BOOKMARK [1][-]{section.2.4}{Text Analytics}{chapter.2}% 13
 \BOOKMARK [2][-]{subsection.2.4.1}{Encoder-Decoder Architecture}{section.2.4}% 14
 \BOOKMARK [2][-]{subsection.2.4.2}{Attention Mechanism}{section.2.4}% 15
@@ -24,8 +24,8 @@
 \BOOKMARK [0][-]{chapter.4}{Results}{}% 24
 \BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 25
 \BOOKMARK [0][-]{chapter.6}{Future Work}{}% 26
-\BOOKMARK [0][-]{section*.53}{Appendix}{}% 27
+\BOOKMARK [0][-]{section*.58}{Appendix}{}% 27
 \BOOKMARK [0][-]{appendix.A}{Lists}{}% 28
-\BOOKMARK [1][-]{section*.54}{List of Abbreviations}{appendix.A}% 29
-\BOOKMARK [1][-]{appendix*.55}{List of Figures}{appendix.A}% 30
-\BOOKMARK [0][-]{appendix*.56}{References}{}% 31
+\BOOKMARK [1][-]{section*.59}{List of Abbreviations}{appendix.A}% 29
+\BOOKMARK [1][-]{appendix*.60}{List of Figures}{appendix.A}% 30
+\BOOKMARK [0][-]{appendix*.61}{References}{}% 31

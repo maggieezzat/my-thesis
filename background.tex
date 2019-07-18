@@ -173,10 +173,25 @@ TODO: \ac{GRUs}
 %3rd section
 \section{Speech Recognition} \label{bg:s3}
 
-\subsection{End-to-End Speech Recognition} 
+The speech recognition problem is defined as follows: given an audio waveform, the task is to find the closest possible transcription to what an accurate human would generate upon listening to that audio. This problem dates back to 1960's where the former Soviet Union were among the pioneers to work on it, however, the basic \ac{HMM} speech recognition systems dates back to mid 1980's. In this section we investigate the mechanics of the \ac{ASR} systems based on \ac{HMM}s, moving to the so called \enquote{hybrid models} and eventually the growingly popular \enquote{End-to-End Systems}.
+
+\subsection{HMM-Based \ac{ASR} Systems} 
 \label{bg:sub4}
 
-\subsection{Feature Extraction} 
+We begin by demonstrating the main components of an \ac{ASR} system. As depicted in figure FIGURE, an audio waveform is passed to a \enquote{feature extraction} module, which outputs a sequence of acoustic vectors, $\mathbf{Y} = y_1,y_2,...,y_T$. The audio fragment corresponds to a sequence of words $W = w_1,w_2,...,w_n$. The objective of the \ac{ASR} system is to find the most probable word sequence $W$ given a previously unknown audio signal $\mathbf{Y}$.
+In other words, the target is to find $W = {arg \, max}_{W} \; P(W|\mathbf{Y})$. Using Bayes' Rule, this probability is broken down into two probabilities as shown in equation \ref{eq:24}.
+
+
+\begin{equation}
+\label{eq:24}
+W = {arg \, max}_{W} \; P(W|\mathbf{Y}) = {arg \, max}_{W} \; \frac{P(W) \; P(\mathbf{Y}|W)}{P(\mathbf{Y})}
+\end{equation}
+
+This indicates that we need to find $P(W)$ and $P(\mathbf{Y}|W)$ which maximizes \ref{eq:24}, in order to find the most probable word sequence $W$.
+There are two main components in the \ac{ASR} system, the \enquote{language model} is used to compute $P(W)$, which is the probability of observing the word sequence $W$ independent of the audio signal. The second component, which is the \enquote{acoustic model} computes $P(\mathbf{Y}|W)$ which is the probability of the sequence of acoustic vectors $Y$, given a word sequence $W$.
+
+
+\subsubsection{Feature Extraction} 
 \label{bg:sub5}
 
 The premier step in any \ac{ASR} system is to extract features. That is to turn the raw speech waveforms into a sequence of numerical vectors. The issue, however, lies in the fact that the audio signals are constantly changing. For us to be able to deal with them, we make the assumption that for sufficiently small period of time the signals are stationary. Therefore we sample the signal into 25ms frames, with a step of about 10ms which so that the frames are overlapping. Then we apply some operations on each frame to extract features. The most widely used feature extraction method is \ac{MFCC}, which we explain in brief.
@@ -185,9 +200,20 @@ For each frame, we calculate the \ac{FFT}, in order to move from the time domain
 Afterward, we take the log of the filterbank energies. This is also done to mimic the human ear as we do not hear loudness on a linear scale. 
 Then we compute the \ac{DCT} of the log filterbank energies. This is due to the fact that the filterbanks are overlapping, so we compute \ac{DCT} to reduce the correlation between filter bank amplitudes. The resulting \ac{DCT} coefficients are referred to as MFCC coefficients. Only 12 coefficients are kept and the rest are dropped, this is proven to improve the \ac{ASR} performance. These 12 coefficients, together with the normalized energy, they form the feature vector.
 
+\subsubsection{Acoustic Model} 
+\label{bg:sub5}
+
+\subsubsection{Language Model} 
+\label{bg:sub5}
+
+\subsubsection{Decoding} 
+\label{bg:sub5}
+
+\subsection{Hybrid Systems} 
+\label{bg:sub7}
 
 
-\subsection{Connectionist Temporal Classification \cite{graves2006connectionist}} 
+\subsection{End-to-End Systems - Connectionist Temporal Classification \cite{graves2006connectionist}} 
 \label{bg:sub7}
 
 Although \ac{RNN}s seemed to be the best suit for sequence models, their use in speech recognition has been limited to hybrid models which do not make use of the full capabilities of the \ac{RNN}s
