@@ -6,57 +6,56 @@
 \label{bg:s1}
 
 
-Natural Languages refer to languages written and spoken by human beings. They are English, Chinese, French, etc. Humans can easily learn and understand such languages. On the other hand, computers have difficulty understanding these languages because of the \enquote{ambiguity} problem. Computers understand structured and unambiguous programming languages. After all, on the lowest level everything translates to 0s and 1s. 
+Natural Languages refer to languages written and spoken by human beings. They are English, German, French, etc. Humans can easily learn and understand such languages. On the other hand, computers have difficulty understanding these languages because of the ambiguity problem, as computers understand structured and unambiguous programming languages. 
 
-\ac{NLP} is a field which aims at enhancing the human-computer interaction by giving computers the ability to understand natural language. It encompasses two sub-fields: \ac{NLG} and \ac{NLU}. \ac{NLG} targets making computers generate human-like sentences. \ac{NLU} focuses on semantics extraction or building a comprehension of the intent. For quite a long time (since 1950's), \ac{NLP} researches have been striving to build language models for narrowing down the gap between humans and machines.
+\ac{NLP} is a field which aims at enhancing the human-computer interaction by giving computers the ability to understand natural languages. It encompasses two sub-fields: \ac{NLG} and \ac{NLU}. \ac{NLG} targets making computers generate human-like sentences. \ac{NLU} focuses on semantics extraction or building a comprehension of the intent. For quite a long time, \ac{NLP} researches have been striving to build \ac{ASR} systems and language models for narrowing down the gap between humans and machines.
 
 
-In this Literature Review, a brief about two sub domains is included: Speech Recognition and Text Analytic s, however, in the beginning a quick review of the widely popular Artificial Neural Networks is elaborated in the next section.
+In this Literature Review, two sub-domains are explored: Speech Recognition and Text Analytics, but at the beginning a quick review of the widely popular Artificial Neural Networks is elaborated in the next section.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %2nd section
 \section{Artificial Neural Networks} \label{bg:s2} 
-\ac{ANNs} are models of computation modeled after the biological neural networks that constitute the human brain. 
-In early researches of Neural Networks, biological resemblance was emphasized \cite{hopfield1982neural} \cite{jordan1986serial} \cite{elman1990finding}, however, nowadays it is obvious that \ac{ANNs} have little in common compared to biological neural networks. That is due to the biological emphasis being abandoned in favor of achieving satisfying computational results.
+\ac{ANN}s are models of computation modeled after the biological neural networks that constitute the human brain. 
+In early researches of Neural Networks, biological resemblance was emphasized \cite{hopfield1982neural} \cite{jordan1986serial} \cite{elman1990finding}, however, nowadays it is obvious that \ac{ANN}s have little in common compared to biological neural networks. That is due to the biological emphasis being abandoned in favor of achieving satisfying computational results.
 
 
-The basic building block of \ac{ANNs} are \enquote{neurons}, commonly called nodes. The set of nodes are connected to each other with weighted edges, with the weights of the edges resembling the strength of the \enquote{synapses} between the neurons as suggested by the original biological model. 
-The neurons are represented diagrammatically by drawing them as circles, and the weighted edges as arrows connecting them.
-Each node has an activation function associated with it, which takes as input a weighted sum of the values of input nodes (Figure \ref{Fig:1}). 
+The basic building block of \ac{ANN}s are \enquote{neurons}, commonly called nodes. The set of nodes are connected to each other with weighted edges, with the weights of the edges resembling the strength of the \enquote{synapses} between the neurons as suggested by the original biological model. 
+The neurons are represented diagrammatically by drawing them as circles, and the weighted edges as arrows connecting them. Each node has an activation function associated with it, which takes as input a weighted sum of its input nodes (Figure \ref{Fig:1}). 
 
-\includefig{0.8}{neuron}{A neuron represented as a circle and the weighted edges as arrows. The activation function is a function of the sum of the weighted edges}{Fig:1}
-
-
-The most popular activation functions are: the sigmoid function $  \sigma(z) =  \frac{\mathrm{1} }{\mathrm{1} + e^-z }  $, the tanh function $  \phi(z) =  \frac{ e^z - e-z }{e^z + e^-z }  $, and the Re-Lu function $ l(z) = max(0,z) $. The activation function at the output nodes is considered to be task-specific. However, the most popular ones are the softmax function $ \sigma(\mathbf{z})_i = \frac{ e^ {z_i} }{ \sum_{j=1}^{K} e^{z_j} }$ for $i=1,..,K$ and $\mathbf{z}=(z_1,...,z_K) \in \mathds{R}^K $, the sigmoid function, or simple linear functions.
+\includefig{0.8}{neuron}{A neuron represented as a circle and the weighted edges as arrows. The activation function is a function of the sum of the weighted edges. \cite{A critical review of recurrent neural networks for sequence learning}}{Fig:1}
 
 
-There exist many variations of \ac{ANNs}, the simplest form of them are those whose edges do not form any cycles. These are called Feed Forward Neural Networks.
+The most popular activation functions are the sigmoid function $  \sigma(z) =  \frac{\mathrm{1} }{\mathrm{1} + e^-z }  $, the tanh function $  \phi(z) =  \frac{ e^z - e-z }{e^z + e^-z }  $, and the Re-Lu function $ l(z) = max(0,z) $. The activation function at the output nodes is considered to be task-specific. However, the most popular ones are the softmax function $ \sigma(\mathbf{z})_i = \frac{ e^ {z_i} }{ \sum_{j=1}^{K} e^{z_j} }$ for $i=1,..,K$ and $\mathbf{z}=(z_1,...,z_K) \in \mathds{R}^K $, the sigmoid function, or simple linear functions.
+
+
+There exist many variations of \ac{ANN}s, the simplest form of them are those whose edges do not form any cycles. These are called Feed Forward Neural Networks.
 
 
 \subsection{Feed Forward Neural Networks}
 \label{bg:sub1}
-The most popular form of \ac{FNNs} is the \ac{MLPs} \cite{rumelhart1985learning} \cite{werbos1988generalization} \cite{bishop1995neural}.
-With the absence of cycles, the nodes are arranged into layers, as seen in Figure \ref{Fig:2} and Figure \ref{Fig:3}, where the layers are classified as an input layer, one or many hidden layers, and an output layer. 
+The most popular form of \ac{FNN}s is the \ac{MLP}s \cite{rumelhart1985learning} \cite{werbos1988generalization} \cite{bishop1995neural}.
+With the absence of cycles, the nodes are arranged into layers, as seen in Figure \ref{Fig:2}, where the layers are classified as an input layer, one or many hidden layers, and an output layer. 
 
 \includefig{0.4}{simple_nn}{A simple Feed Forward Neural Network consisting of an input layer, one hidden layer, and an output layer}{Fig:2}
 
-\includefig{1}{deep_nn}{A deep Feed Forward Neural Network consisting of many hidden layers}{Fig:3}
+%\includefig{1}{deep_nn}{A deep Feed Forward Neural Network consisting of many hidden layers}{Fig:3}
 
-The input to \ac{FNNs} is applied to the input layer. Values of nodes in a given layer, are successively calculated using the values of nodes in the lower layer, until the output is generated at the highest layer: the output layer. This is known as the \enquote{Forward pass}.
-Neural Networks learn by looking at input examples without being explicitly programmed any hard-coded rules about the required task. The learning process is achieved by continuously modifying the weights to minimize an error represented by a loss function $ L(\widehat{y}, y) $, which measures the distance between the output y (predicted value of y) and the actual value of y (ground-truth).
+The input to \ac{FNN}s is applied to the input layer. Values of nodes in a given layer, are successively calculated using the values of nodes in the lower layer, until the output is generated at the highest layer: the output layer. This is known as the \enquote{Forward pass}.
+Neural Networks learn by looking at input examples without being explicitly programmed any hard-coded rules about the required task. The learning process is achieved by continuously modifying the weights to minimize an error represented by a loss function $ L(\widehat{y}, y) $, which measures the distance between the output $y$ (predicted value of $y$) and the actual value of $y$ (ground-truth).
 
 The algorithm for training neural networks is back-propagation \cite{rumelhart1985learning}. Back-propagation uses the chain rule to calculate the derivative of the loss function $L(\widehat{y}, y)$ with respect to each parameter in the network. The parameters (weights) are then adjusted in the direction of less error by an optimization algorithm called gradient descent. This is known as the \enquote{Backward Pass}
 
-\subsubsection{Sequence Models and the Problem with FNNs}\label{bg:subsub1}
+\subsubsection{Sequence Models and the Problem with \ac{FNN}s}\label{bg:subsub1}
 
-A distinctive feature of the \ac{FNNs} is the \enquote{independence assumption}. That is the presented examples (data points) are assumed to be independent of each other, rendering the \ac{FNNs} unable to correctly represent input or output sequences with dependencies either in time or space. Examples are words forming sentences, letters forming words, frames of video, snippets of audio clips, DNA sequences, etc. \ac{FNNs} knows no concept of “context” when analyzing the given examples, they simply are unable to capture dependencies. With the context being a crucial element when analyzing sequences, a simple solution that addresses that matter is the \enquote{time-window} solution, i.e. collect the data from either side of the current input into a window. The fact that the range of useful context (either on the left or the right) vary widely from sequence to sequence and in most cases is unknown makes this approach not very efficient.
+A distinctive feature of the \ac{FNN}s is the \enquote{independence assumption}. That is the presented examples (data points) are assumed to be independent of each other, rendering the \ac{FNN}s unable to correctly represent input or output sequences with dependencies either in time or space. Examples are words forming sentences, letters forming words, frames of video, snippets of audio clips, DNA sequences, etc. \ac{FNN}s knows no concept of “context” when analyzing the given examples, they simply are unable to capture dependencies. With the context being a crucial element when analyzing sequences, a simple solution that addresses that matter is the \enquote{time-window} solution, i.e. collect the data from either side of the current input into a window. The fact that the range of useful context (either on the left or the right) vary widely from sequence to sequence and in most cases is unknown makes this approach not very efficient.
 For example, a model trained using a finite-length context window of length $n$ could never be trained to answer the simple question, \enquote{what was the data point seen $n+\mathrm{1}$ time steps ago?}
 
 
-Another problem with \ac{FNNs} is that they treat inputs and outputs as \enquote{fixed-length vectors}. Some representations, such as sentences can not be represented in such way. Some  solutions such as \enquote{padding} assume a maximum-length for the inputs and/or outputs. Such approach is not a general one. 
-Thus, it was required to extend these powerful and successful models to better suit the vastly crucial sequence models, and that is where the Recurrent Neural Networks came into picture.
+Another problem with \ac{FNN}s is that they treat inputs and outputs as \enquote{fixed-length vectors}. Some representations, such as sentences can not be represented in such way. Some  solutions such as \enquote{padding} assume a maximum-length for the inputs and/or outputs. Such approach is not a general one. 
+Thus, it was required to extend these powerful and successful models to better suit the sequential nature of some data, and that is where the Recurrent Neural Networks came into picture.
 
 
 \subsection{Recurrent Neural Networks} 
@@ -64,11 +63,11 @@ Thus, it was required to extend these powerful and successful models to better s
 
 \includefig{0.8}{RNN}{A Recurrent Neural Network}{Fig:4}
 
-\ac{ANNs} containing cycles are referred to as recursive, or recurrent neural networks. \ac{RNNs} are models which have the ability to pass information learnt across past data points, while processing sequential data points one by one. Thus they can model inputs and outputs which are correlated either in time or space. They are considered to be neural networks possessing memory.
+\ac{ANN}s containing cycles are referred to as recursive, or recurrent neural networks. \ac{RNN}s are models which have the ability to pass information learnt across past data points, while processing sequential data points one by one. Thus they can model inputs and outputs which are correlated either in time or space. They are considered to be neural networks possessing memory.
 
 
-The \ac{RNNs} have the following architecture: each hidden layer - commonly referred to as \enquote{hidden state} - has two sources of inputs, which are the present data point, and information from the hidden state of the past data point (Figure \ref{Fig:4}). This is how contextual information is propagated across the hidden states of the sequential data points. 
-Equation \ref{eq:1} explains how each hidden state nodes values are calculated. Each hidden state $ \mathbf{h_t} $ is a function of the present data point $ \mathbf{x} $ multiplied by some weight matrix $ W^x $ and the previous hidden state $ \mathbf{h_{t-1}} $ multiplied by some weight matrix $ W^h $ and some bias term $ \mathbf{b_h} $. The weight matrices are used to determine how much importance is given to both the present data point and the past hidden state. The output $ \mathbf{\widehat{y_t}} $ at time step $ t $ is given by equation \ref{eq:2}, where $ \mathbf{\widehat{y_t}} $ is obtained by applying the softmax function to the hidden state $  \mathbf{h_t} $ multiplied by some weight matrix $ W^y $ and adding to it some bias term $ \mathbf{b_y} $. Similar to the vanilla \ac{ANNs}, the weights are continuously adjusted to minimize a cost function. This is done using an algorithm called \ac{BPTT} \cite{werbos1990backpropagation}
+The \ac{RNN}s have the following architecture: each hidden layer - commonly referred to as \enquote{hidden state} - has two sources of inputs, which are the present data point, and information from the hidden state of the past data point (Figure \ref{Fig:4}). This is how contextual information is propagated across the hidden states of the sequential data points. 
+Equation \ref{eq:1} explains how each hidden state nodes values are calculated. Each hidden state $ \mathbf{h_t} $ is a function of the present data point $ \mathbf{x} $ multiplied by some weight matrix $ W^x $ and the previous hidden state $ \mathbf{h_{t-1}} $ multiplied by some weight matrix $ W^h $ and some bias term $ \mathbf{b_h} $. The weight matrices are used to determine how much importance is given to both the present data point and the past hidden state. The output $ \mathbf{\widehat{y_t}} $ at time step $ t $ is given by equation \ref{eq:2}, where $ \mathbf{\widehat{y_t}} $ is obtained by applying the softmax function to the hidden state $  \mathbf{h_t} $ multiplied by some weight matrix $ W^y $ and adding to it some bias term $ \mathbf{b_y} $. Similar to the vanilla \ac{ANN}s, the weights are continuously adjusted to minimize a cost function. This is done using an algorithm called \ac{BPTT} \cite{werbos1990backpropagation}
 
 
 \begin{equation}
@@ -82,9 +81,9 @@ Equation \ref{eq:1} explains how each hidden state nodes values are calculated. 
 \end{equation}
 
 
-\subsubsection{Bidirectional RNNs}
+\subsubsection{Bidirectional \ac{RNN}s}
 \label{bg:subsub3}
-A slight variation of the \ac{RNNs} is the \ac{BRNNs} \cite{schuster1997bidirectional}. The \ac{BRNNs} have a slight different architecture which allows it to take into consideration information not only from the present and the past input but also from the future input. Note that by past, present, and future, we not only refer to temporal sequences, but any sequences which have a strong emphasis of the order, but bear no explicit notion of time; this is actually the case with \ac{NLP}. In \ac{BRNNs} each hidden layer is duplicated into two layers (Figure \ref{Fig:5}), one layer takes as inputs the present data point and information from the past data point. This is referred to as the \enquote{forward direction}. The other layer takes as input the present data point and information from the future data point. This is referred to as the \enquote{backward direction}. The \ac{BRNNs} are fully described by equations \ref{eq:4}, \ref{eq:5} and \ref{eq:6}, where $ \mathbf{h_t^{<f>}} $ represents the forward direction of the hidden layers and $ \mathbf{h_t^{<b>}} $ represents the backward direction of the hidden layers. The predicted value $ \mathbf{\widehat{y_t}} $ is now a function of both the forward and the backward direction. Considering information from both sides of the sequence instead of the left side only adds much power to the network as the context is understood much better. Consider the following example: \enquote{She said, \enquote{Teddy bears are on sale.}}, \enquote{She said, \enquote{Teddy Roosevelt was an amazing president}} On these two examples, considering \enquote{Teddy} as the current data point, the left sequence is the same, however, the right sequence is crucial in understanding the context. Thus for an application like named-entity recognition, using \ac{BRNNs} adds much gain. One drawback about \ac{BRNNs} is that the entire sequence is needed before any predictions can be made, therefore for real-time systems it is a bit slow as it introduces some delay.
+A slight variation of the \ac{RNN}s is the \ac{BRNN}s \cite{schuster1997bidirectional}. The \ac{BRNN}s have a slight different architecture which allows it to take into consideration information not only from the present and the past input but also from the future input. Note that by past, present, and future, we not only refer to temporal sequences, but also sequences which have a strong emphasis of the order, but bear no explicit notion of time; this is actually the case with natural languages. In \ac{BRNN}s each hidden layer is duplicated into two layers (Figure \ref{Fig:5}), one layer takes as inputs the present data point and information from the past data point. This is referred to as the \enquote{forward direction}. The other layer takes as input the present data point and information from the future data point. This is referred to as the \enquote{backward direction}. The \ac{BRNN}s are fully described by equations \ref{eq:4}, \ref{eq:5} and \ref{eq:6}, where $ \mathbf{h_t^{<f>}} $ represents the forward direction of the hidden layers and $ \mathbf{h_t^{<b>}} $ represents the backward direction of the hidden layers. The predicted value $ \mathbf{\widehat{y_t}} $ is now a function of both the forward and the backward direction. Considering information from both sides of the sequence instead of the left side only adds much power to the network as the context is understood much better. Consider the following example: \enquote{She said, \enquote{Teddy bears are on sale.}}, \enquote{She said, \enquote{Teddy Roosevelt was an amazing president}} On these two examples, considering \enquote{Teddy} as the current data point, the left sequence is the same, however, the right sequence is crucial in understanding the context. Thus for an application like named-entity recognition, using \ac{BRNN}s adds much gain. One drawback about \ac{BRNN}s is that the entire sequence is needed before any predictions can be made, therefore for real-time systems it is a bit slow as it introduces some delay.
 
 \begin{equation}
 \label{eq:4}
@@ -98,23 +97,23 @@ A slight variation of the \ac{RNNs} is the \ac{BRNNs} \cite{schuster1997bidirect
 
 \begin{equation}
 \label{eq:6}
-\mathbf{\widehat{y_t}} = softmax(W^{yf} \; \mathbf{h_t^f} + W^{yb} \; \mathbf{h_t^b} + \mathbf{b_y})
+\mathbf{\widehat{y_t}} = softmax(W^{yf} \; \mathbf{h_t^{<f>}} + W^{yb} \; \mathbf{h_t^{<b>}} + \mathbf{b_y})
 \end{equation}
 
 \includefig{0.8}{BRNN}{A Bidirectional Recurrent Neural Network}{Fig:5}
 
 
-\subsubsection{Problems with RNNs}
+\subsubsection{Problems with \ac{RNN}s}
 \label{bg:subsub4}
 TODO: vanishing and exploding gradients \cite{hochreiter1991untersuchungen} \cite{hochreiter2001gradient} \cite{bengio1994learning}
 
 
 \subsubsection{Long Short-Term Memory}
 \label{bg:subsub5}
-\ac{LSTM} \cite{hochreiter1997long} is a variation of vanilla \ac{RNNs} which was designed as a solution to the vanishing gradients problem. The main idea was to replace the ordinary node with a \enquote{memory cell}. The cell uses \enquote{gates} in order to make decisions about which information to keep and which to discard. It has three gates: output, input, and forget gate, which are analogous to read, write, and reset operations for the memory cell. The gates uses sigmoid as the activation function, where the values of the gates ranges from 0 to 1.
+\ac{LSTM} \cite{hochreiter1997long} is a variation of vanilla \ac{RNN}s which was designed as a solution to the vanishing gradients problem. The main idea was to replace the ordinary node with a \enquote{memory cell}. The cell uses \enquote{gates} in order to make decisions about which information to keep and which to discard. It has three gates: output, input, and forget gate, which are analogous to read, write, and reset operations for the memory cell. The gates uses sigmoid as the activation function, where the values of the gates ranges from 0 to 1.
 
 
-TODO: continue LSTM
+TODO 1: continue LSTM
 
 
 \begin{equation}
@@ -153,21 +152,24 @@ TODO: continue LSTM
 \mathbf{h_t} = tanh(\mathbf{c_t}) \; \mathbf{o_t}
 \end{equation}
 
-\includefig{0.8}{LSTM1}{An LSTM Cell}{Fig:6}
+\includefig{0.8}{LSTM1}{An \ac{LSTM} Cell}{Fig:6}
 
 
 
-\subsubsection{Gated Recurrent Units}
-\label{bg:subsub6}
-TODO: \ac{GRUs}
-
-%\subsubsection{Problems with LSTMs and GRUs}
-%\label{conc:subsub7}
+\subsubsection{Problems with \ac{LSTM}}
+\label{conc:subsub7}
+TODO 2: Problems with LSTMS
 
 \subsection{Convolution Neural Networks} 
 \label{bg:sub3}
+TODO 3: CNNs
 
 
+
+
+
+
+Now that we have examined neural networks, we move forward to discussing the speech recognition problem in the next section.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %3rd section
@@ -178,8 +180,8 @@ The speech recognition problem is defined as follows: given an audio waveform, t
 \subsection{HMM-Based \ac{ASR} Systems} 
 \label{bg:sub4}
 
-We begin by demonstrating the main components of an \ac{ASR} system. As depicted in figure FIGURE, an audio waveform is passed to a \enquote{feature extraction} module, which outputs a sequence of acoustic vectors, $\mathbf{Y} = y_1,y_2,...,y_T$. The audio fragment corresponds to a sequence of words $W = w_1,w_2,...,w_n$. The objective of the \ac{ASR} system is to find the most probable word sequence $W$ given a previously unknown audio signal $\mathbf{Y}$.
-In other words, the target is to find $W = {arg \, max}_{W} \; P(W|\mathbf{Y})$. Using Bayes' Rule, this probability is broken down into two probabilities as shown in equation \ref{eq:24}.
+We begin by demonstrating the main components of an \ac{ASR} system. As depicted in figure FIGURE, an audio waveform is passed to a \enquote{feature extraction} module, which outputs a sequence of acoustic vectors, $\mathbf{Y} = y_1,y_2,...,y_T$. The audio fragment corresponds to a sequence of words $W = w_1,w_2,...,w_n$, and it is the objective of the \ac{ASR} system is to find the most probable word sequence $W$ given a previously unknown audio signal $\mathbf{Y}$.
+More formally, the target is to find $W = {arg \, max}_{W} \; P(W|\mathbf{Y})$. Using Bayes' Rule, this probability can be broken down into two probabilities as shown in equation \ref{eq:24}.
 
 
 \begin{equation}
@@ -190,41 +192,53 @@ W = {arg \, max}_{W} \; P(W|\mathbf{Y}) = {arg \, max}_{W} \; \frac{P(W) \; P(\m
 This indicates that we need to find $P(W)$ and $P(\mathbf{Y}|W)$ which maximizes \ref{eq:24}, in order to find the most probable word sequence $W$.
 There are two main components in the \ac{ASR} system, the \enquote{language model} is used to compute $P(W)$, which is the probability of observing the word sequence $W$ independent of the audio signal. The second component, which is the \enquote{acoustic model} computes $P(\mathbf{Y}|W)$ which is the probability of the sequence of acoustic vectors $Y$, given a word sequence $W$.
 
+Figure FIGURE illustrates the flow of the \ac{ASR} mechanics. Firstly, $P(W)$ is computed by the language model, then the word sequence $W$ is passed to a \enquote{pronouncing dictionary}, which breaks the words into \enquote{phones}. Phones are distinct units of sounds, and they are specific to every language. For example, English has 44 phones, despite having 26 letters only. That means there 44 different sounds in English. The audio signal is passed to a feature extraction module which outputs numerical features representing the speech signal. For every phone, a statistical \ac{HMM} model is built, and theses models are concatenated together in order to represent the whole sequence of phones making up the utterance using a single model. Then the probability of this model generating the sequence of acoustic vectors $Y$, given the word sequence $W$ is calculated \textit{i.e.} $P(\mathbf{Y}|W)$. For every possible word sequence $W$, this process can be repeated until we get the most probable word sequence, however, this is obviously impractical and more efficient methods are used. The process of searching for the most probable word sequence is referred to as \enquote{decoding}.
+
+We begin by shedding light on the feature extraction module.
+
 
 \subsubsection{Feature Extraction} 
 \label{bg:sub5}
 
-The premier step in any \ac{ASR} system is to extract features. That is to turn the raw speech waveforms into a sequence of numerical vectors. The issue, however, lies in the fact that the audio signals are constantly changing. For us to be able to deal with them, we make the assumption that for sufficiently small period of time the signals are stationary. Therefore we sample the signal into 25ms frames, with a step of about 10ms which so that the frames are overlapping. Then we apply some operations on each frame to extract features. The most widely used feature extraction method is \ac{MFCC}, which we explain in brief.
+The premier step in any \ac{ASR} system is to extract features. That is to turn the raw speech waveforms into a sequence of numerical vectors. The issue, however, lies in the fact that audio signals are constantly changing. For us to be able to deal with them, we make the assumption that for sufficiently small period of time the signals are stationary. Therefore we sample the signal into 25ms frames, with a step of about 10ms so that the frames are overlapping. Then we apply some operations on each frame to extract features. The most widely used feature extraction method is \ac{MFCC}, which we explain in brief.
 
-For each frame, we calculate the \ac{FFT}, in order to move from the time domain to the spectral domain. Human ears cannot distinguish between two closely spaced frequencies, specially for higher frequencies. To mimic this effect, we need to know how much energy exists in different frequency regions. This is done by applying special filters called Mel filterbanks. The first filter is the narrowest, and indicates how much energy exists around 0 Hertz. Then the filters become wider as the frequencies get higher because we become less concerned about variations. 
+For each frame, the \ac{FFT} is calculated, in order to move from the time domain to the spectral domain. Human ears cannot distinguish between two closely spaced frequencies, specially for higher frequencies; to mimic this effect, we need to know how much energy exists in different frequency regions. This is done by applying special filters called Mel filterbanks. The first filter is the narrowest, and indicates how much energy exists around 0 Hertz. Then the filters become wider as the frequencies get higher because we become less concerned about variations. 
 Afterward, we take the log of the filterbank energies. This is also done to mimic the human ear as we do not hear loudness on a linear scale. 
 Then we compute the \ac{DCT} of the log filterbank energies. This is due to the fact that the filterbanks are overlapping, so we compute \ac{DCT} to reduce the correlation between filter bank amplitudes. The resulting \ac{DCT} coefficients are referred to as MFCC coefficients. Only 12 coefficients are kept and the rest are dropped, this is proven to improve the \ac{ASR} performance. These 12 coefficients, together with the normalized energy, they form the feature vector.
 
 \subsubsection{Acoustic Model} 
 \label{bg:sub5}
 
+TODO 4 : Acoustic modeling
+
 \subsubsection{Language Model} 
 \label{bg:sub5}
 
+The sole objective of the language model is to compute the probability of a word $w_k$ given the previous words $W_1^{k-1} = w_1,w_2,...,w_{k-1}$. \enquote{N-grams}, are one of the earliest and simplest, but still efficient methods used for language modeling. As implied by the name, n-grams make the assumption that the probability of a certain word $w_k$, depends only on the previous $n-1$ words. More formally, $P(w_k|W_1^{k-1}) = P(W_{k-n+1}^{k-1}) $. N-grams are pretty simple to compute; using frequency counts from textual data and storing them in look-up tables simply gets us the probability distribution. They also capture dependencies and semantics and hence are highly suitable for languages like English due to the fact that word order matters a lot and nearest neighbors contribute largely to the contextual meaning of a word. For more compound languages like German, higher order grams would be a more convenient choice.  
+
 \subsubsection{Decoding} 
 \label{bg:sub5}
+TODO 5: Decoding
+
 
 \subsection{Hybrid Systems} 
 \label{bg:sub7}
-
-
-\subsection{End-to-End Systems - Connectionist Temporal Classification \cite{graves2006connectionist}} 
-\label{bg:sub7}
-
-Although \ac{RNN}s seemed to be the best suit for sequence models, their use in speech recognition has been limited to hybrid models which do not make use of the full capabilities of the \ac{RNN}s
-
+TODO 6 : Hybrid Systems
 %%%%%%%%%%%%%% Problems with hybrid models
-
 PROBLEMS WITH HYBRID MODELS
 THE NEED TO SEGMENT THE DATA
 
 
-In 2006, Graves \textit{et al.} introduced a novel way of using \ac{RNN}s for labeling unsegmented sequence data which they called \ac{CTC}. We shall demonstrate their paper in this section. 
+Although \ac{RNN}s seemed to be the best suit for sequence models, their use in speech recognition has been limited to hybrid models which do not make use of the full capabilities of the \ac{RNN}s
+
+
+
+
+\subsection{End-to-End Systems} 
+\label{bg:sub7}
+
+
+In 2006, Graves \textit{et al.} introduced a novel way of using \ac{RNN}s for labeling unsegmented sequence data which they called \ac{CTC} \cite{graves2006connectionist}. We shall demonstrate their paper in this section. 
 The basic idea is to model the \ac{RNN} outputs as a conditional probability distribution over all possible sequences of labels given a certain input sequence. With that, an objective function is defined that tries to maximize the probability of the correct label sequence. The neural network can then be trained using standard \ac{BPTT}.
 
 Let $L$ be a finite alphabet of labels and $L^*$ is the set of all sequences over the alphabet $L$. Likewise, let $S$ be a set of training examples which comprises pairs of sequences $(\mathbf{x},\mathbf{z})$, with $\mathbf{x} = (x_1, x_2,..., x_T)$ being an input sequence of real-valued feature vectors, and $\mathbf{z} = (z_1, z_2,..., z_U) \in L^*$ is a target sequence of labels which is at most the same length as the input sequence $x$. \textit{i}.\textit{e}. $U \leq T$. Our goal is to train a classifier $h$ that uses the training examples set $S$ to classify formerly unseen input sequences in a manner that minimizes our \enquote{label error rate}. Label error rate is defined as the minimum number of insertions, deletions and substitutions required to change the predicted word into the ground-truth word.

@@ -1,13 +1,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces A neuron represented as a circle and the weighted edges as arrows. The activation function is a function of the sum of the weighted edges\relax }}{4}{figure.caption.9}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces A neuron represented as a circle and the weighted edges as arrows. The activation function is a function of the sum of the weighted edges. \cite {A critical review of recurrent neural networks for sequence learning}\relax }}{4}{figure.caption.9}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces A simple Feed Forward Neural Network consisting of an input layer, one hidden layer, and an output layer\relax }}{4}{figure.caption.12}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces A deep Feed Forward Neural Network consisting of many hidden layers\relax }}{5}{figure.caption.13}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces A Recurrent Neural Network\relax }}{6}{figure.caption.15}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces A Bidirectional Recurrent Neural Network\relax }}{7}{figure.caption.20}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces An LSTM Cell\relax }}{8}{figure.caption.24}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces A Recurrent Neural Network\relax }}{5}{figure.caption.14}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces A Bidirectional Recurrent Neural Network\relax }}{7}{figure.caption.19}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces An \ac {LSTM} Cell\relax }}{8}{figure.caption.23}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{17}{figure.caption.52}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{17}{figure.caption.49}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
