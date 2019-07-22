@@ -6,7 +6,7 @@
 \contentsline {figure}{\numberline {2.4}{\ignorespaces A Bidirectional Recurrent Neural Network\relax }}{7}{figure.caption.19}
 \contentsline {figure}{\numberline {2.5}{\ignorespaces An \ac {LSTM} Cell\relax }}{8}{figure.caption.23}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{17}{figure.caption.49}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{19}{figure.caption.49}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

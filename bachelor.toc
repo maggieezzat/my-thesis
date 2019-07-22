@@ -15,45 +15,44 @@
 \contentsline {subsection}{\numberline {2.3.1}HMM-Based \ac {ASR} Systems}{8}{subsection.2.3.1}
 \contentsline {subsubsection}{Feature Extraction}{9}{section*.26}
 \contentsline {subsubsection}{Acoustic Model}{9}{section*.30}
-\contentsline {subsubsection}{Language Model}{9}{section*.31}
-\contentsline {subsubsection}{Decoding}{10}{section*.32}
+\contentsline {subsubsection}{Language Model}{10}{section*.32}
 \contentsline {subsection}{\numberline {2.3.2}Hybrid Systems}{10}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}End-to-End Systems}{10}{subsection.2.3.3}
-\contentsline {section}{\numberline {2.4}Text Analytics}{11}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Encoder-Decoder Architecture}{11}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Attention Mechanism}{12}{subsection.2.4.2}
-\contentsline {subsubsection}{\MakeUppercase {i}. Encoder}{12}{section*.35}
+\contentsline {subsection}{\numberline {2.3.3}End-to-End Systems}{11}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Text Analytics}{12}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Encoder-Decoder Architecture}{12}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Attention Mechanism}{13}{subsection.2.4.2}
+\contentsline {subsubsection}{\MakeUppercase {i}. Encoder}{13}{section*.35}
 \contentsline {subsubsection}{\MakeUppercase {ii}. Decoder}{13}{section*.36}
-\contentsline {subsubsection}{\MakeUppercase {iii}. Additive Attention}{13}{section*.37}
-\contentsline {subsection}{\numberline {2.4.3}The Transformer}{13}{subsection.2.4.3}
-\contentsline {subsubsection}{\MakeUppercase {i}. Problem with Recurrence}{13}{section*.38}
+\contentsline {subsubsection}{\MakeUppercase {iii}. Additive Attention}{14}{section*.37}
+\contentsline {subsection}{\numberline {2.4.3}The Transformer}{14}{subsection.2.4.3}
+\contentsline {subsubsection}{\MakeUppercase {i}. Problem with Recurrence}{14}{section*.38}
 \contentsline {subsubsection}{\MakeUppercase {ii}. Encoder}{14}{section*.39}
 \contentsline {subsubsection}{\MakeUppercase {iii}. Decoder}{14}{section*.40}
-\contentsline {subsubsection}{\MakeUppercase {iv}. Scaled Dot-Product Attention}{14}{section*.41}
-\contentsline {subsubsection}{\MakeUppercase {v}. Positional Encodings}{14}{section*.42}
-\contentsline {subsection}{\numberline {2.4.4}Bidirectional Encoder from Transformer (BERT)}{14}{subsection.2.4.4}
-\contentsline {subsubsection}{Word Embeddings}{14}{section*.43}
-\contentsline {subsubsection}{Transfer Learning}{14}{section*.44}
-\contentsline {paragraph}{Feature Extraction}{14}{section*.45}
-\contentsline {paragraph}{Fine Tuning}{14}{section*.46}
-\contentsline {subsubsection}{Bidirectional vs uni-directional}{14}{section*.47}
-\contentsline {subsubsection}{PreTraining Tasks}{14}{section*.48}
-\contentsline {chapter}{\numberline {3}Methodology}{15}{chapter.3}
-\contentsline {section}{\numberline {3.1}System Overview and Datasets}{15}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}\ac {ASR} Datasets}{15}{subsection.3.1.1}
-\contentsline {subsubsection}{\MakeUppercase {i}. Common Voice}{15}{section*.50}
-\contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{16}{section*.51}
-\contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data \cite {radeck2015open}}{16}{section*.52}
-\contentsline {subsection}{\numberline {3.1.2}Text Classifier Datasets}{16}{subsection.3.1.2}
-\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{16}{section*.53}
-\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{16}{section*.54}
-\contentsline {section}{\numberline {3.2}Automatic Speech Recognition Unit}{16}{section.3.2}
-\contentsline {section}{\numberline {3.3}Text Classifier Unit}{16}{section.3.3}
-\contentsline {chapter}{\numberline {4}Results}{19}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusion}{21}{chapter.5}
-\contentsline {chapter}{\numberline {6}Future Work}{23}{chapter.6}
-\contentsline {chapter}{Appendix}{24}{section*.55}
-\contentsline {chapter}{\numberline {A}Lists}{25}{appendix.A}
-\contentsline {section}{List of Abbreviations}{25}{section*.56}
-\contentsline {section}{List of Figures}{26}{appendix*.57}
-\contentsline {chapter}{References}{28}{appendix*.58}
+\contentsline {subsubsection}{\MakeUppercase {iv}. Scaled Dot-Product Attention}{15}{section*.41}
+\contentsline {subsubsection}{\MakeUppercase {v}. Positional Encodings}{15}{section*.42}
+\contentsline {subsection}{\numberline {2.4.4}Bidirectional Encoder from Transformer (BERT)}{15}{subsection.2.4.4}
+\contentsline {subsubsection}{Word Embeddings}{15}{section*.43}
+\contentsline {subsubsection}{Transfer Learning}{15}{section*.44}
+\contentsline {paragraph}{Feature Extraction}{15}{section*.45}
+\contentsline {paragraph}{Fine Tuning}{15}{section*.46}
+\contentsline {subsubsection}{Bidirectional vs uni-directional}{15}{section*.47}
+\contentsline {subsubsection}{PreTraining Tasks}{15}{section*.48}
+\contentsline {chapter}{\numberline {3}Methodology}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}System Overview and Datasets}{17}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}\ac {ASR} Datasets}{17}{subsection.3.1.1}
+\contentsline {subsubsection}{\MakeUppercase {i}. Common Voice}{17}{section*.50}
+\contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{18}{section*.51}
+\contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data \cite {radeck2015open}}{18}{section*.52}
+\contentsline {subsection}{\numberline {3.1.2}Text Classifier Datasets}{18}{subsection.3.1.2}
+\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{18}{section*.53}
+\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{18}{section*.54}
+\contentsline {section}{\numberline {3.2}Automatic Speech Recognition Unit}{18}{section.3.2}
+\contentsline {section}{\numberline {3.3}Text Classifier Unit}{18}{section.3.3}
+\contentsline {chapter}{\numberline {4}Results}{21}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{23}{chapter.5}
+\contentsline {chapter}{\numberline {6}Future Work}{25}{chapter.6}
+\contentsline {chapter}{Appendix}{26}{section*.55}
+\contentsline {chapter}{\numberline {A}Lists}{27}{appendix.A}
+\contentsline {section}{List of Abbreviations}{27}{section*.56}
+\contentsline {section}{List of Figures}{28}{appendix*.57}
+\contentsline {chapter}{References}{30}{appendix*.58}

@@ -82,6 +82,17 @@ MI~Jordan.
 \newblock Technical report, California Univ., San Diego, La Jolla (USA). Inst.
   for Cognitive Science, 1986.
 
+\bibitem{keselj2009speech}
+Vlado Keselj.
+\newblock Speech and language processing daniel jurafsky and james h. martin,
+  2009.
+
+\bibitem{rabiner1989tutorial}
+Lawrence~R Rabiner.
+\newblock A tutorial on hidden markov models and selected applications in
+  speech recognition.
+\newblock {\em Proceedings of the IEEE}, 77(2):257--286, 1989.
+
 \bibitem{radeck2015open}
 Stephan Radeck-Arneth, Benjamin Milde, Arvid Lange, Evandro Gouv{\^e}a, Stefan
   Radomski, Max M{\"u}hlh{\"a}user, and Chris Biemann.

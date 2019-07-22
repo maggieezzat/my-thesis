@@ -192,7 +192,7 @@ W = {arg \, max}_{W} \; P(W|\mathbf{Y}) = {arg \, max}_{W} \; \frac{P(W) \; P(\m
 This indicates that we need to find $P(W)$ and $P(\mathbf{Y}|W)$ which maximizes \ref{eq:24}, in order to find the most probable word sequence $W$.
 There are two main components in the \ac{ASR} system, the \enquote{language model} is used to compute $P(W)$, which is the probability of observing the word sequence $W$ independent of the audio signal. The second component, which is the \enquote{acoustic model} computes $P(\mathbf{Y}|W)$ which is the probability of the sequence of acoustic vectors $Y$, given a word sequence $W$.
 
-Figure FIGURE illustrates the flow of the \ac{ASR} mechanics. Firstly, $P(W)$ is computed by the language model, then the word sequence $W$ is passed to a \enquote{pronouncing dictionary}, which breaks the words into \enquote{phones}. Phones are distinct units of sounds, and they are specific to every language. For example, English has 44 phones, despite having 26 letters only. That means there 44 different sounds in English. The audio signal is passed to a feature extraction module which outputs numerical features representing the speech signal. For every phone, a statistical \ac{HMM} model is built, and theses models are concatenated together in order to represent the whole sequence of phones making up the utterance using a single model. Then the probability of this model generating the sequence of acoustic vectors $Y$, given the word sequence $W$ is calculated \textit{i.e.} $P(\mathbf{Y}|W)$. For every possible word sequence $W$, this process can be repeated until we get the most probable word sequence, however, this is obviously impractical and more efficient methods are used. The process of searching for the most probable word sequence is referred to as \enquote{decoding}.
+Figure FIGURE illustrates the flow of the \ac{ASR} mechanics. Firstly, $P(W)$ is computed by the language model, then the word sequence $W$ is passed to a \enquote{pronouncing dictionary}, which breaks the words into \enquote{phones}. Phones are distinct units of sounds, and they are specific to every language. For example, English has 44 phones, despite having 26 letters only. That means there 44 different sounds in English. The audio signal is passed to a feature extraction module which outputs numerical features representing the speech signal. For every phone, a statistical \ac{HMM} model is built, and these models are concatenated together in order to represent the whole sequence of phones making up the utterance using a single model. Then the probability of this model generating the sequence of acoustic vectors $Y$, given the word sequence $W$ is calculated \textit{i.e.} $P(\mathbf{Y}|W)$. For every possible word sequence $W$, this process can be repeated until we get the most probable word sequence, however, this is obviously impractical and more efficient methods are used. The process of searching for the most probable word sequence is referred to as \enquote{decoding}.
 
 We begin by shedding light on the feature extraction module.
 
@@ -209,16 +209,36 @@ Then we compute the \ac{DCT} of the log filterbank energies. This is due to the 
 \subsubsection{Acoustic Model} 
 \label{bg:sub5}
 
-TODO 4 : Acoustic modeling
+The acoustic model provides a mechanism for computing the probability of a sequence of acoustic vectors $Y$ given a word sequence $w$. 
+To be able to do this, each word is broken into its constituent phones using the pronouncing dictionary, and we model each phone as a \ac{HMM}. \ac{HMM}s are statistical models that are used to predict a sequence of unknown random variables - hence the name \enquote{hidden} -  from a set of observed variables. Here the unknown variable is the phones sequence, and the observed variables are the sequence of acoustic vectors. \ac{HMM}s \ac{FST} which are based on the \enquote{Markov Assumption} which states that, in order to predict the future (next state), all we need to know is the present  (current state) only, neglecting the past (previous states). \textit{i.e.} $ P(x_i|x_1,x_2,...,x_{i-1}) = P(x_i|x_{i-1}) $. Each phone model has an entry state and an exit state which are used to connect different phone models together forming words, and words to be connected together forming sentences. The states are connected by arrows which represent the probabilities of moving from one state to another. Thus, $a_{ij}$ represents the probability of moving from state $i$ to state $j$. Each time $t$, the \ac{HMM} changes state moving from state $i$ to $j$ with probability $a_{ij}$, and generating an acoustic vector $\mathbf{y_t}$ with probability $b_j(\mathbf{y_t})$. \ac{HMM}s are also based on the \enquote{Output Independence Assumption}, which states that the probability of an output observation $o_i$ depends solely on the state $x_i$ that generated that observation, not on any other state or any other output observation. From that, the \ac{HMM} is fully described by:
+   \begin{enumerate}
+   	\item $X=x_1,x_2,...x_n$ \quad \quad \quad \quad A set of n \textbf{states}.
+   	\item $A=a_{11},..,a_{ij},..,a_{nn}$ \quad \quad A \textbf{transition probability matrix A}, where $a_{ij}$ is the probability of moving from state $i$ to state $j$
+   	\item $O=o_1,o_2,...,o_T$ \quad \quad \quad \quad A sequence of \textbf{T observations}
+   	\item $B=b_i(o_t)$ \quad \quad \quad \quad \quad \quad \quad A sequence of \textbf{output probabilities}, where $b_i(o_t)$ is the probability of state $i$ generating observation $o_t$
+   	\item $\pi = \pi_1,\pi_2,...,\pi_n$ \quad \quad \quad \quad An \textbf{initial probability distribution} over the states, where $\pi_i$ is the probability that the \ac{HMM} will start in state $i$.
+   	 \cite{keselj2009speech}
+   	 
+   \end{enumerate}
+
+In \cite{rabiner1989tutorial}, Rabiner indicates that the \ac{HMM}s are charecterized by three major problems:
+
+	\begin{enumerate}
+		\item \textbf{Computing Likelihood}: For a \ac{HMM} model $M = (A,B)$ and output sequence $O$, compute the probability $P(O|M)$
+		\item \textbf{Decoding}: For an output sequence $O$ and a \ac{HMM} $M=(A,B)$, find the best hidden states sequence $X$
+		\item \textbf{Learning}: For an output sequence $O$ and a hidden state sequence $X$, determine the parameters $A$ and $B$
+		 \cite{keselj2009speech}
+	\end{enumerate}
+   
+   
+%\subsubsection{Decoding} 
+%\label{bg:sub5}
+%TODO 5: Decoding
 
 \subsubsection{Language Model} 
 \label{bg:sub5}
 
 The sole objective of the language model is to compute the probability of a word $w_k$ given the previous words $W_1^{k-1} = w_1,w_2,...,w_{k-1}$. \enquote{N-grams}, are one of the earliest and simplest, but still efficient methods used for language modeling. As implied by the name, n-grams make the assumption that the probability of a certain word $w_k$, depends only on the previous $n-1$ words. More formally, $P(w_k|W_1^{k-1}) = P(W_{k-n+1}^{k-1}) $. N-grams are pretty simple to compute; using frequency counts from textual data and storing them in look-up tables simply gets us the probability distribution. They also capture dependencies and semantics and hence are highly suitable for languages like English due to the fact that word order matters a lot and nearest neighbors contribute largely to the contextual meaning of a word. For more compound languages like German, higher order grams would be a more convenient choice.  
-
-\subsubsection{Decoding} 
-\label{bg:sub5}
-TODO 5: Decoding
 
 
 \subsection{Hybrid Systems} 
