@@ -11,6 +11,12 @@ Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
   translate.
 \newblock {\em arXiv preprint arXiv:1409.0473}, 2014.
 
+\bibitem{baum1972inequality}
+Leonard Baum.
+\newblock An inequality and associated maximization technique in statistical
+  estimation of probabilistic functions of a markov process.
+\newblock {\em Inequalities}, 3:1--8, 1972.
+
 \bibitem{bengio1994learning}
 Yoshua Bengio, Patrice Simard, Paolo Frasconi, et~al.
 \newblock Learning long-term dependencies with gradient descent is difficult.
@@ -38,6 +44,12 @@ Kyunghyun Cho, Bart Van~Merri{\"e}nboer, Caglar Gulcehre, Dzmitry Bahdanau,
 Jeffrey~L Elman.
 \newblock Finding structure in time.
 \newblock {\em Cognitive science}, 14(2):179--211, 1990.
+
+\bibitem{gehring2017convolutional}
+Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann~N Dauphin.
+\newblock Convolutional sequence to sequence learning.
+\newblock In {\em Proceedings of the 34th International Conference on Machine
+  Learning-Volume 70}, pages 1243--1252. JMLR. org, 2017.
 
 \bibitem{graves2006connectionist}
 Alex Graves, Santiago Fern{\'a}ndez, Faustino Gomez, and J{\"u}rgen
@@ -118,6 +130,13 @@ Ilya Sutskever, Oriol Vinyals, and Quoc~V Le.
 \newblock Sequence to sequence learning with neural networks.
 \newblock In {\em Advances in neural information processing systems}, pages
   3104--3112, 2014.
+
+\bibitem{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock In {\em Advances in neural information processing systems}, pages
+  5998--6008, 2017.
 
 \bibitem{werbos1988generalization}
 Paul~J Werbos.

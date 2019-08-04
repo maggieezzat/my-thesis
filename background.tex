@@ -175,10 +175,13 @@ Now that we have examined neural networks, we move forward to discussing the spe
 %3rd section
 \section{Speech Recognition} \label{bg:s3}
 
-The speech recognition problem is defined as follows: given an audio waveform, the task is to find the closest possible transcription to what an accurate human would generate upon listening to that audio. This problem dates back to 1960's where the former Soviet Union were among the pioneers to work on it, however, the basic \ac{HMM} speech recognition systems dates back to mid 1980's. In this section we investigate the mechanics of the \ac{ASR} systems based on \ac{HMM}s, moving to the so called \enquote{hybrid models} and eventually the growingly popular \enquote{End-to-End Systems}.
+The speech recognition problem is defined as follows: given an audio waveform, the task is to find the closest possible transcription to what an accurate human would generate upon listening to that audio. This problem dates back to 1960's, however, the basic \ac{HMM} speech recognition systems originated in mid 1980's. In this section we investigate the mechanics of the \ac{ASR} systems based on \ac{HMM}s, moving to the so called \enquote{hybrid models} and eventually the growingly popular \enquote{End-to-End Systems}.
 
 \subsection{HMM-Based \ac{ASR} Systems} 
 \label{bg:sub4}
+
+
+\includefig{0.8}{asr_colored}{An ASR System}{Fig:7}
 
 We begin by demonstrating the main components of an \ac{ASR} system. As depicted in figure FIGURE, an audio waveform is passed to a \enquote{feature extraction} module, which outputs a sequence of acoustic vectors, $\mathbf{Y} = y_1,y_2,...,y_T$. The audio fragment corresponds to a sequence of words $W = w_1,w_2,...,w_n$, and it is the objective of the \ac{ASR} system is to find the most probable word sequence $W$ given a previously unknown audio signal $\mathbf{Y}$.
 More formally, the target is to find $W = {arg \, max}_{W} \; P(W|\mathbf{Y})$. Using Bayes' Rule, this probability can be broken down into two probabilities as shown in equation \ref{eq:24}.
@@ -200,6 +203,9 @@ We begin by shedding light on the feature extraction module.
 \subsubsection{Feature Extraction} 
 \label{bg:sub5}
 
+
+\includefig{0.8}{mfcc_colored}{MFCC}{Fig:7}
+
 The premier step in any \ac{ASR} system is to extract features. That is to turn the raw speech waveforms into a sequence of numerical vectors. The issue, however, lies in the fact that audio signals are constantly changing. For us to be able to deal with them, we make the assumption that for sufficiently small period of time the signals are stationary. Therefore we sample the signal into 25ms frames, with a step of about 10ms so that the frames are overlapping. Then we apply some operations on each frame to extract features. The most widely used feature extraction method is \ac{MFCC}, which we explain in brief.
 
 For each frame, the \ac{FFT} is calculated, in order to move from the time domain to the spectral domain. Human ears cannot distinguish between two closely spaced frequencies, specially for higher frequencies; to mimic this effect, we need to know how much energy exists in different frequency regions. This is done by applying special filters called Mel filterbanks. The first filter is the narrowest, and indicates how much energy exists around 0 Hertz. Then the filters become wider as the frequencies get higher because we become less concerned about variations. 
@@ -207,42 +213,60 @@ Afterward, we take the log of the filterbank energies. This is also done to mimi
 Then we compute the \ac{DCT} of the log filterbank energies. This is due to the fact that the filterbanks are overlapping, so we compute \ac{DCT} to reduce the correlation between filter bank amplitudes. The resulting \ac{DCT} coefficients are referred to as MFCC coefficients. Only 12 coefficients are kept and the rest are dropped, this is proven to improve the \ac{ASR} performance. These 12 coefficients, together with the normalized energy, they form the feature vector.
 
 \subsubsection{Acoustic Model} 
-\label{bg:sub5}
+\label{bg:subsub6}
 
 The acoustic model provides a mechanism for computing the probability of a sequence of acoustic vectors $Y$ given a word sequence $w$. 
-To be able to do this, each word is broken into its constituent phones using the pronouncing dictionary, and we model each phone as a \ac{HMM}. \ac{HMM}s are statistical models that are used to predict a sequence of unknown random variables - hence the name \enquote{hidden} -  from a set of observed variables. Here the unknown variable is the phones sequence, and the observed variables are the sequence of acoustic vectors. \ac{HMM}s \ac{FST} which are based on the \enquote{Markov Assumption} which states that, in order to predict the future (next state), all we need to know is the present  (current state) only, neglecting the past (previous states). \textit{i.e.} $ P(x_i|x_1,x_2,...,x_{i-1}) = P(x_i|x_{i-1}) $. Each phone model has an entry state and an exit state which are used to connect different phone models together forming words, and words to be connected together forming sentences. The states are connected by arrows which represent the probabilities of moving from one state to another. Thus, $a_{ij}$ represents the probability of moving from state $i$ to state $j$. Each time $t$, the \ac{HMM} changes state moving from state $i$ to $j$ with probability $a_{ij}$, and generating an acoustic vector $\mathbf{y_t}$ with probability $b_j(\mathbf{y_t})$. \ac{HMM}s are also based on the \enquote{Output Independence Assumption}, which states that the probability of an output observation $o_i$ depends solely on the state $x_i$ that generated that observation, not on any other state or any other output observation. From that, the \ac{HMM} is fully described by:
+To be able to do this, each word is broken into its constituent phones using the pronouncing dictionary, and we model each phone as a \ac{HMM}. \ac{HMM}s are statistical models that are used to predict a sequence of unknown random variables - hence the name \enquote{hidden} -  from a set of observed variables. Here the unknown variable is the phones sequence, and the observed variables are the sequence of acoustic vectors. \ac{HMM}s are \ac{FSM} based on the \enquote{Markov Assumption} which states that, in order to predict the future (next state), all we need to know is the present  (current state) only, neglecting the past (previous states). \textit{i.e.} $ P(q_i|q_1,q_2,...,q_{i-1}) = P(q_i|q_{i-1}) $. Each phone model has an entry state and an exit state which are used to connect different phone models together forming words, and words to be connected together forming sentences. The states are connected by arrows which represent the probabilities of moving from one state to another. Thus, $a_{ij}$ represents the probability of moving from state $i$ to state $j$. Each time $t$, the \ac{HMM} changes state moving from state $i$ to $j$ with probability $a_{ij}$, and generating an acoustic vector $\mathbf{y_t}$ with probability $b_j(\mathbf{y_t})$. \ac{HMM}s are also based on the \enquote{Output Independence Assumption}, which states that the probability of an output observation $o_i$ depends solely on the state $q_i$ that generated that observation, not on any other state or any other output observation. From that, the \ac{HMM} is fully described by:
+
+%\begin{tabular}{lll}
+%	1. & $Q=q_1,q_2,...q_n$ & \text{A set of n \textbf{states}.}\\
+%	2. &  $A=a_{11},..,a_{ij},..,a_{nn}$ & A \textbf{transition probability matrix A}, where $a_{ij}$ is the probability of moving from state $i$ to state $j$\\
+%\end{tabular}
+
    \begin{enumerate}
-   	\item $X=x_1,x_2,...x_n$ \quad \quad \quad \quad A set of n \textbf{states}.
+   	\item $Q=q_1,q_2,...q_n$ \quad \quad \quad \quad A set of n \textbf{states}.
    	\item $A=a_{11},..,a_{ij},..,a_{nn}$ \quad \quad A \textbf{transition probability matrix A}, where $a_{ij}$ is the probability of moving from state $i$ to state $j$
    	\item $O=o_1,o_2,...,o_T$ \quad \quad \quad \quad A sequence of \textbf{T observations}
    	\item $B=b_i(o_t)$ \quad \quad \quad \quad \quad \quad \quad A sequence of \textbf{output probabilities}, where $b_i(o_t)$ is the probability of state $i$ generating observation $o_t$
    	\item $\pi = \pi_1,\pi_2,...,\pi_n$ \quad \quad \quad \quad An \textbf{initial probability distribution} over the states, where $\pi_i$ is the probability that the \ac{HMM} will start in state $i$.
-   	 \cite{keselj2009speech}
+   	 \cite{keselj2009speech} \cite{rabiner1989tutorial}
    	 
    \end{enumerate}
 
-In \cite{rabiner1989tutorial}, Rabiner indicates that the \ac{HMM}s are charecterized by three major problems:
+%In \cite{rabiner1989tutorial}, Rabiner indicates that the \ac{HMM}s are charecterized by three major problems:
 
-	\begin{enumerate}
-		\item \textbf{Computing Likelihood}: For a \ac{HMM} model $M = (A,B)$ and output sequence $O$, compute the probability $P(O|M)$
-		\item \textbf{Decoding}: For an output sequence $O$ and a \ac{HMM} $M=(A,B)$, find the best hidden states sequence $X$
-		\item \textbf{Learning}: For an output sequence $O$ and a hidden state sequence $X$, determine the parameters $A$ and $B$
-		 \cite{keselj2009speech}
-	\end{enumerate}
-   
-   
-%\subsubsection{Decoding} 
-%\label{bg:sub5}
-%TODO 5: Decoding
+%	\begin{enumerate}
+%		\item \textbf{Computing Likelihood}: For a \ac{HMM} model $M = (A,B)$ and output sequence $O$, compute the probability $P(O|M)$
+%		\item \textbf{Learning}: For an output sequence $O$ and a hidden state sequence $X$, determine the parameters $A$ and $B$
+%		\item \textbf{Decoding}: For an output sequence $O$ and a \ac{HMM} $M=(A,B)$, find the best hidden states sequence $X$
+%		 \cite{keselj2009speech}
+%	\end{enumerate}
+
+For estimating the parameters $A$ and $B$, there exists an algorithm called \enquote{Baum-Welch Algorithm} or \enquote{Forward-Backward Algorithm} for training these parameters. We do not go into the details of this algorithm in this literature, and refer to \cite{keselj2009speech} and \cite{baum1972inequality} for understanding this algorithm. 
+
+For decoding, \textit{i.e.} searching for the sequence of words which maximizes equation \ref{eq:12}, there are two main approaches: \enquote{depth first} and \enquote{breadth first}. In depth first approach, the most reassuring branch is inspected until the end of the speech. In breadth first, which is referred to as \enquote{Viterbi Decoding}, all hypotheses are inspected in parallel. We elaborate the decoding process in more details; formally, the decoding problem is defined as: given an \ac{HMM} $M=(A,B)$ and a sequence of observations (acoustic vectors) $\mathbf{Y} = y_1,y_2,...,y_T$, find the most probable hidden state sequence (phone sequence). The Viterbi algorithm used for decoding is a dynamic programming algorithm that uses the dynamic programming trees or trellis. The algorithm goes by handling the observations sequence one by one, from left to right, and filling out the tree nodes as it proceeds. Each node in the tree has a value $v_t(j)$, this value represents the probability of being in state j after the first t observations and taking the most probable state sequence $q_1,q_2,...,q_{t-1}$. The probability given by the cell value is described formally as: $v_t(j) = max_{q_1,...,q_{t-1}} P(q_1,...,q_{t-1},o_1,...,o_t,q_t=j|M=(A,B))$. We compute the value of each node by recursively taking the most probable path leading to that node. The value of each cell is computed as given by equation \ref{eq:25}
+
+\begin{equation}
+	v_t(j) = \max_{i=1}^N \; v_{t-1} a_{ij} b_j(o_t)
+\end{equation}
+where:
+\begin{align*}
+	v_t(j) &= \text{previous path probability computed recursively}\\
+	a_{ij} &= \text{proability of transition from state $i$ to state $j$}\\
+	b_j(o_t) &= \text{probability of state $j$ generating output $o_t$}
+\end{align*}
+
+This method is guaranteed to find the best sequence of phones and thus words, however it takes too much time and space. To overcome this problem, pruning of the search space is performed by using \enquote{beam search}, where every point in time, highest node value is updated, and any node whose value is greater than the highest value plus the \enquote{beam width} is ignored. This way, only subset of the most probable probable state sequences are kept in memory at a time. This modification does not guarantee to find the most probable sequence of phones, however, it saves a lot of memory.
+
 
 \subsubsection{Language Model} 
-\label{bg:sub5}
+\label{bg:subsub5}
 
 The sole objective of the language model is to compute the probability of a word $w_k$ given the previous words $W_1^{k-1} = w_1,w_2,...,w_{k-1}$. \enquote{N-grams}, are one of the earliest and simplest, but still efficient methods used for language modeling. As implied by the name, n-grams make the assumption that the probability of a certain word $w_k$, depends only on the previous $n-1$ words. More formally, $P(w_k|W_1^{k-1}) = P(W_{k-n+1}^{k-1}) $. N-grams are pretty simple to compute; using frequency counts from textual data and storing them in look-up tables simply gets us the probability distribution. They also capture dependencies and semantics and hence are highly suitable for languages like English due to the fact that word order matters a lot and nearest neighbors contribute largely to the contextual meaning of a word. For more compound languages like German, higher order grams would be a more convenient choice.  
 
 
 \subsection{Hybrid Systems} 
-\label{bg:sub7}
+\label{bg:sub6}
 TODO 6 : Hybrid Systems
 %%%%%%%%%%%%%% Problems with hybrid models
 PROBLEMS WITH HYBRID MODELS
@@ -293,23 +317,43 @@ There are two efficient mechanisms for finding the most probable label sequence:
 	Prefix Search Decoding works by calculating the probabilities of successive extensions of prefixes of label sequences. Despite Prefix Search Decoding being slower, it is guaranteed to identify the most probable label sequence. The drawback here is that the number of prefixes that must be expanded grows exponentially with the length of the input sequence. To overcome this issue, the authors of the paper make use of an observation which is that the outputs of a \ac{CTC} network form spikes of labels with strongly predicted blanks. Using this observation, a certain threshold is chosen, and points with blank probabilities higher than that threshold are chosen as boundary points, forming sections or regions. For every region, we calculate the most probable label sequence for each region separately, and then we concatenate the results to get the final label sequence. 
 \end{enumerate} 
 
+\subsection{Deep Speech 2} 
+\label{bg:sub8}
 
-%The first one is called \enquote{Best Path Decoding}. It is a greedy algorithm based on the assumption that the most probable path, corresponds to the most probable label sequence. The advantage of Best Path Decoding is that it is remarkably easy to compute: the most probable path is the concatenation of the most probable labels for every time step. The disadvantage is that does not ensure finding the most probable label sequence.
+TODO : Deep Speech Model 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %4th section
-\section{Text Analytics} \label{bg:s4}
+\section{Text Analysis} \label{bg:s4}
 
-Text Analytics is the process of extracting information and semantics from written text. Some famous text-analytics tasks are text classification, sentiment analysis, document summarization, named-entity recognition and entity-relation extraction. Due to the sequential nature of text, \ac{RNN}s were widely used for many text analytics tasks for quite a long time. This was the case because their sequential nature made them a good candidate for the task. A special architecture, named \enquote{Encoder-Decoder Architecture}, which made use of \ac{RNN}s when first introduced, has been marked broadly useful in modeling sequence-to-sequence models, where the input is a sequence, and the output is as well a sequence. An example is machine translation, where a model is trained to find an output sentence $y$ which maximizes the conditional probability of $y$ given an input sentence $x$. We discussed \ac{RNN}s and their variations in section \ref{bg:sub2}. In the following section, we take a look into the encoder-encoder architecture.
+Text analysis is the procedure of extracting information and semantics from written text. Some famous text analysis tasks are text classification, document summarization, named-entity recognition and entity-relation extraction. 
+Text classification is a class of \ac{NLP} tasks which has been significant to many applications such as spam filtering, language identification, sentiment analysis, and email routing. 
+Transfer learning is the process of using information learned from solving one problem in order to solve another different, but relevant problem. 
+Transfer learning has gained great popularity in many fields like computer vision and text analysis due to the massive amount of data and enormous computational resources required in training deep neural models. 
+Regarding text analysis, the main idea is to \enquote{pre-train} a large language model, using large amount of unlabeled text corpora, and then \enquote{fine-tune} the model using a smaller labeled dataset to a specific task such as text classification, question answering, etc. 
+The features learned from the first task has to be generic in order to be used in solving the second task, in case of text analysis, features are \enquote{word embeddings}. 
+Word embeddings map words to a high-dimensional vector space, where different words with similar meanings are grouped together in the vector space. Fine-tuning pre-trained language models liberates us from training from scratch which requires large datasets and long time for the model to converge. 
+In section \ref{bg:sub13}, we shall discuss \ac{BERT}, which is a general language model proposed by google that could be pre-trained once, and fine-tuned for many downstream tasks, but prior to that, we discuss in the following three sections the underlying theory of some components in \ac{BERT}, starting by the \enquote{Encoder-Decoder architecture}, and going to the \enquote{Attention Model} and the \enquote{Transformer} which is the core component in \ac{BERT}. 
+
+Encoder-Decoder architecture has been marked broadly useful in modeling sequence-to-sequence models, where the input is a sequence, and the output is as well a sequence. An example is machine translation, where a model is trained to find an output sentence $y$ which maximizes the conditional probability of $y$ given an input sentence $x$. We take a closer look at it in the next section.
+
+
+ 
+  %Due to the sequential nature of text, \ac{RNN} has been a good candidate for many text analytics tasks for quite a long time. 
+ %A special architecture, named \enquote{Encoder-Decoder Architecture}, which made use of \ac{RNN}s when first introduced, has been marked broadly useful in modeling sequence-to-sequence models, where the input is a sequence, and the output is as well a sequence. 
+ %An example is machine translation, where a model is trained to find an output sentence $y$ which maximizes the conditional probability of $y$ given an input sentence $x$. We discussed \ac{RNN}s and their variations in section \ref{bg:sub2}.
+ % In the following section, we take a look into the encoder-encoder architecture.
 
 \subsection{Encoder-Decoder Architecture} 
-\label{bg:sub8}
+\label{bg:sub9}
 
-The popular encoder-decoder architecture which was first proposed by Cho \textit{et al.} (2014a) \cite{cho2014learning} and Sutskever \textit{et al.} (2014) \cite{sutskever2014sequence}. This system consists of two \ac{RNNs} which work together as an encoder-decoder pair. The encoder encodes a variable-length sequence (e.g.\ a sentence) into a fixed-length vector which we call summary vector $ \mathbf{c} $. The decoder then uses this fixed-length vector to generate a variable-length output sequence. The vector $ \mathbf{c} $ has information from each data point in the input sequence.
+The popular encoder-decoder architecture was first proposed by Cho \textit{et al.} (2014a) \cite{cho2014learning} and Sutskever \textit{et al.} (2014) \cite{sutskever2014sequence}. This system consists of two \ac{RNN}s which work together as an encoder-decoder pair (Figure \ref{Fig:7}). The encoder encodes a variable-length sequence (e.g.\ a sentence) into a fixed-length vector which we call summary vector $ \mathbf{c} $. The decoder then uses this fixed-length vector to generate a variable-length output sequence. The vector $ \mathbf{c} $ has information from each data point in the input sequence.
 
-The encoder is a \ac{RNN} which has a hidden state updated at each time step according to equation \ref{eq:13}, where $f$ is a non-linear activation function;  Sutskever \textit{et al.} (2014) \cite{sutskever2014sequence} uses \ac{LSTM}s for this purpose while Cho \textit{et al.} (2014a) \cite{cho2014learning} used a variation of \ac{LSTM}s instead.
+\includefig{0.8}{encoder-decoder}{An Encoder-Decoder System. The encoder encodes a variable-length sequence into a fixed-length vector $\mathbf{c}$. The decoder uses the summary vector $\mathbf{c}$ along with the previously generated predicted symbol from the previous time step $y_{t-1}$ and the current hidden state $\mathbf{s_t}$ to generate an output $y_t$ }{Fig:7}
+
+The encoder is a \ac{RNN} which has a hidden state $\mathbf{h_t}$ updated at each time step according to equation \ref{eq:13}, where $f$ is a non-linear activation function;  Sutskever \textit{et al.} (2014) \cite{sutskever2014sequence} uses \ac{LSTM}s for this purpose while Cho \textit{et al.} (2014a) \cite{cho2014learning} uses a variation of \ac{LSTM}s instead.
 
 \begin{equation}
 \label{eq:13}
@@ -317,16 +361,18 @@ The encoder is a \ac{RNN} which has a hidden state updated at each time step acc
 \end{equation}
 
 
-The decoder is a \ac{RNN} that is trained to generate the output sequence $ \mathbf{y}$ one by one. It uses the hidden state $ \mathbf{h_t}$ to calculate $ y_t$. The hidden state $ \mathbf{h_t}$ is calculated according to equation \ref{eq:14}, where it uses the previously generated symbol $y_{t-1}$, the previous hidden state $\mathbf{h_{t-1}}$ and the summary vector $\mathbf{c}$ in predicting the target symbol. Similarly, the conditional probability of the target symbol is given by \ref{eq:15}
+The decoder is also a \ac{RNN} that is trained to generate the output sequence $ \mathbf{y}$ one by one. 
+%It uses the hidden state $ \mathbf{s_t}$ to calculate $ y_t$. 
+Its hidden state $ \mathbf{s_t}$, which is used to generate the output  $ y_t$ is calculated according to equation \ref{eq:14}, where it is a function of the previously generated symbol $y_{t-1}$, the previous hidden state $\mathbf{s_{t-1}}$ and the summary vector $\mathbf{c}$. Similarly, the conditional probability of the target symbol is given by \ref{eq:15}
 
 \begin{equation}
 \label{eq:14}
-\mathbf{h_t} = f(\mathbf{h_{t-1}}, y_{t-1}, \mathbf{c})
+\mathbf{s_t} = f(\mathbf{s_{t-1}}, y_{t-1}, \mathbf{c})
 \end{equation}
 
 \begin{equation}
 \label{eq:15}
-P(y_t | y_1, y_2,.., y_{t-1}, \mathbf{c}) = g(\mathbf{h_{t}}, y_{t-1}, \mathbf{c})
+P(y_t | y_1, y_2,.., y_{t-1}, \mathbf{c}) = g(\mathbf{s_{t}}, y_{t-1}, \mathbf{c})
 \end{equation}
 
 The two components are then trained to maximize the conditional probability of the output sequence $\mathbf{y}=(y_1,y_2,..,y_{T_y})$ given the input sequence $ \mathbf{x}=(x_1,x_2,..,x_{T_x})$
@@ -336,28 +382,30 @@ The problem with this architecture is that the performance deteriorates as the l
 
 
 \subsection{Attention Mechanism} 
-\label{bg:sub9}
+\label{bg:sub10}
 
-Attention is the ability to focus on important details and discard unimportant or irrelevant information. Dzmitry \textit{et al.} (2015) \cite{bahdanau2014neural} proposes modifying the encoder-decoder architecture through arming the decoder with attention mechanism which allows it to attend to only parts in the input sentence which are most relevant to the target word in the output sequence. The characteristic feature of this approach is that it doesn't encode all the input sequence into a fixed-length vector as the basic encoder-decoder approach explained in section \ref{bg:sub8}. Instead, it encodes the input sequence into a number of vectors, and chooses which of these vectors are relevant to the target word in order to make a prediction. This approach performs better on longer input sequences as it is no longer needed to suppress all the information given in the sentence in one fixed-length vector. We demonstrate the model proposed by  Dzmitry \textit{et al.} (2015) \cite{bahdanau2014neural} starting by the encoder, then the decoder.
+Attention is the ability to focus on important details and discard irrelevant information. Dzmitry \textit{et al.} (2015) \cite{bahdanau2014neural} proposes modifying the encoder-decoder architecture through arming the decoder with \enquote{attention mechanism} which allows it to attend to only parts in the input sentence which are most relevant to the target word in the output sequence. The characteristic feature of this approach is that it doesn't encode all the input sequence into a fixed-length vector as the basic encoder-decoder approach explained in section \ref{bg:sub8}. Instead, it encodes the input sequence into a number of vectors, and chooses which of these vectors are relevant to the target word in order to make a prediction. This approach performs better on longer input sequences as it is no longer needed to suppress all the information given in the sentence in one fixed-length vector. We demonstrate the model proposed by Dzmitry \textit{et al.} (2015) \cite{bahdanau2014neural} starting by the encoder, then the decoder.
+
+\includefig{0.8}{attention}{The modified encoder-decoder system implementing the attention mechanism. The output $y_i$ has a corresponding context vector $\mathbf{c_i}$ which is a summation of the weighted annotations $h_j$. The most relevant annotations in the input sentence have the largest weights $\alpha_{ij}$, while the least relevant annotations have the smallest weights. }{Fig:8}
 
 \subsubsection{\RomanNumeralCaps{1}. Encoder} 
 \label{bg:subsub9}
-No major modifications were performed on the encoder, however, a \ac{BRNN} was used instead of a uni-directional one. This is done in order to gather left and right context as discussed in section \ref{bg:subsub3}. By concatenating the forward hidden state $ {\overrightarrow{{h_j}}}$ and the backward hidden state $ {\overleftarrow{{h_j}}}$ for each word $x_j$ in the sequence, an annotation ${h_j}=[{\overrightarrow{{{h_j}^T}}}, {\overleftarrow{{{h_j}^T}}}] $ for that word is obtained. The decoder would use these annotations later in the attention layer as we will explain.
+No major modifications were performed on the encoder, however, a \ac{BRNN} was used instead of a uni-directional one (Figure \ref{Fig:8}). This is done in order to gather left and right context as discussed in section \ref{bg:subsub3}. By concatenating the forward hidden state $ {\overrightarrow{{h_j}}}$ and the backward hidden state $ {\overleftarrow{{h_j}}}$ for each word $x_j$ in the sequence, an annotation ${h_j}=[{\overrightarrow{{{h_j}^T}}}, {\overleftarrow{{{h_j}^T}}}] $ for that word is obtained. The decoder would use these annotations later in the attention layer as we will explain.
 
 \subsubsection{\RomanNumeralCaps{2}. Decoder} 
 \label{bg:subsub10}
 
-The decoder is a \ac{RNN} that also uses the hidden state $ \mathbf{h_i}$ to calculate $ y_i$. The hidden state $ \mathbf{h_i}$ of the decoder is calculated according to equation \ref{eq:16}, where it uses the previously generated symbol $y_{i-1}$, the previous hidden state $\mathbf{h_{i-1}}$ and a context vector $\mathbf{c_i}$ in predicting the target symbol. The conditional probability of the target symbol is given by \ref{eq:17}. The major difference here from the basic encoder-decoder approach is that there is a distinct context vector $\mathbf{c_i}$ for each target word $ y_i$. The context vector $\mathbf{c_i}$ is calculated as a weighted sum of the sequence of annotations produced by the encoder as seen in equation \ref{eq:18}. The weights of the annotations are learned by the attention model as in equation \ref{eq:19} and \ref{eq:20}
+The decoder searches through the input sentence for the most for the most relevant data points when generating an on output. It is composed of a  \ac{RNN} that also uses the hidden state $ \mathbf{s_i}$ to calculate $ y_i$. The hidden state $ \mathbf{s_i}$ of the decoder is calculated according to equation \ref{eq:16}, where it uses the previously generated symbol $y_{i-1}$, the previous hidden state $\mathbf{s_{i-1}}$ and a context vector $\mathbf{c_i}$ in predicting the target symbol. The conditional probability of the target symbol is given by \ref{eq:17}. The major difference here from the basic encoder-decoder approach is that there is a distinct context vector $\mathbf{c_i}$ for each target word $y_i$ (Figure \ref{Fig:8}). The context vector $\mathbf{c_i}$ is calculated as a weighted sum of the sequence of annotations produced by the encoder as seen in equation \ref{eq:18}. Each annotation $h_i$ carries information from the entire input sequence with strong emphasis on parts closer to the $i-$th point of the input. The weights of the annotations are given by equation \ref{eq:19}
 
 
 \begin{equation}
 \label{eq:16}
-\mathbf{h_i} = f(\mathbf{h_{i-1}}, y_{i-1}, \mathbf{c_i})
+\mathbf{s_i} = f(\mathbf{s_{i-1}}, y_{i-1}, \mathbf{c_i})
 \end{equation}
 
 \begin{equation}
 \label{eq:17}
-P(y_i | y_1, y_2,.., y_{i-1}, \mathbf{x}) = g(\mathbf{h_{i}}, y_{i-1}, \mathbf{c_i})
+P(y_i | y_1, y_2,.., y_{i-1}, \mathbf{x}) = g(\mathbf{s_{i}}, y_{i-1}, \mathbf{c_i})
 \end{equation}
 
 \begin{equation}
@@ -370,33 +418,51 @@ P(y_i | y_1, y_2,.., y_{i-1}, \mathbf{x}) = g(\mathbf{h_{i}}, y_{i-1}, \mathbf{c
 \alpha_{ij} = \frac{ exp(e_{ij}) }{ \sum_{k=1}^{T_x} exp(e_{ik}) }
 \end{equation}
 
-where 
+where $e_{ij} = a(s_{i-1}, h_j)$ is the attention model, or the \enquote{alignment model} which resembles the relevance between the target output at position $j$, and the inputs around position $i$ in the source sentence. The alignment model $a$ is a simple \ac{FNN} which is trained with the other components.
+
+Using the attention mechanism, there is no need to suppress all information of the input sentence into a single vector, instead the decoder knows for the output $y_i$ where the relevant information lies in the source sentence through the context vector $c_i$
 
 
-\begin{equation}
-\label{eq:20}
-e_{ij} = a(h_{i-1}, s_i)
-\end{equation}
+%\begin{equation}
+%\label{eq:20}
+%e_{ij} = a(s_{i-1}, h_j)
+%\end{equation}
 
-\subsubsection{\RomanNumeralCaps{3}. Additive Attention} 
-\label{bg:subsub100}
+%\subsubsection{\RomanNumeralCaps{3}. Additive Attention} 
+%\label{bg:subsub100}
 
 
-The attention model helps solving long range dependencies efficiently because it can focus on what matter and disregard what doesn't matter. 
+%The attention model helps solving long range dependencies efficiently because it can focus on what matter and disregard what doesn't matter. 
 
-In 2017, Google came up with a novel architecture using only the attention mechanism and eliminated the use of \ac{RNN}s, this was called \enquote{The Transformer} and we explain the idea behind it in the next section.
+In 2017, Google came up with a novel architecture using only the attention mechanism and eliminated the use of \ac{RNN}s, they called their model \enquote{The Transformer} \cite{vaswani2017attention} and we explain the idea behind it in the next section.
 
 \subsection{The Transformer} 
-\label{bg:sub10}
+\label{bg:sub12}
 
-\subsubsection{\RomanNumeralCaps{1}. Problem with Recurrence} 
+\subsubsection{Problem with Recurrence} 
 \label{bg:subsub11}
-As seen in equation \ref{eq:12}, \ac{RNNs} calculate the hidden state as a function of the current data point and the previous hidden state. This sequential nature of calculation largely suits the sequential nature of natural languages, however, this introduces a major problem as it hinders parallelization among the training inputs. This issue is manifested when the input sequences are of longer lengths. The Transformer abandons recurrence in order to achieve more parallelization and efficiency in performance.
+As seen in equation \ref{eq:12}, \ac{RNN}s calculate the hidden state as a function of the current data point and the previous hidden state. This sequential nature of calculation largely suits the sequential nature of natural languages, however, this introduces a major problem as it hinders parallelization among the training inputs. This issue is manifested when the input sequences are of longer lengths. The Transformer abandons recurrence in order to achieve more parallelization and efficiency in performance.
 
-\subsubsection{\RomanNumeralCaps{2}. Encoder} 
+%\subsubsection{\RomanNumeralCaps{2}. Encoder} 
+%\label{bg:subsub12}
+
+\subsubsection{ Model Architecture} 
 \label{bg:subsub12}
 
-The Transformer follows the prominent encoder-decoder architecture, however, introducing major modifications to both the encoder and the decoder. The encoder consists of $N$ layers, each layer made up of two sub-layers. The first sub-layer is called  \enquote{Self-Attention} or \enquote{Intra-Attention} sub-layer. This is one of the most influential changes proposed in the Transformer. What self-attention does is that it calculates the relevance of each word in the input sequence to every other word in the sequence. To demonstrate the gain we achieve with self-attention, consider the following examples which highlight the problem of linking the pronouns to their antecedents:
+The Transformer follows the prominent encoder-decoder architecture, however, introducing major modifications to both the encoder and the decoder. Both of them make use of what is called \enquote{Self-Attention} or \enquote{Intra-Attention}. What self-attention does is that it calculates the relevance of each word in the sequence to every other word in the same sequence. To demonstrate the gain we achieve with self-attention, consider the following examples which highlight the problem of linking the pronouns to their antecedents:
+\begin{enumerate}
+	\item \enquote{The animal did not cross the street because \textit{it} was too tired.} \\
+	When translated to French this becomes: \enquote{L'animal n'a pas travers\'e la rue car \textit{il} \'etait tr\'es fatigu\'e}. 
+	\item \enquote{The animal did not cross the street because \textit{it} was too wide.}  \\
+	In French, this is  \enquote{L'animal n'a pas travers\'e la rue car \textit{elle} \'etait tr\'es large.}
+\end{enumerate}
+Self attention implemented in the input sequence links \enquote{it} to the correct antecedent, and thus when generating the pronoun in French (the output sequence), the model knows which one to choose; \enquote{il} or \enquote{elle}. Self attention in the output sequence
+
+
+
+
+
+The encoder consists of $N$ layers, each layer made up of two sub-layers. The first sub-layer is called  \enquote{Self-Attention} or \enquote{Intra-Attention} sub-layer. This is one of the most influential changes proposed in the Transformer. What self-attention does is that it calculates the relevance of each word in the input sequence to every other word in the sequence. To demonstrate the gain we achieve with self-attention, consider the following examples which highlight the problem of linking the pronouns to their antecedents:
 \begin{enumerate}
 	\item \enquote{The animal did not cross the street because \textit{it} was too tired.}
 	
@@ -416,17 +482,9 @@ A model implementing no self-attention mechanism has difficulty determining the 
 The second sub-layer is a simple fully-connected feed-forward neural network. A residual connection \cite{he2016deep} is applied to each sub-layer, then layer normalization \cite{ba2016layer} is performed.
 
 
-\subsubsection{\RomanNumeralCaps{3}. Decoder} 
-\label{bg:subsub13}
+
+
 The decoder is made up from $N$ layers as well, with each layer composed of three sub-layers: a self-attention layer similar to the self-attention layer implemented in the encoder, however, modified so that each word can attend only to words earlier in the sequence and not to consequent words, a feed-forward network, and an additional layer which implements the encoder-decoder attention as explained in section \ref{bg:sub9}. As in the encoder, residual connections are applied on each sub-layer followed by layer normalization.
-
-
-\subsubsection{\RomanNumeralCaps{4}. Scaled Dot-Product Attention} 
-\label{bg:subsub14}
-
-
-\subsubsection{\RomanNumeralCaps{5}. Positional Encodings} 
-\label{bg:subsub15}
 
 
 
@@ -434,15 +492,35 @@ The decoder is made up from $N$ layers as well, with each layer composed of thre
 %The problem with natural language is that the same word might have different meanings in different sentences based on the context. 
 %What self-atteention or intra-attention does is that it determines the attention that each word pay to every other word in the sentence, that is the credit linked to that word from the target word's point of view. 
 
+Because the Transformer has no \ac{RNN}s or \ac{CNN}s, the position of each word in the sequence has to be modeled in some way. For this purpose, \enquote{positional encodings} \cite{gehring2017convolutional} \cite{vaswani2017attention} are added to the input embeddings at the encoder and the decoder.
+
+
+The Transformer model utilizes the attention mechanism in three different ways:
+\begin{enumerate}
+	\item Self-attention layer in the encoder, where every token in the input sequence attends to every other token in the sequence.
+	\item Self-attention layer in the decoder, where every token in the output sequence attends to every other token up to that position in the sequence.
+	\item Encoder-Decoder Attention, where each position in the decoder attends to all positions in the input sequence. This is analogous to the attention implemented in \cite{bahdanau2014neural}. (Refer to section \ref{bg:sub10})
+\end{enumerate}
+
+
+2. The encoder contains self-attention layers. In a self-attention layer all of the keys, values
+and queries come from the same place, in this case, the output of the previous layer in the
+encoder. Each position in the encoder can attend to all positions in the previous layer of the
+encoder.
+3. Similarly, self-attention layers in the decoder allow each position in the decoder to attend to
+all positions in the decoder up to and including that position. We need to prevent leftward
+information flow in the decoder to preserve the auto-regressive property. We implement this
+inside of scaled dot-product attention by masking out (setting to ) all values in the input
+of the softmax which correspond to illegal connections.
+
+
+
 \subsection{Bidirectional Encoder from Transformer (BERT)} 
-\label{bg:sub11}
+\label{bg:sub13}
 
-\subsubsection{Word Embeddings}
-
-\subsubsection{Transfer Learning}
 Pre-Training
-\paragraph{Feature Extraction}
-\paragraph{Fine Tuning}
+Feature Extraction
+Fine Tuning
 
 \subsubsection{Bidirectional vs uni-directional}
 

@@ -10,22 +10,23 @@
 \BOOKMARK [2][-]{subsection.2.3.1}{HMM-Based ASR Systems}{section.2.3}% 10
 \BOOKMARK [2][-]{subsection.2.3.2}{Hybrid Systems}{section.2.3}% 11
 \BOOKMARK [2][-]{subsection.2.3.3}{End-to-End Systems}{section.2.3}% 12
-\BOOKMARK [1][-]{section.2.4}{Text Analytics}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.4.1}{Encoder-Decoder Architecture}{section.2.4}% 14
-\BOOKMARK [2][-]{subsection.2.4.2}{Attention Mechanism}{section.2.4}% 15
-\BOOKMARK [2][-]{subsection.2.4.3}{The Transformer}{section.2.4}% 16
-\BOOKMARK [2][-]{subsection.2.4.4}{Bidirectional Encoder from Transformer \(BERT\)}{section.2.4}% 17
-\BOOKMARK [0][-]{chapter.3}{Methodology}{}% 18
-\BOOKMARK [1][-]{section.3.1}{System Overview and Datasets}{chapter.3}% 19
-\BOOKMARK [2][-]{subsection.3.1.1}{ASR Datasets}{section.3.1}% 20
-\BOOKMARK [2][-]{subsection.3.1.2}{Text Classifier Datasets}{section.3.1}% 21
-\BOOKMARK [1][-]{section.3.2}{Automatic Speech Recognition Unit}{chapter.3}% 22
-\BOOKMARK [1][-]{section.3.3}{Text Classifier Unit}{chapter.3}% 23
-\BOOKMARK [0][-]{chapter.4}{Results}{}% 24
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 25
-\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 26
-\BOOKMARK [0][-]{section*.55}{Appendix}{}% 27
-\BOOKMARK [0][-]{appendix.A}{Lists}{}% 28
-\BOOKMARK [1][-]{section*.56}{List of Abbreviations}{appendix.A}% 29
-\BOOKMARK [1][-]{appendix*.57}{List of Figures}{appendix.A}% 30
-\BOOKMARK [0][-]{appendix*.58}{References}{}% 31
+\BOOKMARK [2][-]{subsection.2.3.4}{Deep Speech 2}{section.2.3}% 13
+\BOOKMARK [1][-]{section.2.4}{Text Analysis}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.4.1}{Encoder-Decoder Architecture}{section.2.4}% 15
+\BOOKMARK [2][-]{subsection.2.4.2}{Attention Mechanism}{section.2.4}% 16
+\BOOKMARK [2][-]{subsection.2.4.3}{The Transformer}{section.2.4}% 17
+\BOOKMARK [2][-]{subsection.2.4.4}{Bidirectional Encoder from Transformer \(BERT\)}{section.2.4}% 18
+\BOOKMARK [0][-]{chapter.3}{Methodology}{}% 19
+\BOOKMARK [1][-]{section.3.1}{System Overview and Datasets}{chapter.3}% 20
+\BOOKMARK [2][-]{subsection.3.1.1}{ASR Datasets}{section.3.1}% 21
+\BOOKMARK [2][-]{subsection.3.1.2}{Text Classifier Datasets}{section.3.1}% 22
+\BOOKMARK [1][-]{section.3.2}{Automatic Speech Recognition Unit}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.3}{Text Classifier Unit}{chapter.3}% 24
+\BOOKMARK [0][-]{chapter.4}{Results}{}% 25
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 26
+\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 27
+\BOOKMARK [0][-]{section*.52}{Appendix}{}% 28
+\BOOKMARK [0][-]{appendix.A}{Lists}{}% 29
+\BOOKMARK [1][-]{section*.53}{List of Abbreviations}{appendix.A}% 30
+\BOOKMARK [1][-]{appendix*.54}{List of Figures}{appendix.A}% 31
+\BOOKMARK [0][-]{appendix*.55}{References}{}% 32

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2019.3.13)  22 JUL 2019 16:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2019.3.13)  29 JUL 2019 17:08
 entering extended mode
 **./bachelor.tex
 (bachelor.tex
@@ -399,13 +399,13 @@ Package csquotes Info: ... none found.
 (bachelor.aux (GUC_TitlePage.aux) (acknowledgments.aux) (abstract.aux)
 (introduction.aux) (background.aux
 
-LaTeX Warning: Label `bg:sub5' multiply defined.
+LaTeX Warning: Label `Fig:7' multiply defined.
 
 
-LaTeX Warning: Label `bg:sub5' multiply defined.
+LaTeX Warning: Label `bg:subsub5' multiply defined.
 
 
-LaTeX Warning: Label `bg:sub7' multiply defined.
+LaTeX Warning: Label `Fig:7' multiply defined.
 
 ) (methodology.aux) (results.aux) (conclusion.aux) (future_work.aux)
 (appendix.aux))
@@ -535,7 +535,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./GUC-logo-ss-eps-converted-to.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<GUC-logo-ss-eps-converted-to.pdf, id=127, 271.0125pt x 259.97125pt>
+<GUC-logo-ss-eps-converted-to.pdf, id=131, 271.0125pt x 259.97125pt>
 File: GUC-logo-ss-eps-converted-to.pdf Graphic file (type pdf)
 <use GUC-logo-ss-eps-converted-to.pdf>
 Package pdftex.def Info: GUC-logo-ss-eps-converted-to.pdf  used on input line 3
@@ -619,7 +619,7 @@ Package acronym Info: Label `acro:NLU' newly defined as it shall be overridden
 although it is yet undefined on input line 11.
 Package acronym Info: Label `acro:ANN' newly defined as it shall be overridden
 although it is yet undefined on input line 21.
-<images/neuron.png, id=231, 594.22pt x 366.36874pt>
+<images/neuron.png, id=236, 594.22pt x 366.36874pt>
 File: images/neuron.png Graphic file (type png)
 <use images/neuron.png>
 Package pdftex.def Info: images/neuron.png  used on input line 28.
@@ -641,7 +641,7 @@ although it is yet undefined on input line 39.
 Package acronym Info: Label `acro:MLP' newly defined as it shall be overridden
 although it is yet undefined on input line 39.
  [3]
-<images/simple_nn.png, id=266, 282.05376pt x 264.99pt>
+<images/simple_nn.png, id=271, 282.05376pt x 264.99pt>
 File: images/simple_nn.png Graphic file (type png)
 <use images/simple_nn.png>
 Package pdftex.def Info: images/simple_nn.png  used on input line 42.
@@ -653,7 +653,7 @@ Missing character: There is no ú in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
-<images/RNN.png, id=290, 1606.0pt x 421.575pt>
+<images/RNN.png, id=295, 1606.0pt x 421.575pt>
 File: images/RNN.png Graphic file (type png)
 <use images/RNN.png>
 Package pdftex.def Info: images/RNN.png  used on input line 64.
@@ -667,7 +667,7 @@ although it is yet undefined on input line 70.
 Package acronym Info: Label `acro:BRNN' newly defined as it shall be overridden
 
 although it is yet undefined on input line 86.
-<images/BRNN.png, id=324, 546.04pt x 248.93pt>
+<images/BRNN.png, id=329, 546.04pt x 248.93pt>
 File: images/BRNN.png Graphic file (type png)
 <use images/BRNN.png>
 Package pdftex.def Info: images/BRNN.png  used on input line 103.
@@ -676,95 +676,106 @@ Package acronym Info: Label `acro:LSTM' newly defined as it shall be overridden
 
 although it is yet undefined on input line 113.
  [6]
-<images/LSTM1.png, id=356, 824.07875pt x 511.9125pt>
+<images/LSTM1.png, id=361, 824.07875pt x 511.9125pt>
 File: images/LSTM1.png Graphic file (type png)
 <use images/LSTM1.png>
 Package pdftex.def Info: images/LSTM1.png  used on input line 155.
 (pdftex.def)             Requested size: 409.72125pt x 254.51837pt.
 Package acronym Info: Label `acro:HMM' newly defined as it shall be overridden
 although it is yet undefined on input line 178.
- [7 <./images/BRNN.png>] [8 <./images/LSTM1.png>]
+ [7 <./images/BRNN.png>]
+<images/asr_colored.png, id=380, 595.023pt x 542.9886pt>
+File: images/asr_colored.png Graphic file (type png)
+<use images/asr_colored.png>
+Package pdftex.def Info: images/asr_colored.png  used on input line 184.
+(pdftex.def)             Requested size: 409.72125pt x 373.90028pt.
+ [8 <./images/LSTM1.png>]
+<images/mfcc_colored.png, id=397, 682.7106pt x 520.8258pt>
+File: images/mfcc_colored.png Graphic file (type png)
+<use images/mfcc_colored.png>
+Package pdftex.def Info: images/mfcc_colored.png  used on input line 207.
+(pdftex.def)             Requested size: 409.72125pt x 312.57736pt.
 Package acronym Info: Label `acro:MFCC' newly defined as it shall be overridden
 
-although it is yet undefined on input line 203.
+although it is yet undefined on input line 209.
 Package acronym Info: Label `acro:FFT' newly defined as it shall be overridden
-although it is yet undefined on input line 205.
+although it is yet undefined on input line 211.
 Package acronym Info: Label `acro:DCT' newly defined as it shall be overridden
-although it is yet undefined on input line 207.
-Package acronym Info: Label `acro:FST' newly defined as it shall be overridden
 although it is yet undefined on input line 213.
+ [9 <./images/asr_colored.png>]
+Package acronym Info: Label `acro:FSM' newly defined as it shall be overridden
+although it is yet undefined on input line 219.
+ [10 <./images/mfcc_colored.png>]
 
+LaTeX Warning: Reference `eq:25' on page 11 undefined on input line 247.
 
-Package acronym Warning: Acronym `FST' is not defined on input line 213.
-
-
-Package acronym Warning: Acronym `FST' is not defined on input line 213.
-
-[9]
+[11]
 Package acronym Info: Label `acro:CTC' newly defined as it shall be overridden
-although it is yet undefined on input line 261.
- [10] [11]
-Package acronym Info: Label `acro:RNNs' newly defined as it shall be overridden
+although it is yet undefined on input line 285.
+ [12]
+Package acronym Info: Label `acro:BERT' newly defined as it shall be overridden
 
-although it is yet undefined on input line 310.
-
-
-Package acronym Warning: Acronym `RNNs' is not defined on input line 310.
-
-
-Package acronym Warning: Acronym `RNNs' is not defined on input line 310.
-
-[12] [13]
-
-Package acronym Warning: Acronym `RNNs' is not defined on input line 394.
-
-[14]) [15]
+although it is yet undefined on input line 338.
+ [13]
+<images/encoder-decoder.png, id=493, 828.2142pt x 346.4142pt>
+File: images/encoder-decoder.png Graphic file (type png)
+<use images/encoder-decoder.png>
+Package pdftex.def Info: images/encoder-decoder.png  used on input line 354.
+(pdftex.def)             Requested size: 409.72125pt x 171.37248pt.
+ [14 <./images/encoder-decoder.png>]
+<images/attention.png, id=520, 597.9138pt x 482.7636pt>
+File: images/attention.png Graphic file (type png)
+<use images/attention.png>
+Package pdftex.def Info: images/attention.png  used on input line 389.
+(pdftex.def)             Requested size: 409.72125pt x 330.81628pt.
+ [15] [16 <./images/attention.png>]
+Package acronym Info: Label `acro:CNN' newly defined as it shall be overridden
+although it is yet undefined on input line 495.
+ [17]) [18]
 \openout2 = `methodology.aux'.
 
- (methodology.tex [16
-
-
-
-]
+ (methodology.tex
 Chapter 3.
-<images/automated_dispatcher_actions_system.png, id=549, 212.29312pt x 416.0041
-8pt>
-File: images/automated_dispatcher_actions_system.png Graphic file (type png)
-<use images/automated_dispatcher_actions_system.png>
-Package pdftex.def Info: images/automated_dispatcher_actions_system.png  used o
-n input line 11.
-(pdftex.def)             Requested size: 307.2929pt x 602.194pt.
-[17]) [18] [19 <./images/automated_dispatcher_actions_system.png>]
+<images/my_system.png, id=589, 268.8444pt x 521.7894pt>
+File: images/my_system.png Graphic file (type png)
+<use images/my_system.png>
+Package pdftex.def Info: images/my_system.png  used on input line 11.
+(pdftex.def)             Requested size: 153.64644pt x 298.20331pt.
+[19
+
+
+
+ <./images/my_system.png>]) [20] [21]
 \openout2 = `results.aux'.
 
- (results.tex [20
+ (results.tex [22
 
 
 
 ]
 Chapter 4.
-) [21]
+) [23]
 \openout2 = `conclusion.aux'.
 
- (conclusion.tex [22
+ (conclusion.tex [24
 
 
 
 ]
 Chapter 5.
-) [23]
+) [25]
 \openout2 = `future_work.aux'.
 
- (future_work.tex [24
+ (future_work.tex [26
 
 
 
 ]
 Chapter 6.
-) [25]
+) [27]
 \openout2 = `appendix.aux'.
 
- (appendix.tex [26
+ (appendix.tex [28
 
 
 
@@ -774,15 +785,15 @@ Appendix A.
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 9.
 
-[27
+[29
 
 ] (bachelor.lof
 
 LaTeX Warning: Citation `A critical review of recurrent neural networks for seq
-uence learning' on page 28 undefined on input line 3.
+uence learning' on page 30 undefined on input line 3.
 
 
-Overfull \hbox (2.12149pt too wide) in paragraph at lines 9--9
+Overfull \hbox (2.12149pt too wide) in paragraph at lines 13--13
  [][] [][][]\OT1/cmr/m/n/12 Automated Dis-patcher Ac-tions Sys-tem com-pris-ing
  two sub-systems: Au-to-matic Speech 
  []
@@ -791,15 +802,15 @@ Overfull \hbox (2.12149pt too wide) in paragraph at lines 9--9
 \tf@lof=\write6
 \openout6 = `bachelor.lof'.
 
-) [28
+) [30
 
 
-] (bachelor.bbl [29
+] (bachelor.bbl [31
 
 
 ])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 114.
- [30]
+ [32]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 114.
  (bachelor.aux (GUC_TitlePage.aux)
 (acknowledgments.aux) (abstract.aux) (introduction.aux) (background.aux)
@@ -808,7 +819,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 114.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 114.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 114.
 Package rerunfilecheck Info: File `bachelor.out' has not changed.
-(rerunfilecheck)             Checksum: 2C1C26C03A28CB6C7C12E06741E7FEDD;2049.
+(rerunfilecheck)             Checksum: 079B3FD155F49BCB15A518A58B483778;2116.
 
 
 LaTeX Warning: There were undefined references.
@@ -818,13 +829,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9798 strings out of 493308
- 144853 string characters out of 3138750
- 264334 words of memory out of 3000000
- 12931 multiletter control sequences out of 15000+200000
+ 9835 strings out of 493308
+ 145489 string characters out of 3138750
+ 266149 words of memory out of 3000000
+ 12956 multiletter control sequences out of 15000+200000
  12451 words of font info for 48 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,15n,45p,2090b,513s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,15n,45p,2090b,515s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTe
@@ -842,9 +853,9 @@ e1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmti12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/doublestroke/dsr
 om12.pfb>
-Output written on bachelor.pdf (39 pages, 558760 bytes).
+Output written on bachelor.pdf (41 pages, 853824 bytes).
 PDF statistics:
- 743 PDF objects out of 1000 (max. 8388607)
- 199 named destinations out of 1000 (max. 500000)
- 284 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 794 PDF objects out of 1000 (max. 8388607)
+ 207 named destinations out of 1000 (max. 500000)
+ 312 words of extra memory for PDF output out of 10000 (max. 10000000)
 

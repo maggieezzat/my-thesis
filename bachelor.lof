@@ -5,8 +5,12 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces A Recurrent Neural Network\relax }}{5}{figure.caption.14}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces A Bidirectional Recurrent Neural Network\relax }}{7}{figure.caption.19}
 \contentsline {figure}{\numberline {2.5}{\ignorespaces An \ac {LSTM} Cell\relax }}{8}{figure.caption.23}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces An ASR System\relax }}{9}{figure.caption.26}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces MFCC\relax }}{10}{figure.caption.28}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces An Encoder-Decoder System. The encoder encodes a variable-length sequence into a fixed-length vector $\mathbf {c}$. The decoder uses the summary vector $\mathbf {c}$ along with the previously generated predicted symbol from the previous time step $y_{t-1}$ and the current hidden state $\mathbf {s_t}$ to generate an output $y_t$ \relax }}{14}{figure.caption.37}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces The modified encoder-decoder system implementing the attention mechanism. The output $y_i$ has a corresponding context vector $\mathbf {c_i}$ which is a summation of the weighted annotations $h_j$. The most relevant annotations in the input sentence have the largest weights $\alpha _{ij}$, while the least relevant annotations have the smallest weights. \relax }}{16}{figure.caption.38}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{19}{figure.caption.49}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{19}{figure.caption.46}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
