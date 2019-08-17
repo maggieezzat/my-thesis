@@ -100,8 +100,9 @@ A slight variation of the \ac{RNN}s is the \ac{BRNN}s \cite{schuster1997bidirect
 \mathbf{\widehat{y_t}} = softmax(W^{yf} \; \mathbf{h_t^{<f>}} + W^{yb} \; \mathbf{h_t^{<b>}} + \mathbf{b_y})
 \end{equation}
 
-\includefig{0.8}{BRNN}{A Bidirectional Recurrent Neural Network}{Fig:5}
+%\includefig{0.8}{BRNN}{A Bidirectional Recurrent Neural Network}{Fig:5}
 
+\includefig{0.9}{bidirectional}{A Bidirectional Recurrent Neural Network}{Fig:5}
 
 \subsubsection{Problems with \ac{RNN}s}
 \label{bg:subsub4}
@@ -328,7 +329,7 @@ TODO : Deep Speech Model
 %4th section
 \section{Text Analysis} \label{bg:s4}
 
-Text analysis is the procedure of extracting information and semantics from written text. Some famous text analysis tasks are text classification, document summarization, named-entity recognition and entity-relation extraction. 
+Text analysis is defines as the procedure of extracting information and semantics from written text. Some famous text analysis tasks are text classification, document summarization, named-entity recognition and entity-relation extraction. 
 Text classification is a class of \ac{NLP} tasks which has been significant to many applications such as spam filtering, language identification, sentiment analysis, and email routing. 
 Transfer learning is the process of using information learned from solving one problem in order to solve another different, but relevant problem. 
 Transfer learning has gained great popularity in many fields like computer vision and text analysis due to the massive amount of data and enormous computational resources required in training deep neural models. 
@@ -439,58 +440,37 @@ In 2017, Google came up with a novel architecture using only the attention mecha
 \subsection{The Transformer} 
 \label{bg:sub12}
 
+\includefig{0.8}{transformer}{The Transformer architecture }{Fig:9}
+
 \subsubsection{Problem with Recurrence} 
 \label{bg:subsub11}
 As seen in equation \ref{eq:12}, \ac{RNN}s calculate the hidden state as a function of the current data point and the previous hidden state. This sequential nature of calculation largely suits the sequential nature of natural languages, however, this introduces a major problem as it hinders parallelization among the training inputs. This issue is manifested when the input sequences are of longer lengths. The Transformer abandons recurrence in order to achieve more parallelization and efficiency in performance.
 
-%\subsubsection{\RomanNumeralCaps{2}. Encoder} 
-%\label{bg:subsub12}
 
-\subsubsection{ Model Architecture} 
+
+
+The Transformer follows the prominent encoder-decoder architecture, however, introducing major modifications to both the encoder and the decoder. Both of them make use of what is called \enquote{Self-Attention} or \enquote{Intra-Attention}.
+
+
+\subsubsection{I. Encoder} 
 \label{bg:subsub12}
 
-The Transformer follows the prominent encoder-decoder architecture, however, introducing major modifications to both the encoder and the decoder. Both of them make use of what is called \enquote{Self-Attention} or \enquote{Intra-Attention}. What self-attention does is that it calculates the relevance of each word in the sequence to every other word in the same sequence. To demonstrate the gain we achieve with self-attention, consider the following examples which highlight the problem of linking the pronouns to their antecedents:
-\begin{enumerate}
-	\item \enquote{The animal did not cross the street because \textit{it} was too tired.} \\
-	When translated to French this becomes: \enquote{L'animal n'a pas travers\'e la rue car \textit{il} \'etait tr\'es fatigu\'e}. 
-	\item \enquote{The animal did not cross the street because \textit{it} was too wide.}  \\
-	In French, this is  \enquote{L'animal n'a pas travers\'e la rue car \textit{elle} \'etait tr\'es large.}
-\end{enumerate}
-Self attention implemented in the input sequence links \enquote{it} to the correct antecedent, and thus when generating the pronoun in French (the output sequence), the model knows which one to choose; \enquote{il} or \enquote{elle}. Self attention in the output sequence
-
-
-
-
-
-The encoder consists of $N$ layers, each layer made up of two sub-layers. The first sub-layer is called  \enquote{Self-Attention} or \enquote{Intra-Attention} sub-layer. This is one of the most influential changes proposed in the Transformer. What self-attention does is that it calculates the relevance of each word in the input sequence to every other word in the sequence. To demonstrate the gain we achieve with self-attention, consider the following examples which highlight the problem of linking the pronouns to their antecedents:
-\begin{enumerate}
-	\item \enquote{The animal did not cross the street because \textit{it} was too tired.}
-	
-	
-	
-	When translated to French this becomes: \enquote{L'animal n'a pas travers\'e la rue car \textit{il} \'etait tr\'es fatigu\'e}. 
-	\item \enquote{The animal did not cross the street because \textit{it} was too wide.} 
-	
-	
-	In French, this is  \enquote{L'animal n'a pas travers\'e la rue car \textit{elle} \'etait tr\'es large.}
-\end{enumerate}
-
-
-A model implementing no self-attention mechanism has difficulty determining the right pronoun in French; whether \enquote{il} for males or \enquote{elle} for females, due to the fact that it did not learn any link between \enquote{it} and its antecedent when encoding the input sentence.
-
-
+The encoder consists of $N$ layers, each layer made up of two sub-layers. The first sub-layer is called  \enquote{Self-Attention} sub-layer. This is one of the most influential changes proposed in the Transformer. 
+What self-attention does is that it calculates the relevance of each word in the sequence to every other word in the same sequence. 
+To demonstrate the gain we achieve with self-attention, consider the following example which highlight the problem of linking the pronouns to their antecedents: \enquote{The animal did not cross the street because \textit{it} was too tired.} A question very simple to humans such as \enquote{what does \textit{it} refer to: the animal or the street?} isn't that simple to a model implementing no self-attention. 
+This is owing to the fact that it did not learn any link between \enquote{it} and its antecedent when encoding the input sentence.
+Self attention allows the model to \textit{attend} to other positions in the sequence when processing a certain position, in order to get a better encoding for this word (See Figure \ref{Fig:9}). 
 The second sub-layer is a simple fully-connected feed-forward neural network. A residual connection \cite{he2016deep} is applied to each sub-layer, then layer normalization \cite{ba2016layer} is performed.
 
 
+\includefig{0.5}{weights}{Self Attention Weights }{Fig:9}
 
+
+\subsubsection{II. Decoder} 
+\label{bg:subsub13}
 
 The decoder is made up from $N$ layers as well, with each layer composed of three sub-layers: a self-attention layer similar to the self-attention layer implemented in the encoder, however, modified so that each word can attend only to words earlier in the sequence and not to consequent words, a feed-forward network, and an additional layer which implements the encoder-decoder attention as explained in section \ref{bg:sub9}. As in the encoder, residual connections are applied on each sub-layer followed by layer normalization.
 
-
-
-
-%The problem with natural language is that the same word might have different meanings in different sentences based on the context. 
-%What self-atteention or intra-attention does is that it determines the attention that each word pay to every other word in the sentence, that is the credit linked to that word from the target word's point of view. 
 
 Because the Transformer has no \ac{RNN}s or \ac{CNN}s, the position of each word in the sequence has to be modeled in some way. For this purpose, \enquote{positional encodings} \cite{gehring2017convolutional} \cite{vaswani2017attention} are added to the input embeddings at the encoder and the decoder.
 
@@ -503,27 +483,26 @@ The Transformer model utilizes the attention mechanism in three different ways:
 \end{enumerate}
 
 
-2. The encoder contains self-attention layers. In a self-attention layer all of the keys, values
-and queries come from the same place, in this case, the output of the previous layer in the
-encoder. Each position in the encoder can attend to all positions in the previous layer of the
-encoder.
-3. Similarly, self-attention layers in the decoder allow each position in the decoder to attend to
-all positions in the decoder up to and including that position. We need to prevent leftward
-information flow in the decoder to preserve the auto-regressive property. We implement this
-inside of scaled dot-product attention by masking out (setting to ) all values in the input
-of the softmax which correspond to illegal connections.
-
-
+In 2018, Google released a general-purpose \enquote{language understanding} model based on the Transformer and called it \ac{BERT} (Bidirectional Encoder from Transformer). We demonstrate the idea behind it in the next section.
 
 \subsection{Bidirectional Encoder from Transformer (BERT)} 
 \label{bg:sub13}
 
-Pre-Training
-Feature Extraction
-Fine Tuning
+As discussed earlier, transfer learning in \ac{NLP} consists of pre-training a model using a large amount of unlabeled text data on a general task such as language modeling - \textit{i.e.} predicting the next word in a sentence. The next step is to then make use of the learned information in solving a downstream task, such as text classification, text summarization, etc. Previously, transfer learning has been limited to context-free word embeddings. That means that for every word, there is a single word embedding generated, regardless of the context. For example: the word \enquote{bank} would have the same word embedding in \enquote{bank deposit} and \enquote{river bank}. Limitations like such have motivated the use of deep neural language models that generate \enquote{contextual representations}. The idea is to train a neural network model that maps a vector to each word taking into consideration the entire sentence, instead of having only one vector for the word regardless the context.
 
-\subsubsection{Bidirectional vs uni-directional}
+\ac{BERT} is a method of pre-training contextual language representations, which has been inspired by similar works like REFERENCE Elmo and REFERENCE ULMfit. The distinctive feature of \ac{BERT} over these methods is that in these models, words are conditioned either on the left context only, or combining the left context and right context in a trivial way. \ac{BERT}, in contrast, was described in the paper REFERENCE as \enquote{deeply bidirectional}, as each word is conditioned on both its left and right context in all layers in a deep neural network. We briefly demonstrate the model architecture and the pre-training tasks.
 
-\subsubsection{PreTraining Tasks}
+\subsubsection{Model Architecture and Input Representation}
+\ac{BERT} is based upon the transformer REFERNCE described in section \ref{label} SECTION, where it consists of a multi-layer bidirectional Transformer encoder. In REFERENCE, two versions of \ac{BERT} were introduced with different sizes; a relatively small model with 12 layers, 768 hidden size, and a total of 110M parameters, this model was used only for comparison purposes, and the authors refer to it as $BERT_BASE$. The larger model has 24 layers, 1024 hidden size, and a total of 340M parameters, they call it $BERT_LARGE$ and it achieves state of the art results on many \ac{NLP} tasks.
+
+As seen in figure \ref{Fig:9}, the input can represents either a sentence pair, or a single sentence. For sentence pairs, the two sentences are separated by a special $[SEP]$ token, and a sentence $A$ embedding is added to the first sentence tokens, while a sentence $B$ embedding to the second sentence tokens. For single sentences, only sentence $A$ embedding is used. In addition to the segment embeddings, positional embeddings are also added in order to model the sequential nature of text. Instead of using whole words, word pieces are used REFERENCE. The input embedding of a given token is the sum of the corresponding token embedding, segment embedding and positional embedding. 
+
+
+\includefig{1.0}{bert_input}{BERT input representation}{Fig:9}
+
+
+\subsubsection{Pre-training Tasks}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
