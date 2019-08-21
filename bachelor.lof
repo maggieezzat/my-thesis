@@ -7,13 +7,14 @@
 \contentsline {figure}{\numberline {2.5}{\ignorespaces An \ac {LSTM} Cell\relax }}{8}{figure.caption.23}
 \contentsline {figure}{\numberline {2.6}{\ignorespaces An ASR System\relax }}{9}{figure.caption.26}
 \contentsline {figure}{\numberline {2.7}{\ignorespaces MFCC\relax }}{10}{figure.caption.28}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces An Encoder-Decoder System. The encoder encodes a variable-length sequence into a fixed-length vector $\mathbf {c}$. The decoder uses the summary vector $\mathbf {c}$ along with the previously generated predicted symbol from the previous time step $y_{t-1}$ and the current hidden state $\mathbf {s_t}$ to generate an output $y_t$ \relax }}{14}{figure.caption.37}
-\contentsline {figure}{\numberline {2.9}{\ignorespaces The modified encoder-decoder system implementing the attention mechanism. The output $y_i$ has a corresponding context vector $\mathbf {c_i}$ which is a summation of the weighted annotations $h_j$. The most relevant annotations in the input sentence have the largest weights $\alpha _{ij}$, while the least relevant annotations have the smallest weights. \relax }}{16}{figure.caption.38}
-\contentsline {figure}{\numberline {2.10}{\ignorespaces The Transformer architecture \relax }}{17}{figure.caption.41}
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Self Attention Weights \relax }}{18}{figure.caption.44}
-\contentsline {figure}{\numberline {2.12}{\ignorespaces BERT input representation\relax }}{19}{figure.caption.48}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Deep Speech 2 Model Architecture \cite {amodei2016deep}\relax }}{14}{figure.caption.36}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces An Encoder-Decoder System. The encoder encodes a variable-length sequence into a fixed-length vector $\mathbf {c}$. The decoder uses the summary vector $\mathbf {c}$ along with the previously generated predicted symbol from the previous time step $y_{t-1}$ and the current hidden state $\mathbf {s_t}$ to generate an output $y_t$ \relax }}{15}{figure.caption.39}
+\contentsline {figure}{\numberline {2.10}{\ignorespaces The modified encoder-decoder system implementing the attention mechanism. The output $y_i$ has a corresponding context vector $\mathbf {c_i}$ which is a summation of the weighted annotations $h_j$. The most relevant annotations in the input sentence have the largest weights $\alpha _{ij}$, while the least relevant annotations have the smallest weights. \relax }}{16}{figure.caption.40}
+\contentsline {figure}{\numberline {2.11}{\ignorespaces The Transformer architecture \relax }}{18}{figure.caption.43}
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Self Attention Weights \relax }}{18}{figure.caption.46}
+\contentsline {figure}{\numberline {2.13}{\ignorespaces BERT input representation\relax }}{20}{figure.caption.49}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{21}{figure.caption.50}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{23}{figure.caption.52}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

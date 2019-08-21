@@ -18,35 +18,42 @@
 \contentsline {subsubsection}{Language Model}{12}{section*.34}
 \contentsline {subsection}{\numberline {2.3.2}Hybrid Systems}{12}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}End-to-End Systems}{12}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}Deep Speech 2}{13}{subsection.2.3.4}
-\contentsline {section}{\numberline {2.4}Text Analysis}{13}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Encoder-Decoder Architecture}{14}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Attention Mechanism}{15}{subsection.2.4.2}
-\contentsline {subsubsection}{\MakeUppercase {i}. Encoder}{15}{section*.39}
-\contentsline {subsubsection}{\MakeUppercase {ii}. Decoder}{15}{section*.40}
+\contentsline {subsection}{\numberline {2.3.4}Deep Speech 2: End-to-End Speech Recognition Model}{13}{subsection.2.3.4}
+\contentsline {section}{\numberline {2.4}Text Analysis}{14}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Encoder-Decoder Architecture}{15}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Attention Mechanism}{16}{subsection.2.4.2}
+\contentsline {subsubsection}{\MakeUppercase {i}. Encoder}{16}{section*.41}
+\contentsline {subsubsection}{\MakeUppercase {ii}. Decoder}{17}{section*.42}
 \contentsline {subsection}{\numberline {2.4.3}The Transformer}{17}{subsection.2.4.3}
-\contentsline {subsubsection}{Problem with Recurrence}{17}{section*.42}
-\contentsline {subsubsection}{I. Encoder}{17}{section*.43}
-\contentsline {subsubsection}{II. Decoder}{17}{section*.45}
-\contentsline {subsection}{\numberline {2.4.4}Bidirectional Encoder from Transformer (BERT)}{18}{subsection.2.4.4}
-\contentsline {subsubsection}{Model Architecture and Input Representation}{19}{section*.47}
-\contentsline {subsubsection}{Pre-training Tasks}{19}{section*.49}
-\contentsline {chapter}{\numberline {3}Methodology}{21}{chapter.3}
-\contentsline {section}{\numberline {3.1}System Overview and Datasets}{21}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}\ac {ASR} Datasets}{22}{subsection.3.1.1}
-\contentsline {subsubsection}{\MakeUppercase {i}. Common Voice}{22}{section*.51}
-\contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{22}{section*.52}
-\contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data \cite {radeck2015open}}{22}{section*.53}
-\contentsline {subsection}{\numberline {3.1.2}Text Classifier Datasets}{23}{subsection.3.1.2}
-\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{23}{section*.54}
-\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{23}{section*.55}
-\contentsline {section}{\numberline {3.2}Automatic Speech Recognition Unit}{23}{section.3.2}
-\contentsline {section}{\numberline {3.3}Text Classifier Unit}{23}{section.3.3}
-\contentsline {chapter}{\numberline {4}Results}{25}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusion}{27}{chapter.5}
-\contentsline {chapter}{\numberline {6}Future Work}{29}{chapter.6}
-\contentsline {chapter}{Appendix}{30}{section*.56}
-\contentsline {chapter}{\numberline {A}Lists}{31}{appendix.A}
-\contentsline {section}{List of Abbreviations}{31}{section*.57}
-\contentsline {section}{List of Figures}{32}{appendix*.58}
-\contentsline {chapter}{References}{34}{appendix*.59}
+\contentsline {subsubsection}{Problem with Recurrence}{17}{section*.44}
+\contentsline {subsubsection}{I. Encoder}{18}{section*.45}
+\contentsline {subsubsection}{II. Decoder}{19}{section*.47}
+\contentsline {subsection}{\numberline {2.4.4}Bidirectional Encoder from Transformer (BERT)}{19}{subsection.2.4.4}
+\contentsline {subsubsection}{Model Architecture and Input Representation}{19}{section*.48}
+\contentsline {subsubsection}{Pre-training Tasks}{20}{section*.50}
+\contentsline {chapter}{\numberline {3}Methodology}{23}{chapter.3}
+\contentsline {section}{\numberline {3.1}System Overview}{24}{section.3.1}
+\contentsline {section}{\numberline {3.2}Automatic Speech Recognition Unit}{24}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Speech Recognition Datasets}{25}{subsection.3.2.1}
+\contentsline {subsubsection}{\MakeUppercase {i}. Common Voice}{25}{section*.57}
+\contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{25}{section*.58}
+\contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data \cite {radeck2015open}}{25}{section*.59}
+\contentsline {subsubsection}{\MakeUppercase {iv}. German Single Speaker Data}{25}{section*.60}
+\contentsline {subsubsection}{\MakeUppercase {iii}. Movies Data}{25}{section*.61}
+\contentsline {subsubsection}{Dataset Splitiing: Test, Dev, Train}{26}{section*.62}
+\contentsline {subsubsection}{problem of adding swc}{27}{section*.69}
+\contentsline {subsubsection}{Language Model Decoding}{28}{section*.71}
+\contentsline {subsubsection}{Language Model Rescoring}{28}{section*.72}
+\contentsline {subsubsection}{Auto Correct With Transformer}{28}{section*.73}
+\contentsline {subsection}{\numberline {3.2.2}Text Classifier Datasets}{28}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Text Classifier Unit}{28}{section.3.3}
+\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{28}{section*.74}
+\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{28}{section*.75}
+\contentsline {chapter}{\numberline {4}Results}{29}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{31}{chapter.5}
+\contentsline {chapter}{\numberline {6}Future Work}{33}{chapter.6}
+\contentsline {chapter}{Appendix}{34}{section*.76}
+\contentsline {chapter}{\numberline {A}Lists}{35}{appendix.A}
+\contentsline {section}{List of Abbreviations}{35}{section*.77}
+\contentsline {section}{List of Figures}{37}{appendix*.78}
+\contentsline {chapter}{References}{40}{appendix*.79}

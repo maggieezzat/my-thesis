@@ -318,10 +318,22 @@ There are two efficient mechanisms for finding the most probable label sequence:
 	Prefix Search Decoding works by calculating the probabilities of successive extensions of prefixes of label sequences. Despite Prefix Search Decoding being slower, it is guaranteed to identify the most probable label sequence. The drawback here is that the number of prefixes that must be expanded grows exponentially with the length of the input sequence. To overcome this issue, the authors of the paper make use of an observation which is that the outputs of a \ac{CTC} network form spikes of labels with strongly predicted blanks. Using this observation, a certain threshold is chosen, and points with blank probabilities higher than that threshold are chosen as boundary points, forming sections or regions. For every region, we calculate the most probable label sequence for each region separately, and then we concatenate the results to get the final label sequence. 
 \end{enumerate} 
 
-\subsection{Deep Speech 2} 
+
+\subsection{Deep Speech 2: End-to-End Speech Recognition Model} 
 \label{bg:sub8}
 
-TODO : Deep Speech Model 
+In this section, we examine a case study for end-to-end \ac{ASR} models which is Deep Speech 2 \cite{amodei2016deep}. We discuss the model architecture presented in the paper and refrain from describing the datasets used since they are language specific (The authors use their model for both English and Mandarin). We also do not discuss the training procedure or settings since we shall discuss our own settings for training this model on German in the methodology section \ref{chap:methodology}.
+
+\includefig{0.8}{deepspeech2}{Deep Speech 2 Model Architecture \cite{amodei2016deep}}{Fig:12}
+
+Deep Speech 2 is an end-to-end \ac{ASR} model inspired by previous work both in \ac{ANN}s and speech recognition. It makes use of \ac{RNN}s, \ac{CNN}s and \ac{CTC}. The model itself is a deep neural network consisting of many \ac{RNN} layers preceded by one or more \ac{CNN} input layers, and  
+
+
+
+Sorta Grad
+Batch Norm
+Lookahead Convolution
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -336,7 +348,7 @@ Transfer learning has gained great popularity in many fields like computer visio
 Regarding text analysis, the main idea is to \enquote{pre-train} a large language model, using large amount of unlabeled text corpora, and then \enquote{fine-tune} the model using a smaller labeled dataset to a specific task such as text classification, question answering, etc. 
 The features learned from the first task has to be generic in order to be used in solving the second task, in case of text analysis, features are \enquote{word embeddings}. 
 Word embeddings map words to a high-dimensional vector space, where different words with similar meanings are grouped together in the vector space. Fine-tuning pre-trained language models liberates us from training from scratch which requires large datasets and long time for the model to converge. 
-In section \ref{bg:sub13}, we shall discuss \ac{BERT}, which is a general language model proposed by google that could be pre-trained once, and fine-tuned for many downstream tasks, but prior to that, we discuss in the following three sections the underlying theory of some components in \ac{BERT}, starting by the \enquote{Encoder-Decoder architecture}, and going to the \enquote{Attention Model} and the \enquote{Transformer} which is the core component in \ac{BERT}. 
+In section \ref{bg:sub13}, we shall discuss \ac{BERT} \cite{devlin2018bert}, which is a general language model proposed by google that could be pre-trained once, and fine-tuned for many downstream tasks, but prior to that, we discuss in the following three sections the underlying theory of some components in \ac{BERT}, starting by the \enquote{Encoder-Decoder architecture}, and going to the \enquote{Attention Model} and the \enquote{Transformer} which is the core component in \ac{BERT}. 
 
 Encoder-Decoder architecture has been marked broadly useful in modeling sequence-to-sequence models, where the input is a sequence, and the output is as well a sequence. An example is machine translation, where a model is trained to find an output sentence $y$ which maximizes the conditional probability of $y$ given an input sentence $x$. We take a closer look at it in the next section.
 
@@ -483,25 +495,45 @@ The Transformer model utilizes the attention mechanism in three different ways:
 \end{enumerate}
 
 
-In 2018, Google released a general-purpose \enquote{language understanding} model based on the Transformer and called it \ac{BERT} (Bidirectional Encoder from Transformer). We demonstrate the idea behind it in the next section.
+In 2018, Google released a general-purpose \enquote{language understanding} model based on the Transformer and called it \ac{BERT} (Bidirectional Encoder from Transformer) \cite{devlin2018bert}. We demonstrate the idea behind it in the next section.
 
 \subsection{Bidirectional Encoder from Transformer (BERT)} 
 \label{bg:sub13}
 
-As discussed earlier, transfer learning in \ac{NLP} consists of pre-training a model using a large amount of unlabeled text data on a general task such as language modeling - \textit{i.e.} predicting the next word in a sentence. The next step is to then make use of the learned information in solving a downstream task, such as text classification, text summarization, etc. Previously, transfer learning has been limited to context-free word embeddings. That means that for every word, there is a single word embedding generated, regardless of the context. For example: the word \enquote{bank} would have the same word embedding in \enquote{bank deposit} and \enquote{river bank}. Limitations like such have motivated the use of deep neural language models that generate \enquote{contextual representations}. The idea is to train a neural network model that maps a vector to each word taking into consideration the entire sentence, instead of having only one vector for the word regardless the context.
+As discussed earlier, transfer learning in \ac{NLP} consists of pre-training a model using a large amount of unlabeled text data on a general task such as language modeling - \textit{i.e.} predicting the next word in a sentence. The next step is to then make use of the learned information in solving a downstream task, such as text classification, text summarization, etc. Previously, transfer learning has been limited to context-free word embeddings. That means that for every word, there is a single word embedding generated, regardless of the context. For example: the word \enquote{bank} would have the same word embedding in \enquote{bank deposit} and \enquote{river bank}. Limitations like such have motivated the use of deep neural language models that generate \enquote{contextual representations}. The idea is to train a neural network model that maps a vector to each word taking into consideration the entire sentence, instead of having only one vector for the word disregarding the context.
 
-\ac{BERT} is a method of pre-training contextual language representations, which has been inspired by similar works like REFERENCE Elmo and REFERENCE ULMfit. The distinctive feature of \ac{BERT} over these methods is that in these models, words are conditioned either on the left context only, or combining the left context and right context in a trivial way. \ac{BERT}, in contrast, was described in the paper REFERENCE as \enquote{deeply bidirectional}, as each word is conditioned on both its left and right context in all layers in a deep neural network. We briefly demonstrate the model architecture and the pre-training tasks.
+\ac{BERT} \cite{devlin2018bert} is a method of pre-training contextual language representations, which has been inspired by similar works like Elmo \cite{Peters:2018} and ULMfit \cite{howard2018universal}. The distinctive feature of \ac{BERT} over these methods is that in these models, words are conditioned either on the left context only, or conditioned on a trivial concatenation of the left and right context. \ac{BERT}, in contrast, was described in the paper \cite{devlin2018bert} as \enquote{deeply bidirectional}, as each word is conditioned on both its left and right context in all layers in a deep neural network. We briefly demonstrate the model architecture and the pre-training tasks.
 
 \subsubsection{Model Architecture and Input Representation}
-\ac{BERT} is based upon the transformer REFERNCE described in section \ref{label} SECTION, where it consists of a multi-layer bidirectional Transformer encoder. In REFERENCE, two versions of \ac{BERT} were introduced with different sizes; a relatively small model with 12 layers, 768 hidden size, and a total of 110M parameters, this model was used only for comparison purposes, and the authors refer to it as $BERT_BASE$. The larger model has 24 layers, 1024 hidden size, and a total of 340M parameters, they call it $BERT_LARGE$ and it achieves state of the art results on many \ac{NLP} tasks.
+\ac{BERT} is based upon the Transformer \cite{vaswani2017attention} described in section \ref{bg:sub1}, where it consists of a multi-layer bidirectional Transformer encoder. In \cite{devlin2018bert}, two versions of \ac{BERT} were introduced with different sizes; a relatively small model with 12 layers, 768 hidden size, and a total of 110M parameters, this model was used only for comparison purposes, and the authors refer to it as $BERT_{BASE}$. The larger model has 24 layers, 1024 hidden size, and a total of 340M parameters, they call it $BERT_{LARGE}$ and it achieves state of the art results on many \ac{NLP} tasks.
 
-As seen in figure \ref{Fig:9}, the input can represents either a sentence pair, or a single sentence. For sentence pairs, the two sentences are separated by a special $[SEP]$ token, and a sentence $A$ embedding is added to the first sentence tokens, while a sentence $B$ embedding to the second sentence tokens. For single sentences, only sentence $A$ embedding is used. In addition to the segment embeddings, positional embeddings are also added in order to model the sequential nature of text. Instead of using whole words, word pieces are used REFERENCE. The input embedding of a given token is the sum of the corresponding token embedding, segment embedding and positional embedding. 
+As seen in figure \ref{Fig:9}, the input can represents either a sentence pair, or a single sentence. For sentence pairs, the two sentences are separated by a special $[SEP]$ token, and a sentence $A$ embedding is added to the first sentence tokens, while a sentence $B$ embedding is added to the second sentence tokens. For single sentences, only sentence $A$ embedding is used; these are called \enquote{segment embeddings}. In addition to the segment embeddings, positional embeddings \cite{gehring2017convolutional} are also added in order to model the sequential nature of text. For every token, its input representation is generated by summing its token embedding, its segment embedding, and its positional embedding. A special $[CLS]$ token is injected at the beginning of each sequence. The output corresponding to this token is used as the output for classification tasks. It should be noted that instead of using whole words as tokens, word pieces \cite{wu2016google} are used.
 
 
 \includefig{1.0}{bert_input}{BERT input representation}{Fig:9}
 
 
 \subsubsection{Pre-training Tasks}
+
+
+\begin{enumerate}
+	\item \textbf{Masked LM} \\
+	As discussed earlier, \ac{BERT} is deeply bidirectional which means it is not trained left-to-right (\textit{i.e.} unidirectional) nor the concatenation of left-to-right and right-to-left (\textit{i.e.} shallowly bidirectional). The major issue about training a deeply bidirectional is that each word would \enquote{see itself}. To overcome this hurdle, the technique of predicting each word incrementally is abandoned, and another technique called \ac{MLM} is used. \ac{MLM} works by masking out some of the input tokens randomly using a special $[MASK]$ token, and then predicting only those masked tokens instead of predicting the whole input sequence incrementally. The authors of the paper choose to mask $15\%$ of the input sequence as too little masking percentage makes it too expensive to train, and too much masking percentage means too little context. Because the $[MASK]$ token is never present in the fine-tuning phase, the authors employ a technique of replacing the masked word with the $[MASK]$ token $80\%$ of the time. $10\%$ of the time it is replaced with a random word, and $10\%$ of the time the word is kept as it is; this is done in order to bias the representation toward the correct word. Since replacing the word with a random one happens only for $1.5\%$ of all input tokens, this approach does not deteriorate the model's performance.
+	\item \textbf{Next Sentence Prediction} \\
+	In order for the model to understand the relationships between sentences, it is pre-trained on a next sentence prediction task as well. When encoding training examples, $50\%$ of the time sentence $B$ is the actual next sentence after $A$ (\textit{i.e.} given label \texttt{IsNextSentence}, and the other $50\%$ of the time, $B$ is a random sentence from the training corpus  (\textit{i.e.} given label \texttt{NotNextSentence}.
+	As an example: \\ \\
+	\textbf{Sentence A}: the man went to the store. \\
+	\textbf{Sentence B}: he bought a gallon of milk. \\
+	\textbf{Label}: \texttt{IsNextSentence} \\ \\
+	\textbf{Sentence A}: the man went to the store. \\
+	\textbf{Sentence B}: penguins are flightless. \\
+	\textbf{Label}: \texttt{NotNextSentence}
+	
+\end{enumerate}
+
+It should be noted that pre-training \ac{BERT} is an expensive procedure and requires much time and high computational resources. However, since the model is pre-trained on very large text corpus, it enhances the performance on many downstream tasks and the model achieves state of the art results in 11 \ac{NLP} tasks \cite{devlin2018bert}.
+
+
 
 
 

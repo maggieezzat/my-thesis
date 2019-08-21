@@ -1,5 +1,27 @@
 \begin{thebibliography}{10}
 
+\bibitem{tensorflow2015-whitepaper}
+Mart\'{\i}n Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen,
+  Craig Citro, Greg~S. Corrado, Andy Davis, Jeffrey Dean, Matthieu Devin,
+  Sanjay Ghemawat, Ian Goodfellow, Andrew Harp, Geoffrey Irving, Michael Isard,
+  Yangqing Jia, Rafal Jozefowicz, Lukasz Kaiser, Manjunath Kudlur, Josh
+  Levenberg, Dandelion Man\'{e}, Rajat Monga, Sherry Moore, Derek Murray, Chris
+  Olah, Mike Schuster, Jonathon Shlens, Benoit Steiner, Ilya Sutskever, Kunal
+  Talwar, Paul Tucker, Vincent Vanhoucke, Vijay Vasudevan, Fernanda Vi\'{e}gas,
+  Oriol Vinyals, Pete Warden, Martin Wattenberg, Martin Wicke, Yuan Yu, and
+  Xiaoqiang Zheng.
+\newblock {TensorFlow}: Large-scale machine learning on heterogeneous systems,
+  2015.
+\newblock Software available from tensorflow.org.
+
+\bibitem{amodei2016deep}
+Dario Amodei, Sundaram Ananthanarayanan, Rishita Anubhai, Jingliang Bai, Eric
+  Battenberg, Carl Case, Jared Casper, Bryan Catanzaro, Qiang Cheng, Guoliang
+  Chen, et~al.
+\newblock Deep speech 2: End-to-end speech recognition in english and mandarin.
+\newblock In {\em International conference on machine learning}, pages
+  173--182, 2016.
+
 \bibitem{ba2016layer}
 J~Ba, J~Kiros, and G~Hinton.
 \newblock Layer normalization. arxiv.
@@ -39,6 +61,19 @@ Kyunghyun Cho, Bart Van~Merri{\"e}nboer, Caglar Gulcehre, Dzmitry Bahdanau,
 \newblock Learning phrase representations using rnn encoder-decoder for
   statistical machine translation.
 \newblock {\em arXiv preprint arXiv:1406.1078}, 2014.
+
+\bibitem{daniel2011kaldi}
+Povey Daniel, Ghoshal Arnab, Boulianne Gilles, Burget Lukas, and Glembek
+  Ondrej.
+\newblock The kaldi speech recognition toolkit.
+\newblock In {\em IEEE 2011 workshop on automatic speech recognition and
+  understanding}, number EPFL-CONF-192584, 2011.
+
+\bibitem{devlin2018bert}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
+\newblock Bert: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock {\em arXiv preprint arXiv:1810.04805}, 2018.
 
 \bibitem{elman1990finding}
 Jeffrey~L Elman.
@@ -87,6 +122,11 @@ John~J Hopfield.
 \newblock {\em Proceedings of the national academy of sciences},
   79(8):2554--2558, 1982.
 
+\bibitem{howard2018universal}
+Jeremy Howard and Sebastian Ruder.
+\newblock Universal language model fine-tuning for text classification.
+\newblock {\em arXiv preprint arXiv:1801.06146}, 2018.
+
 \bibitem{jordan1986serial}
 MI~Jordan.
 \newblock Serial order: a parallel distributed processing approach. technical
@@ -98,6 +138,25 @@ MI~Jordan.
 Vlado Keselj.
 \newblock Speech and language processing daniel jurafsky and james h. martin,
   2009.
+
+\bibitem{milde2018open}
+Benjamin Milde and Arne K{\"o}hn.
+\newblock Open source automatic speech recognition for german.
+\newblock In {\em Speech Communication; 13th ITG-Symposium}, pages 1--5. VDE,
+  2018.
+
+\bibitem{peddinti2015time}
+Vijayaditya Peddinti, Daniel Povey, and Sanjeev Khudanpur.
+\newblock A time delay neural network architecture for efficient modeling of
+  long temporal contexts.
+\newblock In {\em Sixteenth Annual Conference of the International Speech
+  Communication Association}, 2015.
+
+\bibitem{Peters:2018}
+Matthew~E. Peters, Mark Neumann, Mohit Iyyer, Matt Gardner, Christopher Clark,
+  Kenton Lee, and Luke Zettlemoyer.
+\newblock Deep contextualized word representations.
+\newblock In {\em Proc. of NAACL}, 2018.
 
 \bibitem{rabiner1989tutorial}
 Lawrence~R Rabiner.
@@ -112,6 +171,12 @@ Stephan Radeck-Arneth, Benjamin Milde, Arvid Lange, Evandro Gouv{\^e}a, Stefan
   model.
 \newblock In {\em International Conference on Text, Speech, and Dialogue},
   pages 480--488. Springer, 2015.
+
+\bibitem{rousseau2014enhancing}
+Anthony Rousseau, Paul Del{\'e}glise, and Yannick Esteve.
+\newblock Enhancing the ted-lium corpus with selected data for language
+  modeling and more ted talks.
+\newblock In {\em LREC}, pages 3935--3939, 2014.
 
 \bibitem{rumelhart1985learning}
 David~E Rumelhart, Geoffrey~E Hinton, and Ronald~J Williams.
@@ -138,6 +203,12 @@ Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
 \newblock In {\em Advances in neural information processing systems}, pages
   5998--6008, 2017.
 
+\bibitem{waibel1990readings}
+Alexander Waibel and Kai-Fu Lee.
+\newblock {\em Readings in speech recognition}, pages 393--404.
+\newblock Morgan Kaufmann, 1990.
+\newblock Phoneme recognition using time-delay neural networks.
+
 \bibitem{werbos1988generalization}
 Paul~J Werbos.
 \newblock Generalization of backpropagation with application to a recurrent gas
@@ -148,5 +219,12 @@ Paul~J Werbos.
 Paul~J Werbos et~al.
 \newblock Backpropagation through time: what it does and how to do it.
 \newblock {\em Proceedings of the IEEE}, 78(10):1550--1560, 1990.
+
+\bibitem{wu2016google}
+Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc~V Le, Mohammad Norouzi, Wolfgang
+  Macherey, Maxim Krikun, Yuan Cao, Qin Gao, Klaus Macherey, et~al.
+\newblock Google's neural machine translation system: Bridging the gap between
+  human and machine translation.
+\newblock {\em arXiv preprint arXiv:1609.08144}, 2016.
 
 \end{thebibliography}
