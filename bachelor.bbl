@@ -227,4 +227,10 @@ Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc~V Le, Mohammad Norouzi, Wolfgang
   human and machine translation.
 \newblock {\em arXiv preprint arXiv:1609.08144}, 2016.
 
+\bibitem{zhang2019automatic}
+Shiliang Zhang, Ming Lei, and Zhijie Yan.
+\newblock Automatic spelling correction with transformer for ctc-based
+  end-to-end speech recognition.
+\newblock {\em arXiv preprint arXiv:1904.10045}, 2019.
+
 \end{thebibliography}

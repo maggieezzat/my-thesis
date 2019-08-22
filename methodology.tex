@@ -95,28 +95,52 @@ We were faced with a problem when trying to use the German \ac{SWC} dataset. The
 
 We started the training with model size 5 layers, 800 nodes, and we added all the datasets except \ac{SWC}, using \ac{LSTM} hidden units. The training procedure took 10 days, through which we ran 19 epochs. It should be noted that after epoch 13, we used the noise augmentation option available and implemented in the pytorch model. It applies some changes to the tempo and gain when it's loading the audio. This aims at increasing robustness to environmental noise.
 
-After 19 epochs, the model converged at \ac{WER} 29.571 and \ac{CER} 7.844 on our test set. In oder to achieve better results, three techniques were investigated, and we discuss them in the following two subsections:
+After 19 epochs, the model converged at \ac{WER} 29.571 and \ac{CER} 7.844 on our test set.  The fact that ctc adopt the assumption that the output labels are conditionally independent often makes the outputs suffer from errors that needs lingustic information to be corrected. In attempts to achieve better results, three techniques were investigated, and we discuss them in the following two subsections:
 
 \subsubsection{Language Model Decoding}
 
+In speech recognition, it is convenient to couple the model with a language model decoding technique in hope for achieving better \ac{WER}. Since there is more text data available more than transcribed audio, we can train a language model on massive amount of text corpora to generate a powerful n-gram language model. For this task, we make use of \href{https://kheafield.com/code/kenlm/}{KenLM}, which is a Language Model Toolkit that is easy to use and can be used to generate n-grams language models of any order. The target was to collect abundant text corpora to experiment with language models. The datasets we found and used are listed here:
+
+\begin{enumerate}
+	\item \textbf{German Wikipedia} \\
+	We made use of the available \href{https://dumps.wikimedia.org/dewiki/latest/}{German Wikipedia dump} available for free download. The wikipedia was downloaded as one 20 GB xml file. We used a WikiExtractor library\footnote{\url{https://github.com/attardi/wikiextractor}} to extract the wikipedia into text files, which gave us a total of 56 folders, each containing 100 text files. Since KenLM requires that text data be in one file, with one sentence per line, we used spaCy\footnote{\url{https://spacy.io/}} which is a Python library for \ac{NLP} tasks. It supports many languages including German, we make use of the \href{https://spacy.io/models/de}{German model} and run it on all of the wikipedia text files. In order for the corpus to match the output of the \ac{ASR}, we perform the same text cleaning performed on the \ac{ASR} transcriptions: lowering all the letters, replacing numbers with their written form \textit{i.e.} 139 is changed into einhundertfUnfunddreissig, removing all punctuations and limiting all the vocab to letters from a to z plus the German umlauts A O U. All the B was replaced with ss and all the foreign characters were stripped out as well.
+	
+	
+	
+	\item \textbf{5 Million Web Sentences} \\
+	We also make use of the Leipzig Corpora Collection offered by Universitat Leipzig. We make use of the data available in web section, and collect a total of 5Million web sentences. The data was found to be one sentence per line and need not further processing other than the same text cleaning performed on the Wikipedia.
+	
+	
+	\item \textbf{8 Million Mary Sentences} \\
+	We make use of the data used for language modeling by \ref{milde2018open}, available for download here\footnote{\url{ http://speech.tools/kaldi_tuda_de/German_sentences_8mil_filtered_maryfied.txt.gz}}. The data was in the needed format, with one sentence per line and needed no further processing.
+	
+	
+	\item \textbf{Our transcriptions} \\
+	We also make use of the transcriptions for our collected audio datasets. It was already one sentence per line and cleaned and suitable for use without any further processing.
+
+	
+\end{enumerate}
+
+All of our data was augmented in one text file. We started by installing KenLM dependencies, and then installing KenLM itself. We perform word tokenization on our data using \href{https://www.nltk.org/}{nltk} library, then train an n-gram model with Kneser-Ney smoothing using KenLM. The generated output is a .arpa file which has a data section with unigram, bigram,..., n-gram counts followed by the estimated values. Though the .arpa format is more readable, the .binary format is much faster and more flexible. It remarkably reduces the loading time and the Language model is in fact required to be in .binary format to be used with our model. For these reasons, we binarize the model and obtain the final .binary labguage model file used for decoding. It should be noted that language model decoding with beam search is given by equation \ref{eq:25}
+
+\begin{equation}
+Q(y) = \log(p_{RNN}(y|x)) + \alpha \log(p_{LM}(y)) + \beta wc(y)
+\end{equation}
+
+where $wc(y)$ is the number of words in the transcription y. The weight $\alpha$ favors the outputs of the language model, while the weight $\beta$ encourages more words in the transcription.
+
+We experiment with many data combinations and different values for $n$ which we report in details in the results section, however, our best result was $15.587\%$ \ac{WER} and $5.806\%$ \ac{CER} when using all our text corpora, with a 5-gram model and beam-with value of 500. The alpha and beta values were set to 0.9 and 0.2 respectively.
 
 \subsubsection{Language Model Rescoring}
+
+It is common as well to arm the model with language model rescoring technique which performs recognition in two passes. In the first pass, a relatively small language model with a low value of $n$ is used \textit{i.e.} 3 or 4 gram; this often makes the decoding process much simpler. We use N-best methode where the N-best scoring hypotheses outputs from the small language model are re-scored using a larger language model of higher $n$ value \textit{i.e.} 5 or 6 gram. The best scoring hypothesis according to the larger language model is then chosen to be the predicted transcription.
+We expriment with various values for $n$ for the smaller language model and the larger one. The different settings with their respective results are reported in details in the results section \ref{chap:results}, howver, our best \ac{WER} was $x \%$ and was achieved with a small language model of $x$-gram built from all our text corpora, and a large language model of $x$-gram built as well from all the text corpora. We used a beam-width of $x$ value, and we set alpha to 0.9, and beta to 0.2.
 
 
 \subsubsection{Auto Correct With Transformer}
 
-
-
-
-
-
-
- 	
-
-
-
-
-
+In this experiment, we employ the method suggested in \cite{zhang2019automatic} by implementing an auto correct model that automatically corrects errored outputs of the ctc-based network. The main idea is to train a model which takes as input at inference the predictions generated by the \ac{ASR} model, and outputs the correct transcriptions. We stick to the model proposed in the paper \cite{zhang2019automatic} which is the Transformer \cite{vaswani2017attention}, however, we use the Transformer model implemented in \href{https://github.com/tensorflow/tensor2tensor}{tensor2tensor} library. \ac{Tensor2Tensor} is a machine learning library developed and maintained by \href{https://ai.google/research/teams/brain}{Google Brain} that aims at making machine learning research accessible and easier for researchers.
+We start off by installing the library and then turn to defining our problem. The library's general interface is to define a problem that can be solved using different models and/or hyper-parameters. There are pre-defined problems in the library, however, we define our own and we call asr\_correction problem. Our problem is very similar to the translation problems defined in the library. We experiment with different datasets and hyper-parameters. For the training data, we use the movies data REFERENCE SECTION and the single speaker data REFERENCE as these two datasets were only added after epoch 13 in the asr, hence we can use the model's output at epoch 13 to transcribe these utterances. The training examples are made by pairing each transcribed output from the \ac{ASR} with its ground truth. When transcribing these utterances using greedy decoding, we obtain a total of 75K training examples.  For the sake of increasing the number of training examples, we use a $x$-gram model with beam-width $x$, 0.9 alpha and 0.2 beta, and get the best 10 outputs, and pair these outputs with the corresponding ground truth. This technique increases our training examples by a factor of 10 resulting in 750K training examples. We experiment with two hyperparameter sets of the transformer: transformer\_base\_single\_gpu and transformer\_big. We train both instances for $x$ steps, using the 750K examples. The transformer\_big achieved $x\%$ \ac{WER}, and $x\%$ \ac{CER}, while the transformer\_base\_single\_gpu  achieved $x\%$ \ac{WER}, and $x\%$ \ac{CER}. We also train the transformer\_big using the 75K training examples, however, more data got us an increase in performance by $x\%$.
 
 
 
@@ -127,41 +151,20 @@ After 19 epochs, the model converged at \ac{WER} 29.571 and \ac{CER} 7.844 on ou
 %of topics included in the training data, our model is robust
 %against speaker variation and topic shift.
 
+For the purpose of comparing our system with the hybrid kaldi-based model \cite{milde2018open} illustrated in SECTION. We attempt to test the kaldi-based model on our test-set. We start by installing kaldi, and this \href{https://github.com/alumae/kaldi-gstreamer-server}{Kaldi GStreamer server} which is a real-time full-duplex speech recognition server. It is implemented in Python and based on GStreamer framework and Kaldi toolkit. Our test set is transcribed using the Kaldi GStreamer server and Kaldi's best model\footnote{\url{http://ltdata1.informatik.uni-hamburg.de/kaldi_tuda_de/de_400k_nnet3chain_tdnn1f_2048_sp_bi.tar.bz2}}. Then the output transcriptions are compared with the ground truth transcriptions in order to compute the \ac{WER} and the \ac{CER}. After comparing the transcriptions, we got $x\%$ \ac{WER} and  $x\%$ \ac{CER} on our dataset. This means that our best model outperforms the kaldi-based model with $x\%$ improvement in \ac{WER} and $x\%$ improvement in \ac{CER}
+
+We also noticed that Kaldi-based model was tested on Tuda-De dataset excluding the realteck microphone since it's very low quality. We excluded all utterances recorded using this microphone, and tested our best model on the modified Tuda-De's test set. Our best model was after 19 epochs of training and coupled with a 5-gram language model decoding technique, beam-width value of x, using alpha and beta values of 0.9 and 0.2 respectively. We achieved $x\%$ \ac{WER} and $x\%$ \ac{CER} outperforming the kaldi-based model on this test set as well.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Text Classifier Datasets}
-\label{meth:sub2}
 
 \section{Text Classifier Unit} 
 \label{meth:s3}
 
 TODO IN THE CHOICE OF ARCHITECTURE NLP PROBLEMS TO MAKE AN END TO END SYSTEM
 
+
+\subsection{Text Classifier Datasets}
+\label{meth:sub2}
 
 \subsubsection{\RomanNumeralCaps{1}. German Wikipedia Dump}
 \label{meth:subsub4}

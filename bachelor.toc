@@ -42,18 +42,18 @@
 \contentsline {subsubsection}{\MakeUppercase {iii}. Movies Data}{25}{section*.61}
 \contentsline {subsubsection}{Dataset Splitiing: Test, Dev, Train}{26}{section*.62}
 \contentsline {subsubsection}{problem of adding swc}{27}{section*.69}
-\contentsline {subsubsection}{Language Model Decoding}{28}{section*.71}
-\contentsline {subsubsection}{Language Model Rescoring}{28}{section*.72}
-\contentsline {subsubsection}{Auto Correct With Transformer}{28}{section*.73}
-\contentsline {subsection}{\numberline {3.2.2}Text Classifier Datasets}{28}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Text Classifier Unit}{28}{section.3.3}
-\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{28}{section*.74}
-\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{28}{section*.75}
-\contentsline {chapter}{\numberline {4}Results}{29}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusion}{31}{chapter.5}
-\contentsline {chapter}{\numberline {6}Future Work}{33}{chapter.6}
-\contentsline {chapter}{Appendix}{34}{section*.76}
-\contentsline {chapter}{\numberline {A}Lists}{35}{appendix.A}
-\contentsline {section}{List of Abbreviations}{35}{section*.77}
-\contentsline {section}{List of Figures}{37}{appendix*.78}
-\contentsline {chapter}{References}{40}{appendix*.79}
+\contentsline {subsubsection}{Language Model Decoding}{27}{section*.71}
+\contentsline {subsubsection}{Language Model Rescoring}{29}{section*.72}
+\contentsline {subsubsection}{Auto Correct With Transformer}{29}{section*.73}
+\contentsline {section}{\numberline {3.3}Text Classifier Unit}{29}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Text Classifier Datasets}{30}{subsection.3.3.1}
+\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{30}{section*.75}
+\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{30}{section*.76}
+\contentsline {chapter}{\numberline {4}Results}{31}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{33}{chapter.5}
+\contentsline {chapter}{\numberline {6}Future Work}{35}{chapter.6}
+\contentsline {chapter}{Appendix}{36}{section*.77}
+\contentsline {chapter}{\numberline {A}Lists}{37}{appendix.A}
+\contentsline {section}{List of Abbreviations}{37}{section*.78}
+\contentsline {section}{List of Figures}{39}{appendix*.79}
+\contentsline {chapter}{References}{42}{appendix*.80}
