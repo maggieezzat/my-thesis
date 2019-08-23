@@ -69,6 +69,72 @@ hi
 \label{meth:subsub7}
 TODO SPEAKER INDEPENDENT CLASSIFICATION
 
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{ | c | c | c | c | c | } 
+		\hline
+		&   Train   &   Dev &   Test    &   Speakers \\ 
+		\hline
+		Tuda-De &   160.15h &   11.53h  &   11.9h   &   179 \\
+		\hline
+		M-AILAB &   233.71h &   -   &   -   &   5+mixed \\ 
+		\hline
+		Common Voice    &   274.75h &   23.1h   &   20.34h  &   4823 \\
+		\hline
+		Total   &   668.61h &   34.63h  &   32.24h  &   5007 \\
+		\hline
+	\end{tabular}
+	\caption{First 14 Epochs Data}
+	\label{table:data14}
+\end{table}
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		Epoch & WER    & CER    \\ \hline
+		1     & 61.286 & 16.690 \\ \hline
+		2     & 46.4 & 11.998 \\ \hline
+		3     & 40.663 & 10.190 \\ \hline
+		4     & 34.519 & 8.456  \\ \hline
+		5     & 32.162 & 7.801  \\ \hline
+		6     & 29.811 & 7.368  \\ \hline
+		7     & 28.487 & 6.903  \\ \hline
+		8     & 27.907 & 6.927  \\ \hline
+		9     & 26.624 & 6.543  \\ \hline
+		10    & 27.005 & 6.662  \\ \hline
+		11    & 26.004 & 6.413  \\ \hline
+		12    & 25.658 & 6.320  \\ \hline
+		13    & 25.499 & 6.282  \\ \hline
+		14    & 25.802 & 6.350  \\ \hline
+	\end{tabular}
+	\caption{}
+	\label{table:train14}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{ | c | c | c | c | c | } 
+	\hline
+	& Train   & Dev    & Test   & Speakers  \\ 
+	\hline
+	Tuda-De      & 160.15h & 11.53h & 11.9h  & 179       \\
+	\hline
+	M-AILAB      & 233.71h & -      &   -    & 5+mixed   \\ 
+	\hline
+	Common Voice & 274.75h & 23.1h  & 20.34h & 4823      \\
+	\hline
+	Movies       & 42h     & -      & -      & -         \\
+	\hline
+	CSS10        & 16.7    & -      & -      & 1         \\
+	\hline
+	Total        & 727.31h & 34.63h & 32.24h & >5008     \\
+	\hline
+\end{tabular}
+\caption{After adding Movies and CSS10 data}
+\label{table:data19}
+\end{table}
+
 
 Many open source implementations for the model were found that could be used such as \footnote{\url{https://github.com/noahchalifour/baidu-deepspeech2}} \footnote{\url{https://github.com/SeanNaren/deepspeech.pytorch}} \footnote{\url{https://github.com/tensorflow/models/tree/master/research/deep_speech}}. On the first attempt, we decided to use the \href{https://www.tensorflow.org/}{TensorFlow} \cite{tensorflow2015-whitepaper} implementation available in the TensorFlow Github repository \url{https://github.com/tensorflow/models/tree/master/research/deep_speech}. TensorFlow is an open source library for numerical computation used for machine applications. It was developed and maintained by \href{https://ai.google/research/teams/brain}{Google Brain}. At the beginning it was intended for internal use only, however, on  November 9, 2015, it was released under the \href{http://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}.
 
@@ -94,6 +160,40 @@ All of our previous experiments were using \ac{GRU}s as the hidden unit of the \
 We were faced with a problem when trying to use the German \ac{SWC} dataset. The utterances were whole articles of very long durations that the memory would not fit them, even with the batch size set to 1. The dataset came with a segmentation file that included the alignments for the sentences. We used this segmentation file to cut the long wav files into small ones, however, after manually analyzing a random sample of the generated files, a high percentage of it was found to be very faulty. Since we have no method of aligning the data ourselves like in \cite{amodei2016deep}, we refrained from using the \ac{SWC} as we suspected it would deteriorate the overall performance.
 
 We started the training with model size 5 layers, 800 nodes, and we added all the datasets except \ac{SWC}, using \ac{LSTM} hidden units. The training procedure took 10 days, through which we ran 19 epochs. It should be noted that after epoch 13, we used the noise augmentation option available and implemented in the pytorch model. It applies some changes to the tempo and gain when it's loading the audio. This aims at increasing robustness to environmental noise.
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|c|c|}
+	\hline
+	Epoch & WER    & CER    \\ \hline
+	1     & 61.286 & 16.690 \\ \hline
+	2     & 46.4 & 11.998 \\ \hline
+	3     & 40.663 & 10.190 \\ \hline
+	4     & 34.519 & 8.456  \\ \hline
+	5     & 32.162 & 7.801  \\ \hline
+	6     & 29.811 & 7.368  \\ \hline
+	7     & 28.487 & 6.903  \\ \hline
+	8     & 27.907 & 6.927  \\ \hline
+	9     & 26.624 & 6.543  \\ \hline
+	10    & 27.005 & 6.662  \\ \hline
+	11    & 26.004 & 6.413  \\ \hline
+	12    & 25.658 & 6.320  \\ \hline
+	13    & 25.499 & 6.282  \\ \hline
+	14    & 24.956 & 6.132  \\ \hline
+	15    & 24.554 & 6.032  \\ \hline
+	16    & 23.290 & 5.703  \\ \hline
+	17    & 23.610 & 5.840  \\ \hline
+	18    & 22.919 & 5.605  \\ \hline
+	19    & 22.875 & 5.629  \\ \hline
+\end{tabular}
+\caption{Summary of the training}
+\label{table:train19}
+\end{table}
+
+\includefig{0.9}{training}{Training Summary}{Fig:20}
+
+\includefig{0.9}{trainingep19}{Training Summary}{Fig:21}
+
 
 After 19 epochs, the model converged at \ac{WER} 29.571 and \ac{CER} 7.844 on our test set.  The fact that ctc adopt the assumption that the output labels are conditionally independent often makes the outputs suffer from errors that needs lingustic information to be corrected. In attempts to achieve better results, three techniques were investigated, and we discuss them in the following two subsections:
 
@@ -162,6 +262,7 @@ We also noticed that Kaldi-based model was tested on Tuda-De dataset excluding t
 
 TODO IN THE CHOICE OF ARCHITECTURE NLP PROBLEMS TO MAKE AN END TO END SYSTEM
 
+In this section, we discuss the second part of our proposed system: the text classifier unit. 
 
 \subsection{Text Classifier Datasets}
 \label{meth:sub2}
