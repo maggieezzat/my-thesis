@@ -21,12 +21,17 @@
 \BOOKMARK [1][-]{section.3.2}{Automatic Speech Recognition Unit}{chapter.3}% 21
 \BOOKMARK [2][-]{subsection.3.2.1}{Speech Recognition Datasets}{section.3.2}% 22
 \BOOKMARK [1][-]{section.3.3}{Text Classifier Unit}{chapter.3}% 23
-\BOOKMARK [2][-]{subsection.3.3.1}{Text Classifier Datasets}{section.3.3}% 24
-\BOOKMARK [0][-]{chapter.4}{Results}{}% 25
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 26
-\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 27
-\BOOKMARK [0][-]{section*.83}{Appendix}{}% 28
-\BOOKMARK [0][-]{appendix.A}{Lists}{}% 29
-\BOOKMARK [1][-]{section*.84}{List of Abbreviations}{appendix.A}% 30
-\BOOKMARK [1][-]{appendix*.85}{List of Figures}{appendix.A}% 31
-\BOOKMARK [0][-]{appendix*.86}{References}{}% 32
+\BOOKMARK [2][-]{subsection.3.3.1}{Why BERT?}{section.3.3}% 24
+\BOOKMARK [2][-]{subsection.3.3.2}{Implementation}{section.3.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.3}{Pre-training Data}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.4}{Pre-Training Process}{section.3.3}% 27
+\BOOKMARK [2][-]{subsection.3.3.5}{Fine-Tuning Data}{section.3.3}% 28
+\BOOKMARK [2][-]{subsection.3.3.6}{Fine-Tuning Process}{section.3.3}% 29
+\BOOKMARK [0][-]{chapter.4}{Results}{}% 30
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 31
+\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 32
+\BOOKMARK [0][-]{section*.85}{Appendix}{}% 33
+\BOOKMARK [0][-]{appendix.A}{Lists}{}% 34
+\BOOKMARK [1][-]{section*.86}{List of Abbreviations}{appendix.A}% 35
+\BOOKMARK [1][-]{appendix*.87}{List of Figures}{appendix.A}% 36
+\BOOKMARK [0][-]{appendix*.88}{References}{}% 37

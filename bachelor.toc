@@ -39,21 +39,27 @@
 \contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{25}{section*.58}
 \contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data \cite {radeck2015open}}{25}{section*.59}
 \contentsline {subsubsection}{\MakeUppercase {iv}. German Single Speaker Data}{25}{section*.60}
-\contentsline {subsubsection}{\MakeUppercase {iii}. Movies Data}{25}{section*.61}
+\contentsline {subsubsection}{\MakeUppercase {iii}. Movies Data}{26}{section*.61}
 \contentsline {subsubsection}{Dataset Splitiing: Test, Dev, Train}{26}{section*.62}
 \contentsline {subsubsection}{problem of adding swc}{28}{section*.72}
-\contentsline {subsubsection}{Language Model Decoding}{29}{section*.77}
-\contentsline {subsubsection}{Language Model Rescoring}{31}{section*.78}
+\contentsline {subsubsection}{Language Model Decoding}{28}{section*.77}
+\contentsline {subsubsection}{Language Model Rescoring}{30}{section*.78}
 \contentsline {subsubsection}{Auto Correct With Transformer}{31}{section*.79}
 \contentsline {section}{\numberline {3.3}Text Classifier Unit}{32}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Text Classifier Datasets}{32}{subsection.3.3.1}
-\contentsline {subsubsection}{\MakeUppercase {i}. German Wikipedia Dump}{32}{section*.81}
-\contentsline {subsubsection}{\MakeUppercase {ii}. 10K German Articles}{32}{section*.82}
-\contentsline {chapter}{\numberline {4}Results}{33}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusion}{35}{chapter.5}
-\contentsline {chapter}{\numberline {6}Future Work}{37}{chapter.6}
-\contentsline {chapter}{Appendix}{38}{section*.83}
-\contentsline {chapter}{\numberline {A}Lists}{39}{appendix.A}
-\contentsline {section}{List of Abbreviations}{39}{section*.84}
-\contentsline {section}{List of Figures}{41}{appendix*.85}
-\contentsline {chapter}{References}{44}{appendix*.86}
+\contentsline {subsection}{\numberline {3.3.1}Why BERT?}{32}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Implementation}{33}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Pre-training Data}{33}{subsection.3.3.3}
+\contentsline {subsubsection}{Pre-processing German Wikipedia}{33}{section*.82}
+\contentsline {subsubsection}{Generating Vocab File}{34}{section*.83}
+\contentsline {subsubsection}{Tokenization and Writing into TFRecord Format}{34}{section*.84}
+\contentsline {subsection}{\numberline {3.3.4}Pre-Training Process}{34}{subsection.3.3.4}
+\contentsline {subsection}{\numberline {3.3.5}Fine-Tuning Data}{35}{subsection.3.3.5}
+\contentsline {subsection}{\numberline {3.3.6}Fine-Tuning Process}{35}{subsection.3.3.6}
+\contentsline {chapter}{\numberline {4}Results}{37}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{39}{chapter.5}
+\contentsline {chapter}{\numberline {6}Future Work}{41}{chapter.6}
+\contentsline {chapter}{Appendix}{42}{section*.85}
+\contentsline {chapter}{\numberline {A}Lists}{43}{appendix.A}
+\contentsline {section}{List of Abbreviations}{43}{section*.86}
+\contentsline {section}{List of Figures}{45}{appendix*.87}
+\contentsline {chapter}{References}{48}{appendix*.88}

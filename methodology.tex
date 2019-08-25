@@ -22,6 +22,8 @@ As discussed earlier, the main purpose of this study is to implement a system ab
 
 Our system consists of two sub-systems, as shown in figure \ref{Fig:10}, the first sub-system is the \ac{ASR} unit, which takes as input raw speech waveforms produced by the driver, and produces the information in a text form. The text is then passed to a trained text classifier, which given the text information from the \ac{ASR}, issues the corresponding appropriate dispatcher action.
 
+TODO IN THE CHOICE OF ARCHITECTURE NLP PROBLEMS TO MAKE AN END TO END SYSTEM
+
 \section{Automatic Speech Recognition Unit} 
 \label{meth:s2}
 
@@ -255,20 +257,83 @@ For the purpose of comparing our system with the hybrid kaldi-based model \cite{
 
 We also noticed that Kaldi-based model was tested on Tuda-De dataset excluding the realteck microphone since it's very low quality. We excluded all utterances recorded using this microphone, and tested our best model on the modified Tuda-De's test set. Our best model was after 19 epochs of training and coupled with a 5-gram language model decoding technique, beam-width value of x, using alpha and beta values of 0.9 and 0.2 respectively. We achieved $x\%$ \ac{WER} and $x\%$ \ac{CER} outperforming the kaldi-based model on this test set as well.
 
-
+LEARNING RATE
+BATCH SIZE 20
+SAMPLE RATE 16KHZ
+CHANGED LABELS TO A-Z PLUS UMLAUTS
 
 \section{Text Classifier Unit} 
 \label{meth:s3}
 
-TODO IN THE CHOICE OF ARCHITECTURE NLP PROBLEMS TO MAKE AN END TO END SYSTEM
+In this section, we discuss the second part of our proposed system: the text classifier unit. The model for the text classifier was chosen to be Google's \acf{BERT} \cite{devlin2018bert}, illustrated in section \ref{bg:sub13} of the literature review. We illustrate the underlying theory behind our decision for using \ac{BERT} over a large variety of both simple classifiers and general language-understanding models.
 
-In this section, we discuss the second part of our proposed system: the text classifier unit. 
+\subsection{Why BERT?}
 
-\subsection{Text Classifier Datasets}
-\label{meth:sub2}
+ A strong point of \ac{BERT} over simple text classifiers is that we can make use of large amounts of unlabeled data to compensate for small labeled task-specific datasets. This is specially useful when we do not know details about the task-specific dataset, at least for the time being. (\textit{i.e.} its size, its format, etc.) When using \ac{BERT} as a classifier on \ac{MRPC}\footnote{\url{https://www.microsoft.com/en-us/download/details.aspx?id=52398}}, which contains only $3,600$ training examples, the results were ranging between $84\%$ and $88\%$. These results are very satisfying for such a small dataset. Since we do know the amount of data available for our task and given the results published for the \ac{MRPC} dataset classification task, we assume that \ac{BERT} would be of great help if the data available is of relatively small size. Moreover, we do not know the nature of the data available for our task. Using \ac{BERT}, we can model our problem as a classification task, a question answering task, etc. Though we make the assumption that our problem is a text classification one, we utilize \ac{BERT} for more flexibility. A further argument is the great importance for our task to get contextual information instead of performing shallow classification or using non-contextual learned embeddings or even using a model that shallowly concatenate left and right context. As discussed in section \ref{bg:sub13}, \ac{BERT} is a deep bidirectional model since it uses \acf{MLM} as one of its pre-training tasks. The next sentence prediction task also makes it model relationships between sentences, which is important for our task as well. In addition to this, fine-tuning a classifier on top of \ac{BERT} is a fairly simple task. Google published two versions of pre-trained \ac{BERT}, an English model, and a multilingual model that could be used for 104 languages, since our language of interest is German only, we suggest that training a German only model would be much more powerful for our intended purpose.
 
-\subsubsection{\RomanNumeralCaps{1}. German Wikipedia Dump}
-\label{meth:subsub4}
-\subsubsection{\RomanNumeralCaps{2}. 10K German Articles}
-\label{meth:subsub5}
+\subsection{Implementation}
+Once we settled on using \ac{BERT} for our text classifier unit, came the step of finding an implementation. For the sake of saving time and effort, we refrain from implementing our own model and search for a convenient implementation. Though there are many freely available implementations for Bert, we stick to the official Google implementation available in \url{https://github.com/google-research/bert} as it provides more flexibility. The implementation is based on \href{https://www.tensorflow.org/}{TensorFlow} library and makes use of the \href{https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator}{Estimator API}. The open source code offers scripts for creating the training data, pre-training and finetuning, which minimizes the amount of work and modifications needed. As demonstrated earlier in the literature review, using \ac{BERT} consists of two stages: pre-training and fine-tuning. We discuss the steps pursued during both stages.
+
+\subsection{Pre-training Data}
+For pre-training \ac{BERT}, we needed large amount of unlabeled text data. The published \href{https://github.com/google-research/bert#pre-trained-models}{pre-trained English models} were trained on both the Book Corpus\footnote{\url{https://yknzhu.wixsite.com/mbweb}} (800M words), and the English Wikipedia\footnote{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2}} (2.5B words). The Book Corpus is not available for free download and we do now if it contains any German data, therefore we abstain from using it. Since we are interested in German, we make use of the German Wikipedia\footnote{\url{https://dumps.wikimedia.org/dewiki/latest/dewiki-latest-pages-articles.xml.bz2}} alone (700M words - 52M sentences). It is convenient for use since the articles nature fits the next sentence task since most sentences are correlated. We considered using the sentences corpus provided by Universit{\"a}t Leipzig\footnote{\url{http://wortschatz.uni-leipzig.de/en/download}}, however they were separate sentences and would not add much to the next sentence prediction task. 
+
+\subsubsection{Pre-processing German Wikipedia}
+We start by downloading the \href{https://dumps.wikimedia.org/dewiki/latest/dewiki-latest-pages-articles.xml.bz2}{German Wikipedia dump}. The whole wikipedia is downloaded as one 20GB file in \texttt{xml} format. We use an open source wikiExtractor\footnote{\url{https://github.com/attardi/wikiextractor}} in order to extract it into plain text files. The Wikipedia is extracted into $5,600$ text files split upon $56$ folders, each $100$ files in a folder. Since the input to our subsystem would be the output from the \ac{ASR} unit, we perform some text cleaning in order to match the output of the \ac{ASR}. The \ac{ASR} outputs only lower-case letters (\enquote{a} to \enquote{z}), apostrophe ('), space, plus the German umlauts ({\"a} {\"o} {\"u}). For this purpose, we replace all numbers with their written format \textit{i.e.} 37 is turned into \enquote{siebenunddreissig}. Any \enquote{\ss} was replaced with \enquote{ss}. All punctuation and foreign characters were stripped away, and only the allowed characters \textit{i.e.} potential outputs of the \ac{ASR} were kept in the corpus.
+
+
+The implementation requires the input data to be in specific format: each file has to be a plain text file, with one sentence per line. Different documents must be delimited by empty new lines; this is essential for the next sentence prediction task.
+To get the data in the proper format, we use the spaCy\footnote{\url{https://spacy.io/}} toolkit, which is a Python library for \ac{NLP} tasks. It supports many languages including German, we make use of the \href{https://spacy.io/models/de}{German model} and run it on all of the Wikipedia text files. There were many possible choices for the sentence tokenization task such as nltk\footnote{\url{https://www.nltk.org/}}, OpenNLP\footnote{\url{https://github.com/apache/opennlp}}, etc. Nevertheless, we stick to spaCy since it is recommended by \ac{BERT}'s official \href{https://github.com/google-research/bert}{github repository}. The sentence tokenization is not flawless and by manually analyzing random samples of the files, it is found that many errors exist. We ignore the mistakes albeit and consider it as noise in the input data as it is advised in the repository to add a slight amount of noise to the input data. This is particularly beneficial to make the model robust to slightly different data during fine-tuning step. In addition, distinct articles are separated with empty lines.
+
+\subsubsection{Generating Vocab File}
+As previously illustrated, \ac{BERT} uses word pieces instead of whole words. The process is done as follows: a vocab file containing sub-words is generated from the whole the pre-training data. This list of sub-words (referred to as vocab file), is used to tokenize the pre-training data and the fine-tuning data. Out of vocab sub-words are given a special \texttt{[UNK]} token. The official repository does not include code for learning new vocab, however, they refer to multiple alternatives such as Google's SentencePiece library\footnote{\url{https://github.com/google/sentencepiece}} and tensor2tensor's WordPiece generation script\footnote{\url{https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/data_generators/text_encoder_build_subword.py}}. Instead, we use an open source bert-vocab-builder\footnote{\url{https://github.com/kwonmha/bert-vocab-builder}}, which is a modification to tensor2tensor's \href{https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/data_generators/text_encoder_build_subword.py}{WordPiece generation script}. The modifications introduced aims at making the generated vocab list more compatible with the tokenization script provided in \ac{BERT}'s repository. Changes include adding \ac{BERT}'s special tokens (\texttt{[SEP]}, \texttt{[CLS]}, \texttt{[MASK]}, \texttt{[UNK]}) to the vocab list, and denoting split words using \enquote{\texttt{\#\#}} instead of \enquote{\texttt{\_}}. 
+
+A threshold of 800 is used in selecting the sub-words. \textit{i.e.} any sub-word occurring in the training corpus less than 800 times will be excluded from the vocab list. Using this threshold, we end up with a vocab list of size	$\approx 10,000$ sub-words. In later stages, all our data will be tokenized according to this vocab list.
+
+
+\subsubsection{Tokenization and Writing into TFRecord Format}
+
+After generating the vocab file, the pre-training corpus has to tokenized according to the produced vocab file. Google provided scripts for both tokenizing the corpus given a vocab file and creating the training data in the \enquote{TFRecord} format. TFRecord is a simple binary file format that many TensorFlow applications use for training data. In order to write the data into TfRecord format, the data has to be converted into sequence of byte-strings. Instead of concatenating all the Wikipedia's $5,600$ text files into one file, we modify the script to read the input files from a \texttt{.csv} file containing the paths for all the cleaned text files. This is done because all the examples of the input file will be stored in memory, so for the purpose of avoiding out of memory issues, we keep the files sharded and we modify the code to generate one TFRecord file for each $100$ text files \textit{i.e.} $56$ total TFRecord files. 
+A \enquote{\texttt{max\_seq\_length}} 
+is set when creating the data, where sequences of lengths longer than this value are truncated and sequences of shorter lengths are padded. We choose this value to be $128$. Another values set are the \enquote{\texttt{max\_predictions\_per\_seq}} and \enquote{\texttt{masked\_lm\_prob}}. The \texttt{masked\_lm\_prob} is the probability of masked tokens, we set this value to 0.15 \textit{i.e.} $15\%$. The \texttt{max\_predictions\_per\_seq} is the maximum number of \ac{MLM} predictions per sequence. This value should be set to be \texttt{max\_seq\_length} * \texttt{masked\_lm\_prob}, therefore we set it to $20$. It is to be noted that the script does not get this value automatically because this value has to be passed to both the data creation script and the pre-training script.
+ 
+ 
+\subsection{Pre-Training Process}
+
+For pre-training, we set the \texttt{batch\_size} to 896 (largest that could fit into \ac{TPU} memory). We set the \texttt{max\_seq\_length} and \texttt{max\_predictions\_per\_seq} to $128$ and $20$ respectively since these values were used when creating the data. We train for $90,000$ steps and set the \texttt{num\_warmup\_steps} to $10,000$ steps. The number of warmup steps EXPLAIN. We set the initial \texttt{learning\_rate} to $1e-4$.
+
+The \texttt{num\_hidden\_layers} and \texttt{num\_attention\_heads} are both set to 12, the \texttt{vocab\_size} is set to 105944. The \texttt{hidden\_act} which is thw activation function used is the gelu activation function. 
+In the \texttt{ber\_config\_file}, we specify some configurations such as the number 
+
+TFRC program, tpu versions
+ 
+-platform to run google cloud, tensorflow research, tpu specs
+
+-training steps, hyperparameters, bert config file
+The model configuration (including vocab size) is specified in bert config file
+
+%	"directionality": "bidi"
+%	"hidden\_dropout_prob": 0.1, 
+%	"hidden\_size": 768, 
+
+
+%The learning rate we used in the paper was 1e-4. However, if you are doing additional steps of pre-training starting from an existing BERT checkpoint, you should use a smaller learning rate (e.g., 2e-5).
+
+%Longer sequences are disproportionately expensive because attention is quadratic to the sequence length. In other words, a batch of 64 sequences of length 512 is much more expensive than a batch of 256 sequences of length 128. The fully-connected/convolutional cost is the same, but the attention cost is far greater for the 512-length sequences. Therefore, one good recipe is to pre-train for, say, 90,000 steps with a sequence length of 128 and then for 10,000 additional steps with a sequence length of 512. The very long sequences are mostly needed to learn positional embeddings, which can be learned fairly quickly. Note that this does require generating the data twice with different values of max_seq_length.
+
+%recommended recipe is to pre-train a BERT-Base on a single preemptible Cloud TPU v2, which takes about 2 weeks at a cost of about 500 USD (based on the pricing in October 2018). You will have to scale down the batch size when only training on a single Cloud TPU, compared to what was used in the paper. It is recommended to use the largest batch size that fits into TPU memory.
+
+ Uncased model to match output of the asr
+ 
+
+\subsection{Fine-Tuning Data}
+ -finetuning: 10K articles
+ 
+\subsection{Fine-Tuning Process}
+ finetuning steps, hyperparameters,
+ creating a classification layer
+
+-effect f running pre-training on finetuning data
+
+%\subsubsection{\RomanNumeralCaps{2}. 10K German Articles}
+%\label{meth:subsub5}
 
