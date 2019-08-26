@@ -298,42 +298,78 @@ is set when creating the data, where sequences of lengths longer than this value
  
  
 \subsection{Pre-Training Process}
+\label{meth:sub3}
 
-For pre-training, we set the \texttt{batch\_size} to 896 (largest that could fit into \ac{TPU} memory). We set the \texttt{max\_seq\_length} and \texttt{max\_predictions\_per\_seq} to $128$ and $20$ respectively since these values were used when creating the data. We train for $90,000$ steps and set the \texttt{num\_warmup\_steps} to $10,000$ steps. The number of warmup steps EXPLAIN. We set the initial \texttt{learning\_rate} to $1e-4$.
+Since the pre-training is a fairly expensive procedure, we required a cloud platform that offers services for high computational resources. We make use of the free cloud \ac{TPU}s offered by \href{https://www.tensorflow.org/tfrc}{TensorFlow Research Cloud Program}. This program offers researchers free cloud \ac{TPU}s in order to run their machine learning applications. We were offered $5$ v2 cloud \ac{TPU}s, each \ac{TPU} has $8$ cores with each core having $8$ GiB of \ac{HBM}. The \ac{TPU}s were available for use on \href{https://cloud.google.com/}{Google Cloud Platform}.
 
-The \texttt{num\_hidden\_layers} and \texttt{num\_attention\_heads} are both set to 12, the \texttt{vocab\_size} is set to 105944. The \texttt{hidden\_act} which is thw activation function used is the gelu activation function. 
-In the \texttt{ber\_config\_file}, we specify some configurations such as the number 
-
-TFRC program, tpu versions
- 
--platform to run google cloud, tensorflow research, tpu specs
-
--training steps, hyperparameters, bert config file
-The model configuration (including vocab size) is specified in bert config file
-
-%	"directionality": "bidi"
-%	"hidden\_dropout_prob": 0.1, 
-%	"hidden\_size": 768, 
+We train with batch size of $896$ sequences (largest batch size that could fit into \ac{TPU} memory). ($896$ sequences * $128$ tokens = $114,688$ tokens/batch). We set the \texttt{max\_seq\_length} and \texttt{max\_predictions\_per\_seq} to $128$ and $20$ respectively since these values were used when creating the data. The \texttt{num\_hidden\_layers} and \texttt{num\_attention\_heads} are both set to $12$, the \texttt{vocab\_size} is set to $105,944$. Adam optimizer \cite{kingma2014adam} was used with $1\mathrm{e}{-4}$ learning rate, $\beta_1$ and $\beta_2$ values set to $0.9$ and $0.999$ respectively. $0.01$ L2 weight decay is used. Over the first $10,000$ training steps, learning rate warm-up is used and then linear decay of the learning rate.  We A dropout probability of $0.1$ is used on all layers. The activation function used is the \enquote{gelu} function \cite{hendrycks2016bridging}, and the hidden size is set to $768$. All of the model configuration (including vocab size) is specified in \texttt{bert\_config} file. The total loss is the summation of the mean \ac{MLM} likelihood and the mean next sentence prediction likelihood.
 
 
-%The learning rate we used in the paper was 1e-4. However, if you are doing additional steps of pre-training starting from an existing BERT checkpoint, you should use a smaller learning rate (e.g., 2e-5).
+We train for $100,000$ steps, which is $\approx 16$ epochs over our $700M$ words. (batch size $896$ and sequence length $128$) At the end of the training, the \ac{MLM} task accuracy was $60\%$ and next sentence accuracy was $98\%$ 
+
 
 %Longer sequences are disproportionately expensive because attention is quadratic to the sequence length. In other words, a batch of 64 sequences of length 512 is much more expensive than a batch of 256 sequences of length 128. The fully-connected/convolutional cost is the same, but the attention cost is far greater for the 512-length sequences. Therefore, one good recipe is to pre-train for, say, 90,000 steps with a sequence length of 128 and then for 10,000 additional steps with a sequence length of 512. The very long sequences are mostly needed to learn positional embeddings, which can be learned fairly quickly. Note that this does require generating the data twice with different values of max_seq_length.
-
-%recommended recipe is to pre-train a BERT-Base on a single preemptible Cloud TPU v2, which takes about 2 weeks at a cost of about 500 USD (based on the pricing in October 2018). You will have to scale down the batch size when only training on a single Cloud TPU, compared to what was used in the paper. It is recommended to use the largest batch size that fits into TPU memory.
-
- Uncased model to match output of the asr
  
 
 \subsection{Fine-Tuning Data}
- -finetuning: 10K articles
- 
+After pre-training, came the fine-tuning stage. As discussed previously, our problem is modeled as a classification one. Therefore, we will be implementing a fine-tuning layer on top of \ac{BERT}. For this purpose, we searched for task-specific datasets that could be used to fine-tune our pre-trained model. Specifically, we required a dataset with transcribed audio from the drivers and their corresponding dispatcher actions. However, we could not find any freely available datasets of this kind. We tried to obtain similar dataset from \href{https://www.trapezegroup.eu/}{Trapeze}, but unfortunately that was not possible. We, therefore, leave the task of dataset collection and fine-tuning the model on the collected dataset for future work. 
+
+\subsubsection{\ac{10KGNAD}}
+%\begin{table}[hbtp]
+%	\centering
+%	\begin{tabulary}{20cm}{L|L|L|L}
+%		\hline
+%		Category		& Train	& Test  & Combined  \\ \hline
+%		Web				& 1510 	& 168	& 1678 		\\ \hline
+%		Panorama 		& 1509 	& 168	& 1677		\\ \hline
+%		International 	& 1360	& 151	& 1511		\\ \hline
+%		Wirtschaft 		& 1270	& 141	& 1411		\\ \hline
+%		Sport 			& 1081	& 120	& 1201		\\ \hline
+%		Inland 			& 913	& 102	& 1014		\\ \hline
+%		Etat 			& 601	& 67	& 668		\\ \hline
+%		Wissenschaft 	& 516	& 57	& 573		\\ \hline
+%		Kultur 			& 485	& 54	& 539		\\ \hline
+%	\end{tabulary}
+%		\caption{10KGNAD: Overview of train/test split}
+%		\label{table:10KGNAD}
+%\end{table}
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Category		& Train	& Test  & Combined  \\ \hline
+		Web				& 1510 	& 168	& 1678 		\\ \hline
+		Panorama 		& 1509 	& 168	& 1677		\\ \hline
+		International 	& 1360	& 151	& 1511		\\ \hline
+		Wirtschaft 		& 1270	& 141	& 1411		\\ \hline
+		Sport 			& 1081	& 120	& 1201		\\ \hline
+		Inland 			& 913	& 102	& 1014		\\ \hline
+		Etat 			& 601	& 67	& 668		\\ \hline
+		Wissenschaft 	& 516	& 57	& 573		\\ \hline
+		Kultur 			& 485	& 54	& 539		\\ \hline
+		
+	\end{tabular}
+	\caption{10KGNAD: Overview of train/test split}
+	\label{table:10KGNAD}
+\end{table}
+
+\includefig{0.8}{articles_per_class}{10KGNAD: Articles per Class}{Fig:28}
+
+
+We turn our attention, instead, to find a general classification dataset that could be used as a proof of concept that our \ac{BERT} model unit could generate promising results as a classifier. One interesting freely available dataset is \enquote{\ac{10KGNAD}}\footnote{\url{https://tblock.github.io/10kGNAD/}}, which is a German topic classification dataset released under the \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}. It constitutes around $10,000$ German news articles collected from an Austrian online newspaper. The articles are categorized into nine topics: Web, Panorama, International, Wirtschaft (Economy), Sport, Inland, Etat, Wissenschaft (Science) and Kultur. The number of articles per class is illustrated in figure \ref{Fig:28} and the train/test numbers given in table \ref{table:10KGNAD}. We stick to these numbers which are proposed by the author which are $90\%$ articles for training and $10\%$ for testing. No extra pre-processing or cleaning was needed other than lowercasing all the letters and performing the same text cleaning made for the \ac{ASR} transcriptions and \ac{BERT}'s pre-training data.
+
+
 \subsection{Fine-Tuning Process}
- finetuning steps, hyperparameters,
- creating a classification layer
+\label{meth:sub4}
 
--effect f running pre-training on finetuning data
+\includefig{0.8}{bert_classifier}{The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch}{Fig:28}
 
-%\subsubsection{\RomanNumeralCaps{2}. 10K German Articles}
-%\label{meth:subsub5}
+Fine-tuning \ac{BERT} as a classifier is a fairly simple task. Only one additional output layer is added therefore small number of parameters need to be learned from the scratch. The idea is to take the output of the Transformer (\textit{i.e.} final hidden layer) corresponding to the special classification token \texttt{[CLS]} as illustrated in figure \ref{Fig:28}. This vector is denoted as $C \in {\mathbb{R}}^{H}$ where $H=768$ is the hidden size. The parameters learned from the scratch during fine-tuning are those for the classification layer $W \in {\mathbb{R}}^{K\times H} $ where $K$ is the number of labels in our classification problem. For computing the label probabilities, standard softmax function is used. During fine-tuning, \ac{BERT}'s parameters and the classification layer's $W$ parameters are trained jointly to maximize the og-probability of the correct label.
 
+We keep most of the hyper-parameters same as the pre-training, however we change the batch size to 32 and start with an initial learning rate of $2\mathrm{e}{-5}$. We tokenize the input data using our vocab file then fine-tune for 4 epochs using the same cloud \ac{TPU}s used for pre-training. As for the result, we achieve an accuracy of $88\%$ on the test set.
+
+
+\subsubsection{Effect of Running Pre-Training on Fine-Tuning Data}
+
+It was advised in \href{https://github.com/google-research/bert#pre-training-tips-and-caveats}{Google's github repository} to run additional steps of pre-training on the task-specific dataset, starting from \ac{BERT}'s final checkpoint. This is specially beneficial if the dataset has different nature than the pre-training data. We experiment by running pre-training with the same settings reported in section \ref{meth:sub3}. Only the learning rate is changed, where we used $2\mathrm{e}{-5}$ instead of $1\mathrm{e}{-4}$ following the guidelines provided by the authors. After running $10,000$ steps of pre-training, we fine-tune again using the same settings used in section \ref{meth:sub4}. Running additional steps of pre-training on our task-specific dataset before fine-tuning gives us $2\%$ improvement in the classification accuracy resulting in $90\%$ on the test set.

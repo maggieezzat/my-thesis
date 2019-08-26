@@ -100,6 +100,12 @@ Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
 \newblock In {\em Proceedings of the IEEE conference on computer vision and
   pattern recognition}, pages 770--778, 2016.
 
+\bibitem{hendrycks2016bridging}
+Dan Hendrycks and Kevin Gimpel.
+\newblock Bridging nonlinearities and stochastic regularizers with gaussian
+  error linear units.
+\newblock 2016.
+
 \bibitem{hochreiter1991untersuchungen}
 Sepp Hochreiter.
 \newblock Untersuchungen zu dynamischen neuronalen netzen.
@@ -138,6 +144,11 @@ MI~Jordan.
 Vlado Keselj.
 \newblock Speech and language processing daniel jurafsky and james h. martin,
   2009.
+
+\bibitem{kingma2014adam}
+Diederik~P Kingma and Jimmy Ba.
+\newblock Adam: A method for stochastic optimization.
+\newblock {\em arXiv preprint arXiv:1412.6980}, 2014.
 
 \bibitem{milde2018open}
 Benjamin Milde and Arne K{\"o}hn.

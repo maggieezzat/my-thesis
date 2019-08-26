@@ -54,12 +54,13 @@
 \contentsline {subsubsection}{Tokenization and Writing into TFRecord Format}{34}{section*.84}
 \contentsline {subsection}{\numberline {3.3.4}Pre-Training Process}{34}{subsection.3.3.4}
 \contentsline {subsection}{\numberline {3.3.5}Fine-Tuning Data}{35}{subsection.3.3.5}
-\contentsline {subsection}{\numberline {3.3.6}Fine-Tuning Process}{35}{subsection.3.3.6}
-\contentsline {chapter}{\numberline {4}Results}{37}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusion, Limitations and Future Work}{39}{chapter.5}
-\contentsline {chapter}{\numberline {6}Future Work}{41}{chapter.6}
-\contentsline {chapter}{Appendix}{42}{section*.85}
+\contentsline {subsubsection}{\ac {10KGNAD}}{35}{section*.85}
+\contentsline {subsection}{\numberline {3.3.6}Fine-Tuning Process}{36}{subsection.3.3.6}
+\contentsline {subsubsection}{Effect of Running Pre-Training on Fine-Tuning Data}{36}{section*.90}
+\contentsline {chapter}{\numberline {4}Results}{39}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusion, Limitations and Future Work}{41}{chapter.5}
+\contentsline {chapter}{Appendix}{42}{section*.91}
 \contentsline {chapter}{\numberline {A}Lists}{43}{appendix.A}
-\contentsline {section}{List of Abbreviations}{43}{section*.86}
-\contentsline {section}{List of Figures}{45}{appendix*.87}
-\contentsline {chapter}{References}{48}{appendix*.88}
+\contentsline {section}{List of Abbreviations}{43}{section*.92}
+\contentsline {section}{List of Figures}{45}{appendix*.93}
+\contentsline {chapter}{References}{48}{appendix*.94}
