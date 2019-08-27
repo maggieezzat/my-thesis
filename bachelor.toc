@@ -33,34 +33,64 @@
 \contentsline {subsubsection}{Pre-training Tasks}{20}{section*.50}
 \contentsline {chapter}{\numberline {3}Methodology}{23}{chapter.3}
 \contentsline {section}{\numberline {3.1}System Overview}{24}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Two sub-systems vs. One speech-based End-to-End System}{24}{subsection.3.1.1}
 \contentsline {section}{\numberline {3.2}Automatic Speech Recognition Unit}{24}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Speech Recognition Datasets}{25}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.1}Hybrid Kaldi-based ASR Model}{24}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Why End-to-End ASR?}{25}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Deep Speech 2: Adapting to German}{25}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Speech Recognition Data}{25}{subsection.3.2.4}
 \contentsline {subsubsection}{\MakeUppercase {i}. Common Voice}{25}{section*.57}
-\contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{25}{section*.58}
-\contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data \cite {radeck2015open}}{25}{section*.59}
-\contentsline {subsubsection}{\MakeUppercase {iv}. German Single Speaker Data}{25}{section*.60}
-\contentsline {subsubsection}{\MakeUppercase {iii}. Movies Data}{26}{section*.61}
-\contentsline {subsubsection}{Dataset Splitiing: Test, Dev, Train}{26}{section*.62}
-\contentsline {subsubsection}{problem of adding swc}{28}{section*.72}
-\contentsline {subsubsection}{Language Model Decoding}{28}{section*.77}
-\contentsline {subsubsection}{Language Model Rescoring}{30}{section*.78}
-\contentsline {subsubsection}{Auto Correct With Transformer}{31}{section*.79}
-\contentsline {section}{\numberline {3.3}Text Classifier Unit}{32}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Why BERT?}{32}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Implementation}{33}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Pre-training Data}{33}{subsection.3.3.3}
-\contentsline {subsubsection}{Pre-processing German Wikipedia}{33}{section*.82}
-\contentsline {subsubsection}{Generating Vocab File}{34}{section*.83}
-\contentsline {subsubsection}{Tokenization and Writing into TFRecord Format}{34}{section*.84}
-\contentsline {subsection}{\numberline {3.3.4}Pre-Training Process}{34}{subsection.3.3.4}
-\contentsline {subsection}{\numberline {3.3.5}Fine-Tuning Data}{35}{subsection.3.3.5}
-\contentsline {subsubsection}{\ac {10KGNAD}}{35}{section*.85}
-\contentsline {subsection}{\numberline {3.3.6}Fine-Tuning Process}{36}{subsection.3.3.6}
-\contentsline {subsubsection}{Effect of Running Pre-Training on Fine-Tuning Data}{36}{section*.90}
-\contentsline {chapter}{\numberline {4}Results}{39}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusion, Limitations and Future Work}{41}{chapter.5}
-\contentsline {chapter}{Appendix}{42}{section*.91}
-\contentsline {chapter}{\numberline {A}Lists}{43}{appendix.A}
-\contentsline {section}{List of Abbreviations}{43}{section*.92}
-\contentsline {section}{List of Figures}{45}{appendix*.93}
-\contentsline {chapter}{References}{48}{appendix*.94}
+\contentsline {subsubsection}{\MakeUppercase {ii}. M-AILABS Speech Dataset}{26}{section*.58}
+\contentsline {subsubsection}{\MakeUppercase {iii}. German Speech Data (Tuda-De)}{26}{section*.59}
+\contentsline {subsubsection}{\MakeUppercase {iv}. CSS10: Single Speaker Data}{26}{section*.60}
+\contentsline {subsubsection}{\MakeUppercase {v}. Movies Data}{26}{section*.61}
+\contentsline {subsubsection}{\MakeUppercase {v}. Spoken Wikipedia Corpus}{27}{section*.63}
+\contentsline {subsubsection}{Transcriptions Cleaning}{28}{section*.65}
+\contentsline {section}{\numberline {3.3}Deep Speech 2: TensorFlow}{28}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Training on Google Colab GPUs}{28}{subsection.3.3.1}
+\contentsline {subsubsection}{Implementation Details}{28}{section*.68}
+\contentsline {subsubsection}{Training Data, Process and Results}{29}{section*.69}
+\contentsline {subsection}{\numberline {3.3.2}Training on Google Cloud TPUs}{29}{subsection.3.3.2}
+\contentsline {subsubsection}{Migrating from Regular Estimator to TPU Estimator}{29}{section*.73}
+\contentsline {section}{\numberline {3.4}Deep Speech 2: PyTorch}{29}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Training on Google Colab}{30}{subsection.3.4.1}
+\contentsline {subsubsection}{LSTM vs. GRU}{30}{section*.75}
+\contentsline {subsection}{\numberline {3.4.2}Microsoft Azure Platform}{30}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Training I: Using Tuda-De, M-AILABS, Common Voice }{30}{subsection.3.4.3}
+\contentsline {subsubsection}{Speaker Independent Splitting}{30}{section*.77}
+\contentsline {subsubsection}{Training Process and Results}{31}{section*.81}
+\contentsline {subsection}{\numberline {3.4.4}Training II: Adding all data}{31}{subsection.3.4.4}
+\contentsline {subsubsection}{problem of adding \ac {SWC}}{31}{section*.82}
+\contentsline {subsubsection}{Speaker Independent Splitting}{31}{section*.83}
+\contentsline {subsubsection}{Training Process and Results}{32}{section*.87}
+\contentsline {subsection}{\numberline {3.4.5}Language Model Decoding}{32}{subsection.3.4.5}
+\contentsline {subsection}{\numberline {3.4.6}Language Model Re-scoring}{34}{subsection.3.4.6}
+\contentsline {subsection}{\numberline {3.4.7}Auto Correct With Transformer}{35}{subsection.3.4.7}
+\contentsline {subsubsection}{Model Selection and Defining the Problem}{35}{section*.88}
+\contentsline {subsubsection}{Training Data and Results}{35}{section*.90}
+\contentsline {subsection}{\numberline {3.4.8}Comparing with the Hybrid Model}{36}{subsection.3.4.8}
+\contentsline {section}{\numberline {3.5}Text Classifier Unit}{37}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Why BERT?}{37}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Implementation}{37}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}Pre-training Data}{37}{subsection.3.5.3}
+\contentsline {subsubsection}{Pre-processing German Wikipedia}{38}{section*.92}
+\contentsline {subsubsection}{Generating Vocab File}{38}{section*.93}
+\contentsline {subsubsection}{Tokenization and Writing into TFRecord Format}{39}{section*.94}
+\contentsline {subsection}{\numberline {3.5.4}Pre-Training Process}{39}{subsection.3.5.4}
+\contentsline {subsection}{\numberline {3.5.5}Fine-Tuning Data}{40}{subsection.3.5.5}
+\contentsline {subsubsection}{\ac {10KGNAD}}{40}{section*.95}
+\contentsline {subsection}{\numberline {3.5.6}Fine-Tuning Process}{41}{subsection.3.5.6}
+\contentsline {subsubsection}{Effect of Running Pre-Training on Fine-Tuning Data}{42}{section*.100}
+\contentsline {chapter}{\numberline {4}Results}{43}{chapter.4}
+\contentsline {section}{\numberline {4.1}Automatic Speech Recognition Unit: Deep Speech 2}{43}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}ASR Evaluation Metrics}{43}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}ASR Results}{43}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Text Classifier Unit: BERT}{43}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}BERT Evaluation Metrics}{43}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}BERT Results}{43}{subsection.4.2.2}
+\contentsline {chapter}{\numberline {5}Conclusion, Limitations and Future Work}{45}{chapter.5}
+\contentsline {chapter}{Appendix}{46}{section*.104}
+\contentsline {chapter}{\numberline {A}Lists}{47}{appendix.A}
+\contentsline {section}{List of Abbreviations}{47}{section*.105}
+\contentsline {section}{List of Figures}{49}{appendix*.106}
+\contentsline {chapter}{References}{52}{appendix*.107}

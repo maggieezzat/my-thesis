@@ -9,67 +9,194 @@
 	urlcolor=cyan,
 }
 
-In this chapter, the methodology used to implement the system is illustrated. We start with an overview of the proposed system. An interpretation of the choice of architecture and the decisions made is also elaborated. Eventually, the system implementation steps are demonstrated in detail, along with all attempts and procedures.
+In this chapter, the methodology used to implement the system is illustrated. We start with an overview of the proposed system. An interpretation of the choice of architecture and the decisions made is also elaborated. Eventually, the system implementation steps are demonstrated in detail, along with all the steps and procedures.
 
-\includefig{0.4}{my_system}{Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.}{Fig:10}
+\includefig{0.4}{my_system}{Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.}{meth:fig1}
 
 
 
 \section{System Overview} 
 \label{meth:s1}
 
-As discussed earlier, the main purpose of this study is to implement a system able to issue dispatcher actions automatically when provided with audio signals from the vehicle driver, hence, introducing more automaton in the control-center. 
+As discussed earlier, the main purpose of this study is to implement a system able to issue dispatcher actions automatically when provided with audio signals from the vehicle driver, hence, introducing more automation in the control-center. 
 
-Our system consists of two sub-systems, as shown in figure \ref{Fig:10}, the first sub-system is the \ac{ASR} unit, which takes as input raw speech waveforms produced by the driver, and produces the information in a text form. The text is then passed to a trained text classifier, which given the text information from the \ac{ASR}, issues the corresponding appropriate dispatcher action.
+Our system consists of two sub-systems, as shown in figure \ref{meth:fig1}, the first sub-system is the \acf{ASR} unit, which takes as input raw speech waveforms produced by the driver, and outputs the driver's information in a text form. The text is then passed to a trained Text Classifier unit, which given the text information from the \ac{ASR}, issues the corresponding appropriate dispatcher action.
 
-TODO IN THE CHOICE OF ARCHITECTURE NLP PROBLEMS TO MAKE AN END TO END SYSTEM
+\subsection{Two sub-systems vs. One speech-based End-to-End System}
+\label{meth:s1_sub1}
+
+One might ask why we chose this specific architecture? Why go for two sub-systems and bother with solving the problem of speech recognition? The short answer for this question is simplicity. This approach of dividing the main problem into two problems is much more simpler, since the speech recognition problem is a well defined problem which many researchers tried to approach and solve. The text classification problem is also a well established problem with many state-of-the-art solutions. Another reason for choosing this architecture over an end-to-end classifier (with speech signals as input and dispatcher actions as outputs), is that we do not know what features will be suitable for our problem. The \ac{MFCC} features are adequate for speech recognition, but there's no proof they will be good for an end-to-end speech-based classifier. The need for a strong analysis of the situation and context as well make it inadequate to implement some keyword spotting system, as it is simply not enough to decide the actions based on some keywords. For the aforementioned reasons, we decide to make one pipeline system constituting two sub-systems, where the output of the first is fed into the second.
+
+
+
 
 \section{Automatic Speech Recognition Unit} 
 \label{meth:s2}
 
-One of the most crucial choices made was the decision about the \ac{ASR} system since high quality \ac{ASR} is a chief requirement for speech-based applications. We began by searching for open-source free German \ac{ASR}s with acceptable performance. Though many freely available state-of-the-art \ac{ASR} systems were found, they were mostly English \ac{ASR}s; this is mainly due to the availability of open-source English training data and the lack of other languages data available for free. Despite being rare, we found an interesting open-source German speech recognition model \cite{milde2018open} with freely available training recipes, open source training data, and pre-trained models ready for download and use. This model is based on Kaldi toolkit \cite{daniel2011kaldi} which is an open-source toolkit for speech recognition research. This model \cite{milde2018open} uses \ac{GMM} - \acf{HMM} and \ac{TDNN} \cite{waibel1990readings} \cite{peddinti2015time}, following the TED-LIUM corpus recipe example \cite{rousseau2014enhancing} in Kaldi. The model \cite{milde2018open} was trained on the German subset of the \ac{SWC} dataset\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia: WikiProject_Spoken_Wikipedia}} (285 hours), Tuda-De dataset\footnote{\url{http://speech.tools/kaldi_tuda_de/german-speechdata-package-v2.tar.gz}} \cite{radeck2015open} (160 hours) and M-AILABS dataset\footnote{\url{https://www.caito.de/2019/01/the-m-ailabs-speech-dataset/}} (237 hours). For now, we only indicate the number of hours for each dataset, however, we shall discuss these datasets in details in section SECTION. The model therefore was trained on a total of 630 hours, and achieved $14.78\%$ \ac{WER} on the dev set of Tuda-De (11.5 hours) and $15.87\%$ on the test set of it (11.9 hours).
+One of the most crucial choices made was the decision about the \ac{ASR} system since high quality \ac{ASR} is a chief requirement for speech-based applications. In the next sections, we discuss an interesting German hybrid model based on Kaldi toolkit we compare end-to-end systems to conventional and hybrid \ac{ASR} systems and demonstrate the model used. We also illustrate the justification for choosing this model.
 
+\subsection{Hybrid Kaldi-based ASR Model}
+\label{meth:s2_sub1}
 
-The above model \cite{milde2018open} is referred to as \enquote{Hybrid Model}, making use of both \ac{HMM}s and neural networks. We found no open-source end-to-end German \ac{ASR}, and despite the discussed model \cite{milde2018open} having satisfying performance, the idea of an end-to-end German \ac{ASR} was more attractive. This is because end-to-end systems have a much simpler training procedure, as many hand-engineered components and sophisticated pipelines are replaced by neural networks. End-to-end speech recognition is a fast-paced developing area of study with results improving continually. The end-to-end vision liberates us from domain-specific knowledge required for alignment, \ac{HMM} design, etc. And since end-to-end \ac{ASR} systems require little task specific components, an end-to-end English \ac{ASR} can be easily adapted to another language. A further advantage for end-to-end \ac{ASR}s is that they are more robust to noise and variation in speech and requires no special handling for them. In light of the great advantages for end-to-end systems, it was decided to find a suitable end-to-end \ac{ASR} that could be adapted to German without much complexity, and to use the Kaldi based model \cite{milde2018open} for comparative purposes only.
+We started by searching for open-source free German \ac{ASR}s with satisfying performance. Though many freely available state-of-the-art \ac{ASR} systems were found, they were mostly English \ac{ASR}s; this is mainly due to the availability of open-source English training data and the lack of other languages data available for free. Despite being rare, we found an interesting open-source German speech recognition model \cite{milde2018open} with freely available training recipes, open source training data, and pre-trained models ready for download and use. This model is based on Kaldi toolkit \cite{daniel2011kaldi} which is an open-source toolkit for speech recognition research. This model \cite{milde2018open} uses \ac{GMM} - \acf{HMM} and \ac{TDNN} \cite{waibel1990readings} \cite{peddinti2015time}, following the TED-LIUM corpus recipe example \cite{rousseau2014enhancing} in Kaldi. The model \cite{milde2018open} was trained on the German subset of the \ac{SWC} dataset\footnote{\url{https://en.wikipedia.org/wiki/Wikipedia: WikiProject_Spoken_Wikipedia}} ($285$ hours), Tuda-De dataset\footnote{\url{http://speech.tools/kaldi_tuda_de/german-speechdata-package-v2.tar.gz}} \cite{radeck2015open} ($160$ hours) and M-AILABS dataset\footnote{\url{https://www.caito.de/2019/01/the-m-ailabs-speech-dataset/}} ($237$ hours). For now, we only indicate the number of hours for each dataset, however, we shall discuss these datasets in details in section SECTION. The model therefore was trained on a total of $630$ hours, and achieved $14.78\%$ \ac{WER} on the dev set of Tuda-De ($11.5$ hours) and $15.87\%$ on the test set of it ($11.9$ hours).
 
+\subsection{Why End-to-End ASR?}
+\label{meth:s2_sub2}
 
+The above model \cite{milde2018open} is referred to as \enquote{Hybrid Model}, making use of both \ac{HMM}s and neural networks. We found no open-source end-to-end German \ac{ASR}, and despite the discussed model \cite{milde2018open} having satisfying performance, the idea of an end-to-end German \ac{ASR} was more attractive. This is because end-to-end systems have a much simpler training procedure, as many hand-engineered components and sophisticated pipelines are replaced by neural networks. End-to-end speech recognition is a fast-paced developing area of study with results improving continually. The end-to-end vision liberates us from domain-specific knowledge required for alignment, \ac{HMM} design, etc. And since end-to-end \ac{ASR} systems require little task specific components, an end-to-end English \ac{ASR} can be easily adapted to another language. A further advantage for end-to-end \ac{ASR}s is that they are more robust to noise and variation in speech and requires no special handling for them. In light of the great advantages for end-to-end systems, we were determined to search for a suitable end-to-end \ac{ASR} that could be adapted to German without much complexity, and to use the Kaldi based model \cite{milde2018open} for comparative purposes only.
+
+\subsection{Deep Speech 2: Adapting to German}
+\label{meth:s2_sub3}
 
 One seemingly convenient model was Deep Speech 2 \cite{amodei2016deep}, demonstrated in section \ref{bg:sub8}. The authors of the paper used their model for both English and Mandarin, two widely different languages. We took that as a proof of concept that the model could be easily adapted with very little changes to other languages including German. We started by mining for open source freely available German speech datasets that could be used since end-to-end \ac{ASR} systems require large amounts of transcribed audio data. We list the datasets found, their description, problems encountered while dealing with them and the cleaning procedures.
 
 
-\subsection{Speech Recognition Datasets}
-\label{meth:sub1}
-
-For the purpose of unification, all
+\subsection{Speech Recognition Data}
+\label{meth:s2_sub4}
 
 \subsubsection{\RomanNumeralCaps{1}. Common Voice}
-\label{meth:subsubsub1}
+\label{meth:s2_sub4_subsub1}
 
 Common Voice is the largest open source, multi-language dataset of voices available for use. It is managed by \href{https://www.mozilla.org/en-US/}{Mozilla} and was collected by volunteers on-line who were either recording samples of audio or validating other samples. Mozilla began work on this project in 2017 and contribution to the dataset continues up till now. Since most of the data used by large companies isn't available freely to researchers, Mozilla's aim was to create a free public dataset to make speech recognition open and accessible to everyone.
-For our \ac{ASR}, the German subset of the dataset was selected. It incorporates 340 total hours, with 325 validated hours and 15 invalidated hours which were excluded. The dataset has 5007 speakers but as we discarded the invalidated utterances we end up with only 4823 speakers. 
-All the utterances were in \enquote{mp3} format and sampled using a sampling rate of $44 kHz$ so we converted them to \enquote{wav} format and we performed down-sampling to obtain sample rate of $16 kHz$. We checked for any corrupted files but there were none.
+For our \ac{ASR}, the German subset of the dataset was selected. It incorporates $340$ total hours, with $325$ validated hours and $15$ invalidated hours which were excluded. The dataset has $5007$ speakers but as we discarded the invalidated utterances we end up with only $4823$ speakers. 
+All the utterances were in \texttt{mp3} format and sampled using a sampling rate of $44 KHz$. We converted the audio files to \texttt{wav} format and performed down-sampling to obtain sample rate of $16 kHz$. We stick to the \texttt{wav} format and the $16 kHz$ sampling rate for all the used data. We checked for any corrupted files but there were none.
 
 
 \subsubsection{\RomanNumeralCaps{2}. M-AILABS Speech Dataset}
-\label{meth:subsub2}
-M-AILABS Speech Dataset is an open-source multi-lingual dataset provided by Munich Artificial Intelligence Laboratories GmbH. Most of the data is based on LibriVox \footnote{\url{https://librivox.org}} and Project Gutenberg \footnote{\url{https://www.gutenberg.org}}. We make use of the German subset which is 237 hours 22 minutes with a total of 5 speakers. The data is available in \enquote{wav} format and sample rate of $16 kHz$ so we perform no modifications. We also check for corrupted files but all of them were healthy.
+\label{meth:s2_sub4_subsub2}
 
-\subsubsection{\RomanNumeralCaps{3}. German Speech Data \cite{radeck2015open}}
-\label{meth:subsub3}
+M-AILABS Speech Dataset is an open-source multi-lingual dataset provided by Munich Artificial Intelligence Laboratories GmbH. Most of the data is based on LibriVox \footnote{\url{https://librivox.org}} and Project Gutenberg \footnote{\url{https://www.gutenberg.org}}. We make use of the German subset\footnote{\url{http://speech.tools/kaldi_tuda_de/m-ailabs.bayern.de_DE.tgz}} which is $237$ hours $22$ minutes with a total of $5$ speakers. The data is available in \texttt{wav} format and sample rate of $16 kHz$ so we perform no extra pre-processing. We also check for corrupted files but all of them were found to be healthy.
 
-This open-source corpus is provided by Technische Universit{\"a}t Darmstadt. It has 36 hours read by 180 speakers, and recorded using 5 different microphones simultaneously. They made use of the KisRecord \footnote{\url{http://kisrecord.sourceforge.net}} toolkit, which allows for recording with multiple microphones concurrently. Their target was distant speech recognition, thus a distance of one meter between speakers and microphones was chosen. The sentences which volunteers were provided to read were extracted randomly from three text resources: German Wikipedia, German section of the European Parliament transcriptions, short commands for command-and-control settings. Unfortunately, there were some corrupted files in the dataset, which we discarded.
+\subsubsection{\RomanNumeralCaps{3}. German Speech Data (Tuda-De)}
+\label{meth:s2_sub4_subsub3}
 
-\subsubsection{\RomanNumeralCaps{4}. German Single Speaker Data}
-\label{meth:subsub6}
-hi
+This open-source corpus \cite{radeck2015open} is provided by Technische Universit{\"a}t Darmstadt. It has $36$ hours read by $180$ speakers, and recorded using $5$ different microphones simultaneously. They made use of the KisRecord \footnote{\url{http://kisrecord.sourceforge.net}} toolkit, which allows for recording with multiple microphones concurrently. Their target was distant speech recognition, thus a distance of one meter between speakers and microphones was chosen. The sentences which volunteers were provided to read were extracted randomly from three text resources: German Wikipedia, German section of the European Parliament transcriptions, short commands for command-and-control settings. The data was in the required \texttt{wav} format and sampling rate of $16 KHz$, however, there were some corrupted files in the dataset which we discarded. The utterances were divided into 3 sets: train, dev and test and speakers who participated in recording one set did not participate in another. The train set has $\approx160$ hours, dev and test include $11.5$ and $11.9$ hours respectively.   
 
-\subsubsection{\RomanNumeralCaps{3}. Movies Data}
-\label{meth:subsub7}
-hi
+\subsubsection{\RomanNumeralCaps{4}. CSS10: Single Speaker Data}
+\label{meth:s2_sub4_subsub4}
 
-\subsubsection{Dataset Splitiing: Test, Dev, Train}
-\label{meth:subsub7}
-TODO SPEAKER INDEPENDENT CLASSIFICATION
+CSS10 is a collection of single speaker speech datasets for 10 languages: Chinese, Dutch, French, Finnish, German, Greek, Hungarian, Japanese, Russian, and Spanish. Each language data consists of audio books from Librivox recorded by a single volunteer. We make use of the German subset of the dataset which is almost $16$ hours. The audio files are in \texttt{wav} format but sampled at $22 KHz$, therefore we down sample to $16 KHz$. All of the data was checked for corrupted files, however, none were found.
+
+\subsubsection{\RomanNumeralCaps{5}. Movies Data}
+\label{meth:s2_sub4_subsub5}
+
+\includefig{0.8}{srt}{Format of \texttt{srt} Files}{meth:fig2}
+
+Since end-to-end \ac{ASR} systems require many hours of transcribed audio, we try to make use of the German movies and series available with their subtitles. Subtitles are the transcribed scripts of the movies/series and are often available in \texttt{srt} files. \texttt{srt}, which stands for \enquote{SubRip Subtitle} file, is a plain text file that contains the subtitles along with their accurate start and end times. Figure \ref{meth:fig2} illustrates the format of \texttt{srt} files: each transcription has an ID and also a start and end time separated with two hash arrows (\texttt{-->}). The start and end times are used to segment the long movies audio files into utterances of several seconds audio clips. 
+
+We make use of $19$ German movies and series, with a total of $88$ hours, $52$ minutes. After pre-processing and extracting only speech
+audio files (\textit{i.e.} remove all comments like \enquote{phone rings}, \enquote{door opens}, \enquote{music}, etc.), we obtained $44,181$ utterances and a total of $42$ hours of German speech data. The last step we perform is converting from \texttt{mp3} to \texttt{wav} format. 
+
+\subsubsection{\RomanNumeralCaps{5}. Spoken Wikipedia Corpus}
+\label{meth:s2_sub4_subsub6}
+
+The \ac{SWC} is an ongoing project where volunteer readers submit Wikipedia articles recorded with their voice. The project aimed at helping users who are unable to use the written version of the articles. These audio resources were time aligned resulting in hundreds of hours of aligned audio data. The \ac{SWC} incorporates diverse set of topics by large number of volunteers. It is available in English, German and Dutch. It is licensed under a free license (CC BY-SA 4.0). Table \ref{meth:table0} is a summary of the \ac{SWC} dataset.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{ | c | c | c | c | c | } 
+		\hline
+		      &   German &   English    &   Dutch \\ 
+		\hline
+		\#articles &   1010 &   1314  &   3073    \\
+		\hline
+		\#speakers &   339 &   395   &   145   \\ 
+		\hline
+		total audio    &   386h &   395h   &   224h   \\
+		\hline
+		aligned words   &   249h &   182h  &   79h   \\
+		\hline
+		phonetically aligned   &   129h &   77h  &   -  \\
+		\hline
+	\end{tabular}
+	\caption{Data used in the first 13 Epochs}
+	\label{meth:table0}
+\end{table}
+
+\subsubsection{Transcriptions Cleaning}
+\label{meth:s2_sub4_subsub7}
+
+We limit the labels to be predicted by our \ac{ASR} to only lowercase letters from \enquote{a} to \enquote{z}, apostrophe, space, and the German umlauts {\"a}, {\"o}, {\"u}. We do not add {\ss} as it can be compensated with \enquote{ss}. As a result, we perform some pre-processing and cleaning for all our transcriptions:
+\begin{itemize}
+	\item All the characters are lower cased.
+	\item Punctuation marks are stripped away.
+	\item Numbers are replaced with their written form, since no digits exist in our labels.
+	\item Foreign characters are discarded.
+	\item \$, $m^3$, $km^2$, $m^2$ and £ are replaced with \enquote{dollar}, \enquote{kubikmeter}, \enquote{quadratkilometer}, \enquote{quadratmeter} and \enquote{pfund} respectively
+\end{itemize}
+
+After collecting the data, came the step of finding an implementation for the model. In the next two sections, we spot the light on two implementations for the model that we experimented with.
+
+
+\section{Deep Speech 2: TensorFlow}
+\label{meth:s3}
+
+Many open source implementations for the model were found that could be used such as \footnote{\url{https://github.com/noahchalifour/baidu-deepspeech2}} \footnote{\url{https://github.com/SeanNaren/deepspeech.pytorch}} \footnote{\url{https://github.com/tensorflow/models/tree/master/research/deep_speech}}. On the first attempt, we decided to use the \href{https://www.tensorflow.org/}{TensorFlow} \cite{tensorflow2015-whitepaper} implementation available in the TensorFlow Github repository \url{https://github.com/tensorflow/models/tree/master/research/deep_speech}. TensorFlow is an open source library for numerical computation used for machine applications. It was developed and maintained by \href{https://ai.google/research/teams/brain}{Google Brain}. At the beginning it was intended for internal use only, however, on  November 9, 2015, it was released under the \href{http://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}.
+
+\subsection{Training on Google Colab GPUs}
+\label{meth:s3_sub1}
+
+One of the earliest problems encountered was our inability to run the model locally, as it is a large model demanding very high computational resources. As a result, we turned to \href{https://colab.research.google.com/}{Google Colab}, which is a free cloud platform used for machine learning education and research. It offers researchers the chance to run their applications using either a free GPU, or a cloud \ac{TPU}. A \ac{TPU} is an \ac{ASIC} optimized for performing high speed addition and multiplication operations, it was developed by Google for the purpose of speeding up machine learning applications. 
+
+\subsubsection{Implementation Details}
+\label{meth:s3_sub1_subsub1}
+
+The implementation used TensorFlow \href{https://www.tensorflow.org/guide/estimators}{Estimators}, which is a high-level TensorFlow API that facilitates machine learning programming. Estimators encapsulate training, evaluation and prediction. They provide a training loop that controls building the graph, initializing variables, loading data, handling exceptions and creating checkpoints. For using Estimators, the data input pipeline should be separated from the model, thus making the model easier to work with different datasets. There are two types of Estimators: regular estimators, which work for both GPUs and CPUs, and \href{URL}{TPU Estimators}, which work for Google's cloud \ac{TPU}s. Since the implementation used normal estimators, we decided to run on Google Colab using a GPU which was a Tesla K80 with $12$ GB memory.
+
+\subsubsection{Training Data, Process and Results}
+\label{meth:s3_sub1_subsub2}
+
+As an initial experiment to make sure everything works, we use only the Tuda-De data and stick to the train, dev and test sets which the authors provide. We use a model of $5$ layers and $800$ hidden size. We set the batch size to $2$ in order to fit in the GPU memory. We use \enquote{Sorta Grad} and set the learning rate to $5\mathrm{e}{-5}$. We use \ac{GRU}s instead of \ac{LSTM}s or vanilla \ac{RNN}s. After few days, the training reached $3$ epochs and a \ac{WER} of $98\%$ and a \ac{CER} was $43\%$. The issue was that training was notably slow that it was infeasible to proceed. The process was extremely time consuming and it would take months for the model to converge. 
+
+We tried to make the model's size smaller and used $3$ layers with hidden size of $700$. With this setting and using Tuda-De only, the model converged at $50\%$ \ac{WER} after more than a week. We made sure the model was working and able to learn, however, the training speed was considerably slow and it was infeasible to train on the whole datasets we collected.
+
+\subsection{Training on Google Cloud TPUs}
+\label{meth:s3_sub2}
+
+In search of other alternatives, we tried to make use of \href{https://www.tensorflow.org/tfrc}{TensorFlow Research Cloud Program}. This program offers researchers free cloud \ac{TPU}s in order to run their machine learning applications. We were offered $5$ v2 cloud \ac{TPU}s, each \ac{TPU} had $8$ cores with each core having $8$ GiB of \ac{HBM}. The \ac{TPU}s were available for use on \href{https://cloud.google.com/}{Google Cloud Platform}. 
+
+\subsubsection{Migrating from Regular Estimator to TPU Estimator}
+\label{meth:s3_sub2_subsub1}
+
+The major obstacle was that the implementation used regular estimators; to overcome this it was necessary to migrate from normal estimators to \ac{TPU} estimators. This process was a simple one that required little code changes. The main issue, however, was that models are compiled using \href{https://www.tensorflow.org/xla/}{\ac{XLA}} when using \ac{TPU}s. \ac{XLA} is a compiler that requires that tensor dimensions must be statically defined at compile time. The problem was that not all utterances had the same number of frames, and we could not set a specific length to pad up to it and truncate smaller than it. The challenge with truncating is that if we truncate after $n$ frames, how do we determine the labels to discard after the $n^{th}$ frame? The only solution was to pad the frames with zeros up to the maximum sequence length in the dataset, in this case, Tuda-De. 
+
+After padding to the maximum number of frames, we tried training using the same settings used on Google colab. Unfortunately, the \ac{TPU}s ran out of memory and we could not proceed with the training. After searching for solutions to overcome this obstacle, one solution was to upgrade to TPU-v3 which has $16$ GiB of \ac{HBM} for each \ac{TPU} core. The other was to use a \ac{TPU} pod, which is a multiple \ac{TPU} devices connected together with the workloads distributed across all devices. Unfortunately, both options were infeasible for us.
+
+\section{Deep Speech 2: PyTorch}
+\label{meth:s4}
+
+In searching for other options, it was finally decided to abandon the TensorFlow implementation due to the problem of the \ac{TPU}s requiring tensors of static dimensions. We turned, instead, to the PyTorch implementation of the model \url{https://github.com/SeanNaren/deepspeech.pytorch}. 
+\href{https://pytorch.org/}{PyTorch} is an open source machine learning library which was developed by 
+Facebook's artificial intelligence research group. It is based on Torch library and was released under the \href{https://en.wikipedia.org/wiki/BSD_licenses#3-clause}{Modified BSD license}.
+
+\subsection{Training on Google Colab}
+\label{meth:s4_sub1}
+
+In order to make sure the model was working and able to learn, we used only Tuda-De data. The model size was set to $3$ layers and $700$ nodes. All other settings and configurations were kept as in section \ref{meth:s3_sub1_subsub2}. The training was started on Google Colab using a Tesla K80 GPU with $12$ GB memory. The model was gradually improving, however, it was likewise considerably slow.
+
+\subsubsection{LSTM vs. GRU}
+\label{meth:s4_sub1_subsub1}
+
+All of our previous experiments were using \ac{GRU}s as the hidden unit of the \ac{RNN} layers. We decided to run two instances of training: one using $3$ layers, $700$ nodes, and \ac{GRU}s. The other one using $3$ layers, $700$ nodes and \ac{LSTM}s. All other settings were unchanged.
+After few epochs, the \ac{LSTM} instance was performing much better.
+
+%, however we did not proceed with training. At this point, we made sure the model was working and we got practical computational resources to run the training. 
+
+\subsection{Microsoft Azure Platform}
+\label{meth:s4_sub2}
+
+At this point it was obvious there is a computational resources problem; Colab was very slow to use as it only used one GPU, and using the \ac{TPU}s was not attainable. A cloud platform was needed in order to run the model and be able to iterate and experiment faster. For this purpose, we make use of Microsoft Azure's NC-series virtual machines. NC-series \ac{VM}s are armed with NVIDIA Tesla K80 GPUs and Intel Xeon E5-2690 v3 (Haswell) processors.
+We chose Standard NC12 size, with $12$ CPUs and a total of $112$ GiB memory. It has also $2$ GPUs with GPU memory of $24$ GiB and SSD storage of $680$ GiB.
+
+
+
+\subsection{Training I: Using Tuda-De, M-AILABS, Common Voice } 
+\label{meth:s4_sub3}
+
+After getting access to adequate computational resources to experiment with, we were ready to run the training. It should be noted that we did not acquire all the data described in section \ref{meth:s2_sub4} at once. It was a lengthy, time consuming process and some datasets were not included until late stages of the project. At first, we started with Tuda-De, M-AILABS and Common Voice. These datasets were used for the first $13$ epochs, and then more data was added.
+
+\subsubsection{Speaker Independent Splitting}
+\label{meth:s4_sub3_subsub1}
 
 \begin{table}[!ht]
 	\centering
@@ -86,9 +213,11 @@ TODO SPEAKER INDEPENDENT CLASSIFICATION
 		Total   &   668.61h &   34.63h  &   32.24h  &   5007 \\
 		\hline
 	\end{tabular}
-	\caption{First 14 Epochs Data}
-	\label{table:data14}
+	\caption{Data used in the first 13 Epochs}
+	\label{meth:table1}
 \end{table}
+
+With these $3$ datasets at hand, we needed to split them among train, dev and test sets. One significant criteria for the splitting was that it had to be speaker independent. In other words, the utterances of one speaker can not exist in more than one of the three sets. The speaker independent splitting is crucial since we are interested in training a general speaker-independent \ac{ASR}. Table \ref{meth:table1} lists the datasets used in the $13$ epochs of the training process along with the number of hours in each of the train, dev and test set. It is to be noted that we keep the dev and test set provided with Tuda-De and perform no changes on them. We also add all the utterances in M-AILABS to the train set, since $22$ is the least number of hours per speaker. We do so in order not to sacrifice such large number of hours, and instead save it for training.
 
 \begin{table}[!ht]
 	\centering
@@ -108,60 +237,60 @@ TODO SPEAKER INDEPENDENT CLASSIFICATION
 		11    & 26.004 & 6.413  \\ \hline
 		12    & 25.658 & 6.320  \\ \hline
 		13    & 25.499 & 6.282  \\ \hline
-		14    & 25.802 & 6.350  \\ \hline
+		%14    & 25.802 & 6.350  \\ \hline
 	\end{tabular}
-	\caption{}
-	\label{table:train14}
+	\caption{Training Summary for the First 13 epochs. The training data was }
+	\label{meth:table2}
 \end{table}
+
+\includefig{0.9}{training}{Training Summary after Epoch 13}{meth:fig3}
+
+\subsubsection{Training Process and Results}
+\label{meth:s4_sub3_subsub2}
+
+Using this data configuration, we start the training using a model of $5$ layers, $800$ nodes and \ac{LSTM} units. A batch size of $20$ is used and the learning rate is set to $3\mathrm{e}{-4}$. We follow the Sorta Grad technique and run the training for $13$ epochs. The total training hours was $668.61$ hours. At the end of epoch $13$, the \ac{WER} was $25.499\%$ and the \ac{CER} was $6.282\%$. The training summary is available in table \ref{meth:table2} and figure \ref{meth:fig3}
+
+
+\subsection{Training II: Adding all data} 
+\label{meth:s4_sub4}
+
+In order to be able to use all of the acquired datasets in the training process, we upgraded the \ac{VM} to Standard NC24. This type has $24$ CPUs and a total of $224$ GiB memory, $4$ GPUs with GPU memory of $48$ GiB and SSD storage of $1440$ GiB.
+
+
+\subsubsection{problem of adding \ac{SWC}} 
+\label{meth:s4_sub4_subsub1}
+
+We were faced with a problem when trying to use the German \ac{SWC} dataset. The utterances were whole articles of very long durations that the memory would not fit them, even with the batch size set to $1$. The dataset came with a segmentation file that included the alignments for the sentences. We used this segmentation file to cut the long \texttt{wav} files into small ones. Unfortunately, after manually analyzing a random sample of the generated files, a high percentage of it was found to be very faulty. Since we have no method of aligning the data ourselves like in \cite{amodei2016deep}, we refrained from using the \ac{SWC} as we suspected it would deteriorate the overall performance.
+
+\subsubsection{Speaker Independent Splitting}
+\label{meth:s4_sub4_subsub2}
 
 \begin{table}
-\centering
-\begin{tabular}{ | c | c | c | c | c | } 
-	\hline
-	& Train   & Dev    & Test   & Speakers  \\ 
-	\hline
-	Tuda-De      & 160.15h & 11.53h & 11.9h  & 179       \\
-	\hline
-	M-AILAB      & 233.71h & -      &   -    & 5+mixed   \\ 
-	\hline
-	Common Voice & 274.75h & 23.1h  & 20.34h & 4823      \\
-	\hline
-	Movies       & 42h     & -      & -      & -         \\
-	\hline
-	CSS10        & 16.7    & -      & -      & 1         \\
-	\hline
-	Total        & 727.31h & 34.63h & 32.24h & >5008     \\
-	\hline
-\end{tabular}
-\caption{After adding Movies and CSS10 data}
-\label{table:data19}
+	\centering
+	\begin{tabular}{ | c | c | c | c | c | } 
+		\hline
+		& Train   & Dev    & Test   & Speakers  \\ 
+		\hline
+		Tuda-De      & 160.15h & 11.53h & 11.9h  & 179       \\
+		\hline
+		M-AILAB      & 233.71h & -      &   -    & 5+mixed   \\ 
+		\hline
+		Common Voice & 274.75h & 23.1h  & 20.34h & 4823      \\
+		\hline
+		Movies       & 42h     & -      & -      & -         \\
+		\hline
+		CSS10        & 16.7    & -      & -      & 1         \\
+		\hline
+		Total        & 727.31h & 34.63h & 32.24h & >5008     \\
+		\hline
+	\end{tabular}
+	\caption{After adding Movies and CSS10 data}
+	\label{meth:table3}
 \end{table}
 
-
-Many open source implementations for the model were found that could be used such as \footnote{\url{https://github.com/noahchalifour/baidu-deepspeech2}} \footnote{\url{https://github.com/SeanNaren/deepspeech.pytorch}} \footnote{\url{https://github.com/tensorflow/models/tree/master/research/deep_speech}}. On the first attempt, we decided to use the \href{https://www.tensorflow.org/}{TensorFlow} \cite{tensorflow2015-whitepaper} implementation available in the TensorFlow Github repository \url{https://github.com/tensorflow/models/tree/master/research/deep_speech}. TensorFlow is an open source library for numerical computation used for machine applications. It was developed and maintained by \href{https://ai.google/research/teams/brain}{Google Brain}. At the beginning it was intended for internal use only, however, on  November 9, 2015, it was released under the \href{http://www.apache.org/licenses/LICENSE-2.0}{Apache License 2.0}.
-
-One of the earliest problems encountered was our inability to run the model locally, as it is a large model demanding very high computational resources. As a result, we turned to \href{https://colab.research.google.com/}{Google Colab}, which is a free cloud platform used for machine learning education and research. It offers researchers the chance to run their applications using either a free GPU, or a cloud \ac{TPU}. A \ac{TPU} is an \ac{ASIC} optimized for performing high speed addition and multiplication operations, it was developed by Google for the purpose of speeding up machine learning applications. The implementation used TensorFlow \href{https://www.tensorflow.org/guide/estimators}{Estimators}, which is a high-level TensorFlow API that facilitates machine learning programming. Estimators encapsulate training, evaluation and prediction. They provide a training loop that controls building the graph, initializing variables, loading data, handling exceptions and creating checkpoints. For using Estimators, the data input pipeline should be separated from the model, thus making the model easier to work with different datasets. There are two types of Estimators: regular estimators, which work for both GPUs and CPUs, and \href{URL}{TPU Estimators}, which work for Google's cloud \ac{TPU}s. Since the implementation used normal estimators, we decided to run on Google Colab using a GPU which was a Tesla K80 with 12 GB memory.
+In order to preserve the speaker independent splitting of the datasets after adding the movies data and CSS10, we add them all to the train set and refrain from adding any subsets to the dev or test. After adding all our data, we get a total of $727.3$ training hours.
 
 
-As an initial experiment to make sure everything works, we used only the Tuda-De data, and used a model of 5 layers and 800 hidden size. After few days, the training reached for 3 epochs and a \ac{WER} of $80\%$. The issue however was clear, it was infeasible to proceed. The training was extremely time consuming and it would take months for the model to converge. We tried to make the model's size smaller and used 3 layers with hidden size of 700. With this setting and using Tuda-De only, the model converged at $50\%$ \ac{WER} after more than a week. We made sure the model was working and able to learn, however, the training speed was considerably slow and it was infeasible to train on the whole datasets we collected.
-
-
-In search of other alternatives, we tried to make use of \href{https://www.tensorflow.org/tfrc}{TensorFlow Research Cloud Program}. This program offers researchers free cloud \ac{TPU}s in order to run their machine learning applications. We were offered $5$ v2 cloud \ac{TPU}s, each \ac{TPU} had $8$ cores with each core having $8$ GiB of \ac{HBM}. The \ac{TPU}s were available for use on \href{https://cloud.google.com/}{Google Cloud Platform}. The major obstacle was that the implementation used regular estimators; to overcome this it was necessary to migrate from normal estimators to \ac{TPU} estimators. This process was a simple one that required little code changes. The main issue, however, was that models are compiled using \href{https://www.tensorflow.org/xla/}{\ac{XLA}} when using \ac{TPU}s. \ac{XLA} is a compiler that requires that tensor dimensions must be statically defined at compile time. The problem was that not all utterances had the same number of frames, and we could not set a specific length to pad up to it and truncate smaller than it. The problem with truncating is that if we truncate after $n$ frames, how do we determine the labels to discard after the $n^{th}$ frame? The only solution was to pad the frames with zeros up to the maximum sequence length in the dataset, in this case, Tuda-De. After padding to the maximum number of frames, the \ac{TPU}s ran out of memory. After searching for solutions to this problem, the only solution found was to upgrade to TPU-v3 which 16 GiB of \ac{HBM} for each \ac{TPU} core, or to use a \ac{TPU} pod, which is a multiple \ac{TPU} devices connected together and the workloads distributed across all devices. Both options were infeasible for us.
-
-
-In searching for other options, it was finally decided to abandon the TensorFlow implementation due to the problem of the \ac{TPU}s requiring tensors of static dimensions. We tried to use the PyTorch implementation of the model \url{https://github.com/SeanNaren/deepspeech.pytorch}. 
-\href{https://pytorch.org/}{PyTorch} is an open source machine learning library which was developed by 
-Facebook's artificial intelligence research group. It is based on Torch library and was released under the \href{https://en.wikipedia.org/wiki/BSD_licenses#3-clause}{ Modified BSD license}. In order to make sure the model was working and able to learn, we also used only Tuda-De data, with model of 3 layers and hidden size of 700 nodes. The training was started on Google Colab using a Tesla K80 GPU with 12 GB memory. The model was gradually improving, however it was also considerably slow.
-
-At this point it was obvious there is a computational resources problem; Colab was very slow to use as it only used one GPU, and using the TPUs was not attainable. A cloud platform was needed in order to run the model and be able to iterate and experiment faster. For this purpose, we made us of Microsoft Azure's NC-series virtual machines. NC-series \ac{VM}s are armed with NVIDIA Tesla K80 GPUs and Intel Xeon E5-2690 v3 (Haswell) processors.
-We chose Standard NC12 size, with 12 CPUs and a total of 112 GiB memory. It has also 2 GPUs with GPU memory of 24 GiB and SSD storage of 680 GiB.
-All of our previous experiments were using \ac{GRU}s as the hidden unit of the \ac{RNN} layers. We decided to run two instances of training: one using 3 layers, 700 nodes, and \ac{GRU}s. The other one using 3 layers, 700 nodes and \ac{LSTM}s. After few epochs, the \ac{LSTM} instance was performing much better, however we did not proceed with training. At this point, we made sure the model was working and we got acceptable computational resources to run the training. In order to be able to use all of the datasets for the training, we upgraded the \ac{VM} to Standard NC24. This type has 24 CPUs and a total of 224 GiB memory, 4 GPUs with GPU memory of 48 GiB and SSD storage of 1440 GiB.
-
-
-\subsubsection{problem of adding swc}
-We were faced with a problem when trying to use the German \ac{SWC} dataset. The utterances were whole articles of very long durations that the memory would not fit them, even with the batch size set to 1. The dataset came with a segmentation file that included the alignments for the sentences. We used this segmentation file to cut the long wav files into small ones, however, after manually analyzing a random sample of the generated files, a high percentage of it was found to be very faulty. Since we have no method of aligning the data ourselves like in \cite{amodei2016deep}, we refrained from using the \ac{SWC} as we suspected it would deteriorate the overall performance.
-
-We started the training with model size 5 layers, 800 nodes, and we added all the datasets except \ac{SWC}, using \ac{LSTM} hidden units. The training procedure took 10 days, through which we ran 19 epochs. It should be noted that after epoch 13, we used the noise augmentation option available and implemented in the pytorch model. It applies some changes to the tempo and gain when it's loading the audio. This aims at increasing robustness to environmental noise.
 
 \begin{table}[!ht]
 \centering
@@ -188,42 +317,51 @@ We started the training with model size 5 layers, 800 nodes, and we added all th
 	18    & 22.919 & 5.605  \\ \hline
 	19    & 22.875 & 5.629  \\ \hline
 \end{tabular}
-\caption{Summary of the training}
-\label{table:train19}
+\caption{Summary of the Training Process. Movies Data and CSS10 were added after epoch 13. Noise augmentation was also introduced after epoch 13}
+\label{meth:table4}
 \end{table}
 
-\includefig{0.9}{training}{Training Summary}{Fig:20}
-
-\includefig{0.9}{trainingep19}{Training Summary}{Fig:21}
 
 
-After 19 epochs, the model converged at \ac{WER} 29.571 and \ac{CER} 7.844 on our test set.  The fact that ctc adopt the assumption that the output labels are conditionally independent often makes the outputs suffer from errors that needs lingustic information to be corrected. In attempts to achieve better results, three techniques were investigated, and we discuss them in the following two subsections:
+\includefig{0.9}{trainingep19}{Training Summary after Epoch 19}{meth:fig4}
 
-\subsubsection{Language Model Decoding}
+\subsubsection{Training Process and Results}
+\label{meth:s4_sub4_subsub3}
+
+We proceeded with the training using the same configurations after adding all the datasets except \ac{SWC}. we also added the noise augmentation option available and implemented in the PyTorch model. It applies some changes to the tempo and gain when it's loading the audio. This aims at increasing robustness to environmental noise.
+
+
+After 19 epochs, the model converged at \ac{WER} $22.875\%$ and \ac{CER} $5.629$ on the dev set. The training summary is given by table \ref{meth:table4} and figure \ref{meth:fig4}.
+
+
+The fact that \ac{CTC} adopt the assumption that the output labels are conditionally independent often makes the outputs suffer from errors that needs linguistic information to be corrected. In attempts to achieve better results, three different techniques were investigated. We discuss them in the following two subsections:
+
+\subsection{Language Model Decoding}
+\label{meth:s4_sub5}
 
 In speech recognition, it is convenient to couple the model with a language model decoding technique in hope for achieving better \ac{WER}. Since there is more text data available more than transcribed audio, we can train a language model on massive amount of text corpora to generate a powerful n-gram language model. For this task, we make use of \href{https://kheafield.com/code/kenlm/}{KenLM}, which is a Language Model Toolkit that is easy to use and can be used to generate n-grams language models of any order. The target was to collect abundant text corpora to experiment with language models. The datasets we found and used are listed here:
 
 \begin{enumerate}
 	\item \textbf{German Wikipedia} \\
-	We made use of the available \href{https://dumps.wikimedia.org/dewiki/latest/}{German Wikipedia dump} available for free download. The wikipedia was downloaded as one 20 GB xml file. We used a WikiExtractor library\footnote{\url{https://github.com/attardi/wikiextractor}} to extract the wikipedia into text files, which gave us a total of 56 folders, each containing 100 text files. Since KenLM requires that text data be in one file, with one sentence per line, we used spaCy\footnote{\url{https://spacy.io/}} which is a Python library for \ac{NLP} tasks. It supports many languages including German, we make use of the \href{https://spacy.io/models/de}{German model} and run it on all of the wikipedia text files. In order for the corpus to match the output of the \ac{ASR}, we perform the same text cleaning performed on the \ac{ASR} transcriptions: lowering all the letters, replacing numbers with their written form \textit{i.e.} 139 is changed into einhundertfUnfunddreissig, removing all punctuations and limiting all the vocab to letters from a to z plus the German umlauts A O U. All the B was replaced with ss and all the foreign characters were stripped out as well.
+	We make use of the available \href{https://dumps.wikimedia.org/dewiki/latest/}{German Wikipedia dump} available for free download. The wikipedia is downloaded as one $20$ GB xml file. We use a WikiExtractor library\footnote{\url{https://github.com/attardi/wikiextractor}} to extract the Wikipedia into text files, which results in $56$ folders, each containing $100$ text files. Since KenLM requires that text data be in one file, with one sentence per line, we use spaCy\footnote{\url{https://spacy.io/}} which is a Python library for \ac{NLP} tasks. It supports many languages including German. We make use of the \href{https://spacy.io/models/de}{German model} and run it on all of the Wikipedia text files. In order for the corpus to match the output of the \ac{ASR}, we perform the same text cleaning performed on the \ac{ASR} transcriptions: lowering all the letters, replacing numbers with their written form \textit{i.e.} $139$ is changed into einhundertf{\"u}nfunddreissig, removing all punctuations and limiting all the vocab to letters from \enquote{a} to \enquote{z} plus the German umlauts {\"a}, {\"o}, {\"u}. Any {\ss} was replaced with \enquote{ss} and all the foreign characters were stripped out as well.
 	
 	
 	
 	\item \textbf{5 Million Web Sentences} \\
-	We also make use of the Leipzig Corpora Collection offered by Universitat Leipzig. We make use of the data available in web section, and collect a total of 5Million web sentences. The data was found to be one sentence per line and need not further processing other than the same text cleaning performed on the Wikipedia.
+	We also make use of the Leipzig Corpora Collection offered by Universit{\"a}t Leipzig. We make use of the data available in web section, and collect a total of $5$ Million web sentences. The data was found to be one sentence per line and need not further processing other than the same text cleaning performed on the Wikipedia.
 	
 	
-	\item \textbf{8 Million Mary Sentences} \\
+	\item \textbf{8 Million Maryfied Sentences} \\
 	We make use of the data used for language modeling by \ref{milde2018open}, available for download here\footnote{\url{ http://speech.tools/kaldi_tuda_de/German_sentences_8mil_filtered_maryfied.txt.gz}}. The data was in the needed format, with one sentence per line and needed no further processing.
 	
 	
-	\item \textbf{Our transcriptions} \\
-	We also make use of the transcriptions for our collected audio datasets. It was already one sentence per line and cleaned and suitable for use without any further processing.
+	\item \textbf{Transcriptions of Speech Recognition Data} \\
+	We also make use of the transcriptions for our collected audio datasets. It was already one sentence per line, cleaned and suitable for use without any further processing.
 
 	
 \end{enumerate}
 
-All of our data was augmented in one text file. We started by installing KenLM dependencies, and then installing KenLM itself. We perform word tokenization on our data using \href{https://www.nltk.org/}{nltk} library, then train an n-gram model with Kneser-Ney smoothing using KenLM. The generated output is a .arpa file which has a data section with unigram, bigram,..., n-gram counts followed by the estimated values. Though the .arpa format is more readable, the .binary format is much faster and more flexible. It remarkably reduces the loading time and the Language model is in fact required to be in .binary format to be used with our model. For these reasons, we binarize the model and obtain the final .binary labguage model file used for decoding. It should be noted that language model decoding with beam search is given by equation \ref{eq:25}
+All of our data was augmented in one text file. We started by installing KenLM dependencies, and then installing KenLM itself. We perform word tokenization on our data using \href{https://www.nltk.org/}{nltk} library, then train an n-gram model with Kneser-Ney smoothing using KenLM. The generated output is a \texttt{.arpa} file which has a data section with unigram, bigram, ..., n-gram counts followed by the estimated values. Though the \texttt{.arpa} format is more readable, the \texttt{.binary} format is much faster and more flexible. It remarkably reduces the loading time and our \ac{ASR} model in fact requires the language model to be in \texttt{.binary} format to be used. For these reasons, we binarize the model and obtain the final \texttt{.binary} language model file used for decoding. It should be noted that language model decoding with beam search is given by equation \ref{eq:25}
 
 \begin{equation}
 Q(y) = \log(p_{RNN}(y|x)) + \alpha \log(p_{LM}(y)) + \beta wc(y)
@@ -231,53 +369,83 @@ Q(y) = \log(p_{RNN}(y|x)) + \alpha \log(p_{LM}(y)) + \beta wc(y)
 
 where $wc(y)$ is the number of words in the transcription y. The weight $\alpha$ favors the outputs of the language model, while the weight $\beta$ encourages more words in the transcription.
 
-We experiment with many data combinations and different values for $n$ which we report in details in the results section, however, our best result was $15.587\%$ \ac{WER} and $5.806\%$ \ac{CER} when using all our text corpora, with a 5-gram model and beam-with value of 500. The alpha and beta values were set to 0.9 and 0.2 respectively.
+We experiment with many data combinations and different values for $n$ which we report in details in the results section, however, our best result was $15.587\%$ \ac{WER} and $5.806\%$ \ac{CER} when using all our text corpora, with a 5-gram model and beam-with value of $500$. The alpha and beta values were set to $0.9$ and $0.2$ respectively.
 
-\subsubsection{Language Model Rescoring}
+\subsection{Language Model Re-scoring}
+\label{meth:s4_sub6}
 
-It is common as well to arm the model with language model rescoring technique which performs recognition in two passes. In the first pass, a relatively small language model with a low value of $n$ is used \textit{i.e.} 3 or 4 gram; this often makes the decoding process much simpler. We use N-best methode where the N-best scoring hypotheses outputs from the small language model are re-scored using a larger language model of higher $n$ value \textit{i.e.} 5 or 6 gram. The best scoring hypothesis according to the larger language model is then chosen to be the predicted transcription.
-We expriment with various values for $n$ for the smaller language model and the larger one. The different settings with their respective results are reported in details in the results section \ref{chap:results}, howver, our best \ac{WER} was $x \%$ and was achieved with a small language model of $x$-gram built from all our text corpora, and a large language model of $x$-gram built as well from all the text corpora. We used a beam-width of $x$ value, and we set alpha to 0.9, and beta to 0.2.
-
-
-\subsubsection{Auto Correct With Transformer}
-
-In this experiment, we employ the method suggested in \cite{zhang2019automatic} by implementing an auto correct model that automatically corrects errored outputs of the ctc-based network. The main idea is to train a model which takes as input at inference the predictions generated by the \ac{ASR} model, and outputs the correct transcriptions. We stick to the model proposed in the paper \cite{zhang2019automatic} which is the Transformer \cite{vaswani2017attention}, however, we use the Transformer model implemented in \href{https://github.com/tensorflow/tensor2tensor}{tensor2tensor} library. \ac{Tensor2Tensor} is a machine learning library developed and maintained by \href{https://ai.google/research/teams/brain}{Google Brain} that aims at making machine learning research accessible and easier for researchers.
-We start off by installing the library and then turn to defining our problem. The library's general interface is to define a problem that can be solved using different models and/or hyper-parameters. There are pre-defined problems in the library, however, we define our own and we call asr\_correction problem. Our problem is very similar to the translation problems defined in the library. We experiment with different datasets and hyper-parameters. For the training data, we use the movies data REFERENCE SECTION and the single speaker data REFERENCE as these two datasets were only added after epoch 13 in the asr, hence we can use the model's output at epoch 13 to transcribe these utterances. The training examples are made by pairing each transcribed output from the \ac{ASR} with its ground truth. When transcribing these utterances using greedy decoding, we obtain a total of 75K training examples.  For the sake of increasing the number of training examples, we use a $x$-gram model with beam-width $x$, 0.9 alpha and 0.2 beta, and get the best 10 outputs, and pair these outputs with the corresponding ground truth. This technique increases our training examples by a factor of 10 resulting in 750K training examples. We experiment with two hyperparameter sets of the transformer: transformer\_base\_single\_gpu and transformer\_big. We train both instances for $x$ steps, using the 750K examples. The transformer\_big achieved $x\%$ \ac{WER}, and $x\%$ \ac{CER}, while the transformer\_base\_single\_gpu  achieved $x\%$ \ac{WER}, and $x\%$ \ac{CER}. We also train the transformer\_big using the 75K training examples, however, more data got us an increase in performance by $x\%$.
+It is common as well to arm the model with language model re-scoring technique which performs recognition in two passes. In the first pass, a relatively small language model with a low value of $n$ is used \textit{i.e.} $3$ or $4$ gram; this often makes the decoding process much simpler. We use N-best method where the N-best scoring hypotheses outputs from the small language model are re-scored using a larger language model of higher $n$ value \textit{i.e.} $5$ or $6$ gram. The best scoring hypothesis according to the larger language model is then chosen to be the predicted transcription.
 
 
+We expriment with various values for $n$ for the smaller language model and the larger one. The different settings with their respective results are reported in details in the results section \ref{chap:results}, however, our best \ac{WER} was $21.633\%$ and was achieved with a small language model of $3$-gram built from all our text corpora, and a large language model of $5$-gram built as well from all the text corpora. We used a beam-width of value $200$, and we set alpha to $0.9$, and beta to $0.2$. Without re-scoring we managed to achieve $15.587\%$ \ac{WER}; this indicates that something is wrong with the setup or the implementation and further investigations need to be done.
 
-%The CTC loss function (Graves et al., 2006) coupled with an RNN to model temporal information also performs well in endto-end speech recognition with character outputs (
+
+\subsection{Auto Correct With Transformer}
+\label{meth:s4_sub7}
+
+In this experiment, we employ the method suggested in \cite{zhang2019automatic} by implementing an auto correct model that automatically corrects errors of the \ac{CTC}-based network. The main idea is to train a model which takes as input at inference the predictions generated by the \ac{ASR} model, and outputs the correct transcriptions. 
+
+\subsubsection{Model Selection and Defining the Problem}
+\label{meth:s4_sub7_subsub1}
+
+We stick to the model proposed in the paper \cite{zhang2019automatic} which is the Transformer \cite{vaswani2017attention}, however, we use the Transformer model implemented in \href{https://github.com/tensorflow/tensor2tensor}{tensor2tensor} library. \ac{T2T} is a machine learning library developed and maintained by \href{https://ai.google/research/teams/brain}{Google Brain} that aims at making machine learning research accessible and easier for researchers.
 
 
-%Due to the large amount of speakers and the diversity
-%of topics included in the training data, our model is robust
-%against speaker variation and topic shift.
+We start off by installing the library and then turn to defining our problem. The library's general interface is to define a problem that can be solved using different models and/or hyper-parameters. There are pre-defined problems in the library, however, we define our own and we call it \texttt{asr\_correction} problem. It is to be noted that our problem is very similar to the translation problems defined in the library. 
 
-For the purpose of comparing our system with the hybrid kaldi-based model \cite{milde2018open} illustrated in SECTION. We attempt to test the kaldi-based model on our test-set. We start by installing kaldi, and this \href{https://github.com/alumae/kaldi-gstreamer-server}{Kaldi GStreamer server} which is a real-time full-duplex speech recognition server. It is implemented in Python and based on GStreamer framework and Kaldi toolkit. Our test set is transcribed using the Kaldi GStreamer server and Kaldi's best model\footnote{\url{http://ltdata1.informatik.uni-hamburg.de/kaldi_tuda_de/de_400k_nnet3chain_tdnn1f_2048_sp_bi.tar.bz2}}. Then the output transcriptions are compared with the ground truth transcriptions in order to compute the \ac{WER} and the \ac{CER}. After comparing the transcriptions, we got $x\%$ \ac{WER} and  $x\%$ \ac{CER} on our dataset. This means that our best model outperforms the kaldi-based model with $x\%$ improvement in \ac{WER} and $x\%$ improvement in \ac{CER}
+\subsubsection{Training Data and Results}
+\label{meth:s4_sub7_subsub2}
+
+For the training data, we use the movies data along with CSS10 data as these two datasets were only added after epoch $13$ in the \ac{ASR} training process, hence we can use the model's output at epoch $13$ to transcribe these utterances. The training examples are made by pairing each transcribed output from the \ac{ASR} with its ground truth. When transcribing these utterances using greedy decoding, we obtain a total of $75,000$ training examples. For the sake of increasing the number of training examples, we use a $5$-gram model with beam-width $500$, $0.9$ alpha and $0.2$ beta, and get the best $100$ outputs. These outputs are paired with their corresponding ground truth. This technique increases our training examples by a factor of $100$ resulting in around $7.5$ Million training examples. 
+
+TODOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
+We experiment with two hyper-parameter sets of the transformer: \texttt{transformer\_base\_single\_gpu} and \texttt{transformer\_big}. We train both instances for $x$ steps, using the 750K examples.
+The transformer\_big achieved $x\%$ \ac{WER}, and $x\%$ \ac{CER}, while the transformer\_base\_single\_gpu  achieved $x\%$ \ac{WER}, and $x\%$ \ac{CER}. 
+We also train the transformer\_big using the 75K training examples, however, more data got us an increase in performance by $x\%$.
+
+
+%We experiment with different datasets and hyper-parameters.
+
+\subsection{Comparing with the Hybrid Model}
+\label{meth:s4_sub8}
+
+TODOOOOOOOOOOOOOOOOOOOOOOOOOO
+
+For the purpose of comparing our system with the hybrid kaldi-based model \cite{milde2018open} illustrated in section \ref{meth:s2_sub1}. We attempt to test the kaldi-based model on our test-set. We start by installing kaldi and \href{https://github.com/alumae/kaldi-gstreamer-server}{Kaldi GStreamer server} which is a real-time full-duplex speech recognition server. It is implemented in Python and based on GStreamer framework and Kaldi toolkit. Our test set is transcribed using the Kaldi GStreamer server and Kaldi's best model\footnote{\url{http://ltdata1.informatik.uni-hamburg.de/kaldi_tuda_de/de_400k_nnet3chain_tdnn1f_2048_sp_bi.tar.bz2}}. Then the output transcriptions are compared with the ground truth transcriptions in order to compute the \ac{WER} and the \ac{CER}. 
+
+TODOOOOOOOOOOOOOOOOOOOOOOOOOO
+After comparing the transcriptions, Kaldi's model achieved $x\%$ \ac{WER} and  $x\%$ \ac{CER} on our test set. This means that our best model outperforms the kaldi-based model with $x\%$ improvement in \ac{WER} and $x\%$ improvement in \ac{CER}
+
+TODOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 We also noticed that Kaldi-based model was tested on Tuda-De dataset excluding the realteck microphone since it's very low quality. We excluded all utterances recorded using this microphone, and tested our best model on the modified Tuda-De's test set. Our best model was after 19 epochs of training and coupled with a 5-gram language model decoding technique, beam-width value of x, using alpha and beta values of 0.9 and 0.2 respectively. We achieved $x\%$ \ac{WER} and $x\%$ \ac{CER} outperforming the kaldi-based model on this test set as well.
 
-LEARNING RATE
-BATCH SIZE 20
-SAMPLE RATE 16KHZ
-CHANGED LABELS TO A-Z PLUS UMLAUTS
+
+\newpage
 
 \section{Text Classifier Unit} 
-\label{meth:s3}
+\label{meth:s5}
 
 In this section, we discuss the second part of our proposed system: the text classifier unit. The model for the text classifier was chosen to be Google's \acf{BERT} \cite{devlin2018bert}, illustrated in section \ref{bg:sub13} of the literature review. We illustrate the underlying theory behind our decision for using \ac{BERT} over a large variety of both simple classifiers and general language-understanding models.
 
 \subsection{Why BERT?}
+\label{meth:s5_sub1}
 
  A strong point of \ac{BERT} over simple text classifiers is that we can make use of large amounts of unlabeled data to compensate for small labeled task-specific datasets. This is specially useful when we do not know details about the task-specific dataset, at least for the time being. (\textit{i.e.} its size, its format, etc.) When using \ac{BERT} as a classifier on \ac{MRPC}\footnote{\url{https://www.microsoft.com/en-us/download/details.aspx?id=52398}}, which contains only $3,600$ training examples, the results were ranging between $84\%$ and $88\%$. These results are very satisfying for such a small dataset. Since we do know the amount of data available for our task and given the results published for the \ac{MRPC} dataset classification task, we assume that \ac{BERT} would be of great help if the data available is of relatively small size. Moreover, we do not know the nature of the data available for our task. Using \ac{BERT}, we can model our problem as a classification task, a question answering task, etc. Though we make the assumption that our problem is a text classification one, we utilize \ac{BERT} for more flexibility. A further argument is the great importance for our task to get contextual information instead of performing shallow classification or using non-contextual learned embeddings or even using a model that shallowly concatenate left and right context. As discussed in section \ref{bg:sub13}, \ac{BERT} is a deep bidirectional model since it uses \acf{MLM} as one of its pre-training tasks. The next sentence prediction task also makes it model relationships between sentences, which is important for our task as well. In addition to this, fine-tuning a classifier on top of \ac{BERT} is a fairly simple task. Google published two versions of pre-trained \ac{BERT}, an English model, and a multilingual model that could be used for 104 languages, since our language of interest is German only, we suggest that training a German only model would be much more powerful for our intended purpose.
 
 \subsection{Implementation}
+\label{meth:s5_sub2}
+
 Once we settled on using \ac{BERT} for our text classifier unit, came the step of finding an implementation. For the sake of saving time and effort, we refrain from implementing our own model and search for a convenient implementation. Though there are many freely available implementations for Bert, we stick to the official Google implementation available in \url{https://github.com/google-research/bert} as it provides more flexibility. The implementation is based on \href{https://www.tensorflow.org/}{TensorFlow} library and makes use of the \href{https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator}{Estimator API}. The open source code offers scripts for creating the training data, pre-training and finetuning, which minimizes the amount of work and modifications needed. As demonstrated earlier in the literature review, using \ac{BERT} consists of two stages: pre-training and fine-tuning. We discuss the steps pursued during both stages.
 
 \subsection{Pre-training Data}
+\label{meth:s5_sub3}
+
 For pre-training \ac{BERT}, we needed large amount of unlabeled text data. The published \href{https://github.com/google-research/bert#pre-trained-models}{pre-trained English models} were trained on both the Book Corpus\footnote{\url{https://yknzhu.wixsite.com/mbweb}} (800M words), and the English Wikipedia\footnote{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2}} (2.5B words). The Book Corpus is not available for free download and we do now if it contains any German data, therefore we abstain from using it. Since we are interested in German, we make use of the German Wikipedia\footnote{\url{https://dumps.wikimedia.org/dewiki/latest/dewiki-latest-pages-articles.xml.bz2}} alone (700M words - 52M sentences). It is convenient for use since the articles nature fits the next sentence task since most sentences are correlated. We considered using the sentences corpus provided by Universit{\"a}t Leipzig\footnote{\url{http://wortschatz.uni-leipzig.de/en/download}}, however they were separate sentences and would not add much to the next sentence prediction task. 
 
 \subsubsection{Pre-processing German Wikipedia}
+\label{meth:s5_sub3_subsub1}
 We start by downloading the \href{https://dumps.wikimedia.org/dewiki/latest/dewiki-latest-pages-articles.xml.bz2}{German Wikipedia dump}. The whole wikipedia is downloaded as one 20GB file in \texttt{xml} format. We use an open source wikiExtractor\footnote{\url{https://github.com/attardi/wikiextractor}} in order to extract it into plain text files. The Wikipedia is extracted into $5,600$ text files split upon $56$ folders, each $100$ files in a folder. Since the input to our subsystem would be the output from the \ac{ASR} unit, we perform some text cleaning in order to match the output of the \ac{ASR}. The \ac{ASR} outputs only lower-case letters (\enquote{a} to \enquote{z}), apostrophe ('), space, plus the German umlauts ({\"a} {\"o} {\"u}). For this purpose, we replace all numbers with their written format \textit{i.e.} 37 is turned into \enquote{siebenunddreissig}. Any \enquote{\ss} was replaced with \enquote{ss}. All punctuation and foreign characters were stripped away, and only the allowed characters \textit{i.e.} potential outputs of the \ac{ASR} were kept in the corpus.
 
 
@@ -285,12 +453,15 @@ The implementation requires the input data to be in specific format: each file h
 To get the data in the proper format, we use the spaCy\footnote{\url{https://spacy.io/}} toolkit, which is a Python library for \ac{NLP} tasks. It supports many languages including German, we make use of the \href{https://spacy.io/models/de}{German model} and run it on all of the Wikipedia text files. There were many possible choices for the sentence tokenization task such as nltk\footnote{\url{https://www.nltk.org/}}, OpenNLP\footnote{\url{https://github.com/apache/opennlp}}, etc. Nevertheless, we stick to spaCy since it is recommended by \ac{BERT}'s official \href{https://github.com/google-research/bert}{github repository}. The sentence tokenization is not flawless and by manually analyzing random samples of the files, it is found that many errors exist. We ignore the mistakes albeit and consider it as noise in the input data as it is advised in the repository to add a slight amount of noise to the input data. This is particularly beneficial to make the model robust to slightly different data during fine-tuning step. In addition, distinct articles are separated with empty lines.
 
 \subsubsection{Generating Vocab File}
+\label{meth:s5_sub3_subsub2}
+
 As previously illustrated, \ac{BERT} uses word pieces instead of whole words. The process is done as follows: a vocab file containing sub-words is generated from the whole the pre-training data. This list of sub-words (referred to as vocab file), is used to tokenize the pre-training data and the fine-tuning data. Out of vocab sub-words are given a special \texttt{[UNK]} token. The official repository does not include code for learning new vocab, however, they refer to multiple alternatives such as Google's SentencePiece library\footnote{\url{https://github.com/google/sentencepiece}} and tensor2tensor's WordPiece generation script\footnote{\url{https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/data_generators/text_encoder_build_subword.py}}. Instead, we use an open source bert-vocab-builder\footnote{\url{https://github.com/kwonmha/bert-vocab-builder}}, which is a modification to tensor2tensor's \href{https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/data_generators/text_encoder_build_subword.py}{WordPiece generation script}. The modifications introduced aims at making the generated vocab list more compatible with the tokenization script provided in \ac{BERT}'s repository. Changes include adding \ac{BERT}'s special tokens (\texttt{[SEP]}, \texttt{[CLS]}, \texttt{[MASK]}, \texttt{[UNK]}) to the vocab list, and denoting split words using \enquote{\texttt{\#\#}} instead of \enquote{\texttt{\_}}. 
 
 A threshold of 800 is used in selecting the sub-words. \textit{i.e.} any sub-word occurring in the training corpus less than 800 times will be excluded from the vocab list. Using this threshold, we end up with a vocab list of size	$\approx 10,000$ sub-words. In later stages, all our data will be tokenized according to this vocab list.
 
 
 \subsubsection{Tokenization and Writing into TFRecord Format}
+\label{meth:s5_sub3_subsub3}
 
 After generating the vocab file, the pre-training corpus has to tokenized according to the produced vocab file. Google provided scripts for both tokenizing the corpus given a vocab file and creating the training data in the \enquote{TFRecord} format. TFRecord is a simple binary file format that many TensorFlow applications use for training data. In order to write the data into TfRecord format, the data has to be converted into sequence of byte-strings. Instead of concatenating all the Wikipedia's $5,600$ text files into one file, we modify the script to read the input files from a \texttt{.csv} file containing the paths for all the cleaned text files. This is done because all the examples of the input file will be stored in memory, so for the purpose of avoiding out of memory issues, we keep the files sharded and we modify the code to generate one TFRecord file for each $100$ text files \textit{i.e.} $56$ total TFRecord files. 
 A \enquote{\texttt{max\_seq\_length}} 
@@ -298,7 +469,7 @@ is set when creating the data, where sequences of lengths longer than this value
  
  
 \subsection{Pre-Training Process}
-\label{meth:sub3}
+\label{meth:s5_sub4}
 
 Since the pre-training is a fairly expensive procedure, we required a cloud platform that offers services for high computational resources. We make use of the free cloud \ac{TPU}s offered by \href{https://www.tensorflow.org/tfrc}{TensorFlow Research Cloud Program}. This program offers researchers free cloud \ac{TPU}s in order to run their machine learning applications. We were offered $5$ v2 cloud \ac{TPU}s, each \ac{TPU} has $8$ cores with each core having $8$ GiB of \ac{HBM}. The \ac{TPU}s were available for use on \href{https://cloud.google.com/}{Google Cloud Platform}.
 
@@ -312,9 +483,12 @@ We train for $100,000$ steps, which is $\approx 16$ epochs over our $700M$ words
  
 
 \subsection{Fine-Tuning Data}
+\label{meth:s5_sub5}
+
 After pre-training, came the fine-tuning stage. As discussed previously, our problem is modeled as a classification one. Therefore, we will be implementing a fine-tuning layer on top of \ac{BERT}. For this purpose, we searched for task-specific datasets that could be used to fine-tune our pre-trained model. Specifically, we required a dataset with transcribed audio from the drivers and their corresponding dispatcher actions. However, we could not find any freely available datasets of this kind. We tried to obtain similar dataset from \href{https://www.trapezegroup.eu/}{Trapeze}, but unfortunately that was not possible. We, therefore, leave the task of dataset collection and fine-tuning the model on the collected dataset for future work. 
 
 \subsubsection{\ac{10KGNAD}}
+\label{meth:s5_sub5_subsub1}
 %\begin{table}[hbtp]
 %	\centering
 %	\begin{tabulary}{20cm}{L|L|L|L}
@@ -351,19 +525,19 @@ After pre-training, came the fine-tuning stage. As discussed previously, our pro
 		
 	\end{tabular}
 	\caption{10KGNAD: Overview of train/test split}
-	\label{table:10KGNAD}
+	\label{meth:table5}
 \end{table}
 
-\includefig{0.8}{articles_per_class}{10KGNAD: Articles per Class}{Fig:28}
+\includefig{0.8}{articles_per_class}{10KGNAD: Articles per Class}{meth:fig5}
 
 
 We turn our attention, instead, to find a general classification dataset that could be used as a proof of concept that our \ac{BERT} model unit could generate promising results as a classifier. One interesting freely available dataset is \enquote{\ac{10KGNAD}}\footnote{\url{https://tblock.github.io/10kGNAD/}}, which is a German topic classification dataset released under the \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}. It constitutes around $10,000$ German news articles collected from an Austrian online newspaper. The articles are categorized into nine topics: Web, Panorama, International, Wirtschaft (Economy), Sport, Inland, Etat, Wissenschaft (Science) and Kultur. The number of articles per class is illustrated in figure \ref{Fig:28} and the train/test numbers given in table \ref{table:10KGNAD}. We stick to these numbers which are proposed by the author which are $90\%$ articles for training and $10\%$ for testing. No extra pre-processing or cleaning was needed other than lowercasing all the letters and performing the same text cleaning made for the \ac{ASR} transcriptions and \ac{BERT}'s pre-training data.
 
 
 \subsection{Fine-Tuning Process}
-\label{meth:sub4}
+\label{meth:s5_sub6}
 
-\includefig{0.8}{bert_classifier}{The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch}{Fig:28}
+\includefig{0.8}{bert_classifier}{The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch}{meth:fig6}
 
 Fine-tuning \ac{BERT} as a classifier is a fairly simple task. Only one additional output layer is added therefore small number of parameters need to be learned from the scratch. The idea is to take the output of the Transformer (\textit{i.e.} final hidden layer) corresponding to the special classification token \texttt{[CLS]} as illustrated in figure \ref{Fig:28}. This vector is denoted as $C \in {\mathbb{R}}^{H}$ where $H=768$ is the hidden size. The parameters learned from the scratch during fine-tuning are those for the classification layer $W \in {\mathbb{R}}^{K\times H} $ where $K$ is the number of labels in our classification problem. For computing the label probabilities, standard softmax function is used. During fine-tuning, \ac{BERT}'s parameters and the classification layer's $W$ parameters are trained jointly to maximize the og-probability of the correct label.
 
@@ -371,5 +545,6 @@ We keep most of the hyper-parameters same as the pre-training, however we change
 
 
 \subsubsection{Effect of Running Pre-Training on Fine-Tuning Data}
+\label{meth:s5_sub6_subsub1}
 
 It was advised in \href{https://github.com/google-research/bert#pre-training-tips-and-caveats}{Google's github repository} to run additional steps of pre-training on the task-specific dataset, starting from \ac{BERT}'s final checkpoint. This is specially beneficial if the dataset has different nature than the pre-training data. We experiment by running pre-training with the same settings reported in section \ref{meth:sub3}. Only the learning rate is changed, where we used $2\mathrm{e}{-5}$ instead of $1\mathrm{e}{-4}$ following the guidelines provided by the authors. After running $10,000$ steps of pre-training, we fine-tune again using the same settings used in section \ref{meth:sub4}. Running additional steps of pre-training on our task-specific dataset before fine-tuning gives us $2\%$ improvement in the classification accuracy resulting in $90\%$ on the test set.

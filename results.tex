@@ -1,3 +1,62 @@
 \chapter{Results}
 \label{chap:results}
-Results
+
+In this chapter, the results for all the tests that have been held are reported in details.
+
+\section{Automatic Speech Recognition Unit: Deep Speech 2}
+
+\subsection{ASR Evaluation Metrics}
+
+
+
+
+ASR Evaluation Metrics:
+WER
+CER
+
+
+\subsection{ASR Results}
+
+
+\includefig{1.0}{asr_results}{ASR Results}{results:fig1}
+
+\section{Text Classifier Unit: BERT}
+
+\subsection{BERT Evaluation Metrics}
+BERT Evaluation Metrics:
+MLM Accuracy: likelihood
+how well the model scores in the predicting the masked words
+next sentence accuracy:
+how well the model scores in predicting the relationship between two sentence (is next, is not next)
+finetuning:
+classification accuracy:
+
+\subsection{BERT Results}
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabulary}{1.0\textwidth}{ C |C } 
+		\hline
+		   Masked LM Accuracy &   0.60    \\ [2ex]
+		\hline
+		Next Sentence Accuracy   &   0.98  \\ [2ex]
+		\hline
+	\end{tabulary}
+	\caption{BERT Pre-Training Results}
+	\label{results:table0}
+\end{table}
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabulary}{1.0\textwidth}{ L | L } 
+		\hline
+		Classifier Result (fine-tuning only)  &   0.88    \\ 
+		\hline
+		Classifier Result (extra steps of pre-training)   &   0.90  \\
+		\hline
+	\end{tabulary}
+	\caption{BERT Fine-Tuning Results}
+	\label{results:table1}
+\end{table}
+
+

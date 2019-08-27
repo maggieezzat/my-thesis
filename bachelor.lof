@@ -15,10 +15,12 @@
 \contentsline {figure}{\numberline {2.13}{\ignorespaces BERT input representation\relax }}{20}{figure.caption.49}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{23}{figure.caption.52}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Training Summary\relax }}{30}{figure.caption.74}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Training Summary\relax }}{31}{figure.caption.75}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces 10KGNAD: Articles per Class\relax }}{36}{figure.caption.88}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch\relax }}{37}{figure.caption.89}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Format of \texttt {srt} Files\relax }}{27}{figure.caption.62}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Training Summary after Epoch 13\relax }}{32}{figure.caption.80}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Training Summary after Epoch 19\relax }}{34}{figure.caption.86}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces 10KGNAD: Articles per Class\relax }}{40}{figure.caption.98}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch\relax }}{41}{figure.caption.99}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces ASR Results\relax }}{44}{figure.caption.101}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

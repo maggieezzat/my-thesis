@@ -5,7 +5,7 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{chap:methodology}{{3}{23}{Methodology}{chapter.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{23}{figure.caption.52}}
-\newlabel{Fig:10}{{3.1}{23}{Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }{figure.caption.52}{}}
+\newlabel{meth:fig1}{{3.1}{23}{Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }{figure.caption.52}{}}
 \citation{milde2018open}
 \citation{daniel2011kaldi}
 \citation{milde2018open}
@@ -14,34 +14,42 @@
 \citation{rousseau2014enhancing}
 \citation{milde2018open}
 \citation{radeck2015open}
-\citation{milde2018open}
-\citation{milde2018open}
-\citation{milde2018open}
-\citation{amodei2016deep}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}System Overview}{24}{section.3.1}}
 \newlabel{meth:s1}{{3.1}{24}{System Overview}{section.3.1}{}}
 \acronymused{ASR}
 \acronymused{ASR}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Two sub-systems vs. One speech-based End-to-End System}{24}{subsection.3.1.1}}
+\newlabel{meth:s1_sub1}{{3.1.1}{24}{Two sub-systems vs. One speech-based End-to-End System}{subsection.3.1.1}{}}
+\acronymused{MFCC}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Automatic Speech Recognition Unit}{24}{section.3.2}}
 \newlabel{meth:s2}{{3.2}{24}{Automatic Speech Recognition Unit}{section.3.2}{}}
 \acronymused{ASR}
 \acronymused{ASR}
 \acronymused{ASR}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Hybrid Kaldi-based ASR Model}{24}{subsection.3.2.1}}
+\newlabel{meth:s2_sub1}{{3.2.1}{24}{Hybrid Kaldi-based ASR Model}{subsection.3.2.1}{}}
+\acronymused{ASR}
 \acronymused{ASR}
 \acronymused{ASR}
 \AC@undonewlabel{acro:GMM}
-\newlabel{acro:GMM}{{3.2}{24}{Automatic Speech Recognition Unit}{section*.53}{}}
+\newlabel{acro:GMM}{{3.2.1}{24}{Hybrid Kaldi-based ASR Model}{section*.53}{}}
 \acronymused{GMM}
 \acronymused{HMM}
 \AC@undonewlabel{acro:TDNN}
-\newlabel{acro:TDNN}{{3.2}{24}{Automatic Speech Recognition Unit}{section*.54}{}}
+\newlabel{acro:TDNN}{{3.2.1}{24}{Hybrid Kaldi-based ASR Model}{section*.54}{}}
 \acronymused{TDNN}
 \AC@undonewlabel{acro:SWC}
-\newlabel{acro:SWC}{{3.2}{24}{Automatic Speech Recognition Unit}{section*.55}{}}
+\newlabel{acro:SWC}{{3.2.1}{24}{Hybrid Kaldi-based ASR Model}{section*.55}{}}
 \acronymused{SWC}
+\citation{milde2018open}
+\citation{milde2018open}
+\citation{milde2018open}
+\citation{amodei2016deep}
 \AC@undonewlabel{acro:WER}
-\newlabel{acro:WER}{{3.2}{24}{Automatic Speech Recognition Unit}{section*.56}{}}
+\newlabel{acro:WER}{{3.2.1}{25}{Hybrid Kaldi-based ASR Model}{section*.56}{}}
 \acronymused{WER}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Why End-to-End ASR?}{25}{subsection.3.2.2}}
+\newlabel{meth:s2_sub2}{{3.2.2}{25}{Why End-to-End ASR?}{subsection.3.2.2}{}}
 \acronymused{HMM}
 \acronymused{ASR}
 \acronymused{ASR}
@@ -49,51 +57,78 @@
 \acronymused{ASR}
 \acronymused{ASR}
 \acronymused{ASR}
+\acronymused{ASR}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Deep Speech 2: Adapting to German}{25}{subsection.3.2.3}}
+\newlabel{meth:s2_sub3}{{3.2.3}{25}{Deep Speech 2: Adapting to German}{subsection.3.2.3}{}}
+\acronymused{ASR}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Speech Recognition Data}{25}{subsection.3.2.4}}
+\newlabel{meth:s2_sub4}{{3.2.4}{25}{Speech Recognition Data}{subsection.3.2.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {i}. Common Voice}{25}{section*.57}}
+\newlabel{meth:s2_sub4_subsub1}{{3.2.4}{25}{\RomanNumeralCaps {1}. Common Voice}{section*.57}{}}
 \acronymused{ASR}
 \citation{radeck2015open}
+\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {ii}. M-AILABS Speech Dataset}{26}{section*.58}}
+\newlabel{meth:s2_sub4_subsub2}{{3.2.4}{26}{\RomanNumeralCaps {2}. M-AILABS Speech Dataset}{section*.58}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {iii}. German Speech Data (Tuda-De)}{26}{section*.59}}
+\newlabel{meth:s2_sub4_subsub3}{{3.2.4}{26}{\RomanNumeralCaps {3}. German Speech Data (Tuda-De)}{section*.59}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {iv}. CSS10: Single Speaker Data}{26}{section*.60}}
+\newlabel{meth:s2_sub4_subsub4}{{3.2.4}{26}{\RomanNumeralCaps {4}. CSS10: Single Speaker Data}{section*.60}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {v}. Movies Data}{26}{section*.61}}
+\newlabel{meth:s2_sub4_subsub5}{{3.2.4}{26}{\RomanNumeralCaps {5}. Movies Data}{section*.61}{}}
 \acronymused{ASR}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Speech Recognition Datasets}{25}{subsection.3.2.1}}
-\newlabel{meth:sub1}{{3.2.1}{25}{Speech Recognition Datasets}{subsection.3.2.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {i}. Common Voice}{25}{section*.57}}
-\newlabel{meth:subsubsub1}{{3.2.1}{25}{\RomanNumeralCaps {1}. Common Voice}{section*.57}{}}
-\acronymused{ASR}
-\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {ii}. M-AILABS Speech Dataset}{25}{section*.58}}
-\newlabel{meth:subsub2}{{3.2.1}{25}{\RomanNumeralCaps {2}. M-AILABS Speech Dataset}{section*.58}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {iii}. German Speech Data \cite  {radeck2015open}}{25}{section*.59}}
-\newlabel{meth:subsub3}{{3.2.1}{25}{\RomanNumeralCaps {3}. German Speech Data \cite {radeck2015open}}{section*.59}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {iv}. German Single Speaker Data}{25}{section*.60}}
-\newlabel{meth:subsub6}{{3.2.1}{25}{\RomanNumeralCaps {4}. German Single Speaker Data}{section*.60}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Format of \texttt  {srt} Files\relax }}{27}{figure.caption.62}}
+\newlabel{meth:fig2}{{3.2}{27}{Format of \texttt {srt} Files\relax }{figure.caption.62}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {v}. Spoken Wikipedia Corpus}{27}{section*.63}}
+\newlabel{meth:s2_sub4_subsub6}{{3.2.4}{27}{\RomanNumeralCaps {5}. Spoken Wikipedia Corpus}{section*.63}{}}
+\acronymused{SWC}
+\acronymused{SWC}
+\acronymused{SWC}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Data used in the first 13 Epochs\relax }}{27}{table.caption.64}}
+\newlabel{meth:table0}{{3.1}{27}{Data used in the first 13 Epochs\relax }{table.caption.64}{}}
 \citation{tensorflow2015-whitepaper}
-\@writefile{toc}{\contentsline {subsubsection}{\MakeUppercase  {iii}. Movies Data}{26}{section*.61}}
-\newlabel{meth:subsub7}{{3.2.1}{26}{\RomanNumeralCaps {3}. Movies Data}{section*.61}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Dataset Splitiing: Test, Dev, Train}{26}{section*.62}}
-\newlabel{meth:subsub7}{{3.2.1}{26}{Dataset Splitiing: Test, Dev, Train}{section*.62}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces First 14 Epochs Data\relax }}{26}{table.caption.63}}
-\newlabel{table:data14}{{3.1}{26}{First 14 Epochs Data\relax }{table.caption.63}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces \relax }}{26}{table.caption.64}}
-\newlabel{table:train14}{{3.2}{26}{\relax }{table.caption.64}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces After adding Movies and CSS10 data\relax }}{26}{table.caption.65}}
-\newlabel{table:data19}{{3.3}{26}{After adding Movies and CSS10 data\relax }{table.caption.65}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Transcriptions Cleaning}{28}{section*.65}}
+\newlabel{meth:s2_sub4_subsub7}{{3.2.4}{28}{Transcriptions Cleaning}{section*.65}{}}
+\acronymused{ASR}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Deep Speech 2: TensorFlow}{28}{section.3.3}}
+\newlabel{meth:s3}{{3.3}{28}{Deep Speech 2: TensorFlow}{section.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Training on Google Colab GPUs}{28}{subsection.3.3.1}}
+\newlabel{meth:s3_sub1}{{3.3.1}{28}{Training on Google Colab GPUs}{subsection.3.3.1}{}}
 \AC@undonewlabel{acro:TPU}
-\newlabel{acro:TPU}{{3.2.1}{27}{Dataset Splitiing: Test, Dev, Train}{section*.66}{}}
+\newlabel{acro:TPU}{{3.3.1}{28}{Training on Google Colab GPUs}{section*.66}{}}
 \acronymused{TPU}
 \acronymused{TPU}
 \AC@undonewlabel{acro:ASIC}
-\newlabel{acro:ASIC}{{3.2.1}{27}{Dataset Splitiing: Test, Dev, Train}{section*.67}{}}
+\newlabel{acro:ASIC}{{3.3.1}{28}{Training on Google Colab GPUs}{section*.67}{}}
 \acronymused{ASIC}
+\@writefile{toc}{\contentsline {subsubsection}{Implementation Details}{28}{section*.68}}
+\newlabel{meth:s3_sub1_subsub1}{{3.3.1}{28}{Implementation Details}{section*.68}{}}
 \acronymused{TPU}
+\@writefile{toc}{\contentsline {subsubsection}{Training Data, Process and Results}{29}{section*.69}}
+\newlabel{meth:s3_sub1_subsub2}{{3.3.1}{29}{Training Data, Process and Results}{section*.69}{}}
+\AC@undonewlabel{acro:GRU}
+\newlabel{acro:GRU}{{3.3.1}{29}{Training Data, Process and Results}{section*.70}{}}
+\acronymused{GRU}
+\acronymused{LSTM}
+\acronymused{RNN}
 \acronymused{WER}
+\AC@undonewlabel{acro:CER}
+\newlabel{acro:CER}{{3.3.1}{29}{Training Data, Process and Results}{section*.71}{}}
+\acronymused{CER}
 \acronymused{WER}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Training on Google Cloud TPUs}{29}{subsection.3.3.2}}
+\newlabel{meth:s3_sub2}{{3.3.2}{29}{Training on Google Cloud TPUs}{subsection.3.3.2}{}}
 \acronymused{TPU}
 \acronymused{TPU}
 \acronymused{TPU}
 \AC@undonewlabel{acro:HBM}
-\newlabel{acro:HBM}{{3.2.1}{27}{Dataset Splitiing: Test, Dev, Train}{section*.68}{}}
+\newlabel{acro:HBM}{{3.3.2}{29}{Training on Google Cloud TPUs}{section*.72}{}}
 \acronymused{HBM}
 \acronymused{TPU}
+\@writefile{toc}{\contentsline {subsubsection}{Migrating from Regular Estimator to TPU Estimator}{29}{section*.73}}
+\newlabel{meth:s3_sub2_subsub1}{{3.3.2}{29}{Migrating from Regular Estimator to TPU Estimator}{section*.73}{}}
 \acronymused{TPU}
 \AC@undonewlabel{acro:XLA}
-\newlabel{acro:XLA}{{3.2.1}{27}{Dataset Splitiing: Test, Dev, Train}{section*.69}{}}
+\newlabel{acro:XLA}{{3.3.2}{29}{Migrating from Regular Estimator to TPU Estimator}{section*.74}{}}
 \acronymused{XLA}
 \acronymused{TPU}
 \acronymused{XLA}
@@ -102,75 +137,118 @@
 \acronymused{TPU}
 \acronymused{TPU}
 \acronymused{TPU}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Deep Speech 2: PyTorch}{29}{section.3.4}}
+\newlabel{meth:s4}{{3.4}{29}{Deep Speech 2: PyTorch}{section.3.4}{}}
 \acronymused{TPU}
-\citation{amodei2016deep}
-\AC@undonewlabel{acro:VM}
-\newlabel{acro:VM}{{3.2.1}{28}{Dataset Splitiing: Test, Dev, Train}{section*.70}{}}
-\acronymused{VM}
-\AC@undonewlabel{acro:GRU}
-\newlabel{acro:GRU}{{3.2.1}{28}{Dataset Splitiing: Test, Dev, Train}{section*.71}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Training on Google Colab}{30}{subsection.3.4.1}}
+\newlabel{meth:s4_sub1}{{3.4.1}{30}{Training on Google Colab}{subsection.3.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{LSTM vs. GRU}{30}{section*.75}}
+\newlabel{meth:s4_sub1_subsub1}{{3.4.1}{30}{LSTM vs. GRU}{section*.75}{}}
 \acronymused{GRU}
 \acronymused{RNN}
 \acronymused{GRU}
 \acronymused{LSTM}
 \acronymused{LSTM}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Microsoft Azure Platform}{30}{subsection.3.4.2}}
+\newlabel{meth:s4_sub2}{{3.4.2}{30}{Microsoft Azure Platform}{subsection.3.4.2}{}}
+\acronymused{TPU}
+\AC@undonewlabel{acro:VM}
+\newlabel{acro:VM}{{3.4.2}{30}{Microsoft Azure Platform}{section*.76}{}}
 \acronymused{VM}
-\@writefile{toc}{\contentsline {subsubsection}{problem of adding swc}{28}{section*.72}}
-\acronymused{SWC}
-\acronymused{SWC}
-\acronymused{SWC}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Training I: Using Tuda-De, M-AILABS, Common Voice }{30}{subsection.3.4.3}}
+\newlabel{meth:s4_sub3}{{3.4.3}{30}{Training I: Using Tuda-De, M-AILABS, Common Voice}{subsection.3.4.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Speaker Independent Splitting}{30}{section*.77}}
+\newlabel{meth:s4_sub3_subsub1}{{3.4.3}{30}{Speaker Independent Splitting}{section*.77}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Data used in the first 13 Epochs\relax }}{30}{table.caption.78}}
+\newlabel{meth:table1}{{3.2}{30}{Data used in the first 13 Epochs\relax }{table.caption.78}{}}
+\acronymused{ASR}
+\citation{amodei2016deep}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Training Summary for the First 13 epochs. The training data was \relax }}{31}{table.caption.79}}
+\newlabel{meth:table2}{{3.3}{31}{Training Summary for the First 13 epochs. The training data was \relax }{table.caption.79}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Training Process and Results}{31}{section*.81}}
+\newlabel{meth:s4_sub3_subsub2}{{3.4.3}{31}{Training Process and Results}{section*.81}{}}
 \acronymused{LSTM}
 \acronymused{WER}
-\AC@undonewlabel{acro:CER}
-\newlabel{acro:CER}{{3.2.1}{28}{problem of adding swc}{section*.76}{}}
 \acronymused{CER}
-\@writefile{toc}{\contentsline {subsubsection}{Language Model Decoding}{28}{section*.77}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Training II: Adding all data}{31}{subsection.3.4.4}}
+\newlabel{meth:s4_sub4}{{3.4.4}{31}{Training II: Adding all data}{subsection.3.4.4}{}}
+\acronymused{VM}
+\acronymused{SWC}
+\@writefile{toc}{\contentsline {subsubsection}{problem of adding \ac {SWC}}{31}{section*.82}}
+\newlabel{meth:s4_sub4_subsub1}{{3.4.4}{31}{problem of adding \ac {SWC}}{section*.82}{}}
+\acronymused{SWC}
+\acronymused{SWC}
+\@writefile{toc}{\contentsline {subsubsection}{Speaker Independent Splitting}{31}{section*.83}}
+\newlabel{meth:s4_sub4_subsub2}{{3.4.4}{31}{Speaker Independent Splitting}{section*.83}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Training Summary after Epoch 13\relax }}{32}{figure.caption.80}}
+\newlabel{meth:fig3}{{3.3}{32}{Training Summary after Epoch 13\relax }{figure.caption.80}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces After adding Movies and CSS10 data\relax }}{32}{table.caption.84}}
+\newlabel{meth:table3}{{3.4}{32}{After adding Movies and CSS10 data\relax }{table.caption.84}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Training Process and Results}{32}{section*.87}}
+\newlabel{meth:s4_sub4_subsub3}{{3.4.4}{32}{Training Process and Results}{section*.87}{}}
+\acronymused{SWC}
 \acronymused{WER}
-\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Summary of the training\relax }}{29}{table.caption.73}}
-\newlabel{table:train19}{{3.4}{29}{Summary of the training\relax }{table.caption.73}{}}
+\acronymused{CER}
+\acronymused{CTC}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.5}Language Model Decoding}{32}{subsection.3.4.5}}
+\newlabel{meth:s4_sub5}{{3.4.5}{32}{Language Model Decoding}{subsection.3.4.5}{}}
+\acronymused{WER}
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces Summary of the Training Process. Movies Data and CSS10 were added after epoch 13. Noise augmentation was also introduced after epoch 13\relax }}{33}{table.caption.85}}
+\newlabel{meth:table4}{{3.5}{33}{Summary of the Training Process. Movies Data and CSS10 were added after epoch 13. Noise augmentation was also introduced after epoch 13\relax }{table.caption.85}{}}
 \acronymused{NLP}
 \acronymused{ASR}
 \acronymused{ASR}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Training Summary\relax }}{30}{figure.caption.74}}
-\newlabel{Fig:20}{{3.2}{30}{Training Summary\relax }{figure.caption.74}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Training Summary after Epoch 19\relax }}{34}{figure.caption.86}}
+\newlabel{meth:fig4}{{3.4}{34}{Training Summary after Epoch 19\relax }{figure.caption.86}{}}
+\acronymused{ASR}
 \acronymused{WER}
 \acronymused{CER}
-\@writefile{toc}{\contentsline {subsubsection}{Language Model Rescoring}{30}{section*.78}}
-\acronymused{WER}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.6}Language Model Re-scoring}{34}{subsection.3.4.6}}
+\newlabel{meth:s4_sub6}{{3.4.6}{34}{Language Model Re-scoring}{subsection.3.4.6}{}}
 \citation{zhang2019automatic}
 \citation{zhang2019automatic}
 \citation{vaswani2017attention}
 \citation{milde2018open}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Training Summary\relax }}{31}{figure.caption.75}}
-\newlabel{Fig:21}{{3.3}{31}{Training Summary\relax }{figure.caption.75}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Auto Correct With Transformer}{31}{section*.79}}
+\acronymused{WER}
+\acronymused{WER}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.7}Auto Correct With Transformer}{35}{subsection.3.4.7}}
+\newlabel{meth:s4_sub7}{{3.4.7}{35}{Auto Correct With Transformer}{subsection.3.4.7}{}}
+\acronymused{CTC}
 \acronymused{ASR}
-\AC@undonewlabel{acro:Tensor2Tensor}
-\newlabel{acro:Tensor2Tensor}{{3.2.1}{31}{Auto Correct With Transformer}{section*.80}{}}
-\acronymused{Tensor2Tensor}
+\@writefile{toc}{\contentsline {subsubsection}{Model Selection and Defining the Problem}{35}{section*.88}}
+\newlabel{meth:s4_sub7_subsub1}{{3.4.7}{35}{Model Selection and Defining the Problem}{section*.88}{}}
+\AC@undonewlabel{acro:T2T}
+\newlabel{acro:T2T}{{3.4.7}{35}{Model Selection and Defining the Problem}{section*.89}{}}
+\acronymused{T2T}
+\@writefile{toc}{\contentsline {subsubsection}{Training Data and Results}{35}{section*.90}}
+\newlabel{meth:s4_sub7_subsub2}{{3.4.7}{35}{Training Data and Results}{section*.90}{}}
 \acronymused{ASR}
+\acronymused{ASR}
+\acronymused{WER}
+\acronymused{CER}
+\acronymused{WER}
+\acronymused{CER}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.8}Comparing with the Hybrid Model}{36}{subsection.3.4.8}}
+\newlabel{meth:s4_sub8}{{3.4.8}{36}{Comparing with the Hybrid Model}{subsection.3.4.8}{}}
+\acronymused{WER}
+\acronymused{CER}
+\acronymused{WER}
+\acronymused{CER}
 \acronymused{WER}
 \acronymused{CER}
 \acronymused{WER}
 \acronymused{CER}
 \citation{devlin2018bert}
-\acronymused{WER}
-\acronymused{CER}
-\acronymused{WER}
-\acronymused{CER}
-\acronymused{WER}
-\acronymused{CER}
-\acronymused{WER}
-\acronymused{CER}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Text Classifier Unit}{32}{section.3.3}}
-\newlabel{meth:s3}{{3.3}{32}{Text Classifier Unit}{section.3.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Text Classifier Unit}{37}{section.3.5}}
+\newlabel{meth:s5}{{3.5}{37}{Text Classifier Unit}{section.3.5}{}}
 \acronymused{BERT}
 \acronymused{BERT}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Why BERT?}{32}{subsection.3.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Why BERT?}{37}{subsection.3.5.1}}
+\newlabel{meth:s5_sub1}{{3.5.1}{37}{Why BERT?}{subsection.3.5.1}{}}
 \acronymused{BERT}
 \acronymused{BERT}
 \AC@undonewlabel{acro:MRPC}
-\newlabel{acro:MRPC}{{3.3.1}{32}{Why BERT?}{section*.81}{}}
+\newlabel{acro:MRPC}{{3.5.1}{37}{Why BERT?}{section*.91}{}}
 \acronymused{MRPC}
 \acronymused{MRPC}
 \acronymused{BERT}
@@ -180,28 +258,33 @@
 \acronymused{MLM}
 \acronymused{BERT}
 \acronymused{BERT}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Implementation}{33}{subsection.3.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Implementation}{37}{subsection.3.5.2}}
+\newlabel{meth:s5_sub2}{{3.5.2}{37}{Implementation}{subsection.3.5.2}{}}
 \acronymused{BERT}
 \acronymused{BERT}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Pre-training Data}{33}{subsection.3.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.3}Pre-training Data}{37}{subsection.3.5.3}}
+\newlabel{meth:s5_sub3}{{3.5.3}{37}{Pre-training Data}{subsection.3.5.3}{}}
 \acronymused{BERT}
-\@writefile{toc}{\contentsline {subsubsection}{Pre-processing German Wikipedia}{33}{section*.82}}
+\@writefile{toc}{\contentsline {subsubsection}{Pre-processing German Wikipedia}{38}{section*.92}}
+\newlabel{meth:s5_sub3_subsub1}{{3.5.3}{38}{Pre-processing German Wikipedia}{section*.92}{}}
 \acronymused{ASR}
 \acronymused{ASR}
 \acronymused{ASR}
 \acronymused{ASR}
 \acronymused{NLP}
 \acronymused{BERT}
+\@writefile{toc}{\contentsline {subsubsection}{Generating Vocab File}{38}{section*.93}}
+\newlabel{meth:s5_sub3_subsub2}{{3.5.3}{38}{Generating Vocab File}{section*.93}{}}
+\acronymused{BERT}
 \citation{kingma2014adam}
 \citation{hendrycks2016bridging}
-\@writefile{toc}{\contentsline {subsubsection}{Generating Vocab File}{34}{section*.83}}
 \acronymused{BERT}
 \acronymused{BERT}
-\acronymused{BERT}
-\@writefile{toc}{\contentsline {subsubsection}{Tokenization and Writing into TFRecord Format}{34}{section*.84}}
+\@writefile{toc}{\contentsline {subsubsection}{Tokenization and Writing into TFRecord Format}{39}{section*.94}}
+\newlabel{meth:s5_sub3_subsub3}{{3.5.3}{39}{Tokenization and Writing into TFRecord Format}{section*.94}{}}
 \acronymused{MLM}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Pre-Training Process}{34}{subsection.3.3.4}}
-\newlabel{meth:sub3}{{3.3.4}{34}{Pre-Training Process}{subsection.3.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.4}Pre-Training Process}{39}{subsection.3.5.4}}
+\newlabel{meth:s5_sub4}{{3.5.4}{39}{Pre-Training Process}{subsection.3.5.4}{}}
 \acronymused{TPU}
 \acronymused{TPU}
 \acronymused{TPU}
@@ -211,47 +294,50 @@
 \acronymused{TPU}
 \acronymused{MLM}
 \acronymused{MLM}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.5}Fine-Tuning Data}{35}{subsection.3.3.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.5}Fine-Tuning Data}{40}{subsection.3.5.5}}
+\newlabel{meth:s5_sub5}{{3.5.5}{40}{Fine-Tuning Data}{subsection.3.5.5}{}}
 \acronymused{BERT}
 \AC@undonewlabel{acro:10KGNAD}
-\newlabel{acro:10KGNAD}{{3.3.5}{35}{\ac {10KGNAD}}{section*.86}{}}
+\newlabel{acro:10KGNAD}{{3.5.5}{40}{\ac {10KGNAD}}{section*.96}{}}
 \acronymused{10KGNAD}
-\@writefile{toc}{\contentsline {subsubsection}{\ac {10KGNAD}}{35}{section*.85}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces 10KGNAD: Overview of train/test split\relax }}{35}{table.caption.87}}
-\newlabel{table:10KGNAD}{{3.5}{35}{10KGNAD: Overview of train/test split\relax }{table.caption.87}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\ac {10KGNAD}}{40}{section*.95}}
+\newlabel{meth:s5_sub5_subsub1}{{3.5.5}{40}{\ac {10KGNAD}}{section*.95}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces 10KGNAD: Overview of train/test split\relax }}{40}{table.caption.97}}
+\newlabel{meth:table5}{{3.6}{40}{10KGNAD: Overview of train/test split\relax }{table.caption.97}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces 10KGNAD: Articles per Class\relax }}{40}{figure.caption.98}}
+\newlabel{meth:fig5}{{3.5}{40}{10KGNAD: Articles per Class\relax }{figure.caption.98}{}}
 \acronymused{BERT}
 \acronymused{10KGNAD}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces 10KGNAD: Articles per Class\relax }}{36}{figure.caption.88}}
-\newlabel{Fig:28}{{3.4}{36}{10KGNAD: Articles per Class\relax }{figure.caption.88}{}}
 \acronymused{ASR}
 \acronymused{BERT}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.6}Fine-Tuning Process}{36}{subsection.3.3.6}}
-\newlabel{meth:sub4}{{3.3.6}{36}{Fine-Tuning Process}{subsection.3.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.6}Fine-Tuning Process}{41}{subsection.3.5.6}}
+\newlabel{meth:s5_sub6}{{3.5.6}{41}{Fine-Tuning Process}{subsection.3.5.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch\relax }}{41}{figure.caption.99}}
+\newlabel{meth:fig6}{{3.6}{41}{The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch\relax }{figure.caption.99}{}}
 \acronymused{BERT}
 \acronymused{BERT}
 \acronymused{TPU}
-\@writefile{toc}{\contentsline {subsubsection}{Effect of Running Pre-Training on Fine-Tuning Data}{36}{section*.90}}
+\@writefile{toc}{\contentsline {subsubsection}{Effect of Running Pre-Training on Fine-Tuning Data}{42}{section*.100}}
+\newlabel{meth:s5_sub6_subsub1}{{3.5.6}{42}{Effect of Running Pre-Training on Fine-Tuning Data}{section*.100}{}}
 \acronymused{BERT}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch\relax }}{37}{figure.caption.89}}
-\newlabel{Fig:28}{{3.5}{37}{The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch\relax }{figure.caption.89}{}}
 \@setckpt{methodology}{
-\setcounter{page}{38}
+\setcounter{page}{43}
 \setcounter{equation}{1}
 \setcounter{enumi}{4}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{26}
+\setcounter{footnote}{27}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{3}
-\setcounter{section}{3}
+\setcounter{section}{5}
 \setcounter{subsection}{6}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{5}
-\setcounter{table}{5}
+\setcounter{figure}{6}
+\setcounter{table}{6}
 \setcounter{parentequation}{0}
 \setcounter{float@type}{8}
 \setcounter{ContinuedFloat}{0}
@@ -266,8 +352,8 @@
 \setcounter{@ppsavesec}{0}
 \setcounter{@ppsaveapp}{0}
 \setcounter{Item}{16}
-\setcounter{Hfootnote}{26}
-\setcounter{bookmark@seq@number}{29}
+\setcounter{Hfootnote}{27}
+\setcounter{bookmark@seq@number}{45}
 \setcounter{ALC@unique}{0}
 \setcounter{ALC@line}{0}
 \setcounter{ALC@rem}{0}
