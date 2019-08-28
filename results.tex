@@ -1,62 +1,141 @@
 \chapter{Results}
 \label{chap:results}
 
+\newenvironment{conditions}
+{\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
+	{\end{tabular}\par\vspace{\belowdisplayskip}}
+
 In this chapter, the results for all the tests that have been held are reported in details.
 
 \section{Automatic Speech Recognition Unit: Deep Speech 2}
+\label{res:s1}
+
+In this section, we discuss the results obtained using our PyTorch Deep Speech 2 model discussed in section \ref{meth:s4}. 
 
 \subsection{ASR Evaluation Metrics}
+\label{res:s1_sub1}
 
+Evaluating a model is a crucial part of building optimized, efficient systems. Evaluation metrics describe the performance of a model, they make us capable of comparing different models performance.
 
+For our \ac{ASR} system, we use two evaluation metrics: \ac{WER} and \ac{CER}.
+\begin{enumerate}
+	\item \textbf{\acf{WER}}: \ac{WER} is defined as the number of insertions, deletions and substitutions required to transform a word into another. It is derived from the \href{https://en.wikipedia.org/wiki/Levenshtein_distance}{Levenshtein Distance}, which is a string metric used to measure the difference between two strings. \ac{WER} is given by equation \ref{result:eq1} and is sometimes referred to as the \enquote{Normalized Edit Distance}.
+	\begin{equation}
+	\label{result:eq1}
+		WER = \frac{S+D+I}{N}
+	\end{equation}
+	where:
+	\begin{conditions}
+		S     &   the number of substitutions \\
+		D     &   the number of deletions \\   
+		I     &   the number of insertions \\
+		N     &   the number of correct words \\
+	\end{conditions}
+	\item \textbf{\acf{CER}}: The \ac{CER} is computed by our model as the Levenshtein Distance as well. \ac{CER} is often use an evaluation metric for some languages such as Mandarin, since words in written Chinese are not separated by white spaces.
+\end{enumerate}
 
-
-ASR Evaluation Metrics:
-WER
-CER
 
 
 \subsection{ASR Results}
-
+\label{res:s1_sub2}
 
 \includefig{1.0}{asr_results}{ASR Results}{results:fig1}
 
-\section{Text Classifier Unit: BERT}
+\subsubsection{Results Summary}
+\label{res:s1_sub2_subsub1}
 
-\subsection{BERT Evaluation Metrics}
-BERT Evaluation Metrics:
-MLM Accuracy: likelihood
-how well the model scores in the predicting the masked words
-next sentence accuracy:
-how well the model scores in predicting the relationship between two sentence (is next, is not next)
-finetuning:
-classification accuracy:
+The model we report results on is Deep Speech 2 - PyTorch version, trained on the German data described in section \ref{meth:s2_sub4} except for \ac{SWC}.
+Table \ref{results:fig1} lists the \ac{WER} and \ac{CER} obtained with their corresponding settings. For each experiment, we report the model used (which epoch's output used in decoding), whether we use n-gram language model decoding, and the $n$ value if any, along with the alpha, beta and beam width. We also report the data used to make the language model. If language model re-scoring is performed, we describe the data used for the larger model in \enquote{rescoring data} column. Some results are reported both for our test set (Tuda-De + Common Voice) and Kaldi's model dataset (Tuda-De only excluding Realteck microphone). Some results are only reported for our test set. 
 
-\subsection{BERT Results}
+\subsubsection{Our Best Model}
+\label{res:s1_sub2_subsub2}
+Our best model was achieved using language model decoding with a $5-$gram model and no re-scoring, using all the data collected for language modeling: German Wikipedia, $5M$ web sentences, $8M$ maryfied sentences and our \ac{ASR} transcriptions. Beam width was set to $500$. Alpha and beta were set to $0.9$ and $0.2$ respectively. The model achieves $15.587\%$ \ac{WER} and a \ac{CER} of $5.806\%$ on our test set.
+
+\subsubsection{Our Best Model vs Kaldi's Model}
+\label{res:s1_sub2_subsub3}
+
+In this experiment, we compare the Kaldi-based model to our best model. Since both models were evaluated and tested on different dev and test sets, we can not take the best models' results as an indication. In order to perform a fair comparison, we test Kaldi's best model on our test set (Tuda-De + Common Voice) and test our best model on Kaldi's Test set. It is to be noted that all results in the far right two columns in table \ref{results:fig1} are the results on the whole Tuda-De test set. On the contrary, it was found that Kaldi's model discarded the realteck microphone from Tuda-De's test set since it is of very low quality. In this experiment, we discard realteck as well in for the sake of reporting accurate results. The results are reported in table \ref{results:table1}.
 
 \begin{table}[!ht]
 	\centering
-	\begin{tabulary}{1.0\textwidth}{ C |C } 
+	\begin{tabular}{|c|c|c|}
 		\hline
-		   Masked LM Accuracy &   0.60    \\ [2ex]
-		\hline
-		Next Sentence Accuracy   &   0.98  \\ [2ex]
-		\hline
-	\end{tabulary}
-	\caption{BERT Pre-Training Results}
-	\label{results:table0}
+						   &   \begin{tabular}[c]{@{}c@{}}Our Test Set\\(Tuda-De + Common Voice)\end{tabular}     & \begin{tabular}[c]{@{}c@{}}Kaldi's Test Set\\(Tuda-De excluding realteck mic)\end{tabular}  \\ \hline
+		Kaldi-based Model (WER) &   25.063 \% 	&	15.870 \%    \\ \hline
+		Our Best Model (WER)     &   15.587 \% 	&   14.912 \%	  \\ \hline
+		
+	\end{tabular}
+	\caption{Our Best Model vs. Kaldi-Based Model}
+	\label{results:table1}
 \end{table}
 
+\section{Text Classifier Unit: BERT}
+\label{res:s2}
+
+\subsection{BERT Evaluation Metrics}
+\label{res:s2_sub1}
+
+In this section, we list the evaluation metrics used to evaluate our \ac{BERT} model both for pre-training and fine-tuning.
+\begin{enumerate}
+	\item \textbf{\acf{MLM} Accuracy}: Describes how well the model scores in predicting the masked tokens. \textit{i.e.} Words replaced by \texttt{[MASK]} token or randomly replaced.
+	\item \textbf{Next Sentence Accuracy}: defines how well the model scores in predicting the relationship between two sentences. \textit{i.e.} Predicting the relationship label as \texttt{isNext} or \texttt{isNotNext}.
+	\item \textbf{Classifier Accuracy}: This metric is used in fine-tuning stage where we add a classification layer. Describes the fraction of predictions our model scores right.
+\end{enumerate}
+
+
+\subsection{BERT Results}
+\label{res:s2_sub2}
+
+\subsubsection{Pre-Training Results}
+\label{res:s2_sub2_subsub1}
+
 \begin{table}[!ht]
 	\centering
-	\begin{tabulary}{1.0\textwidth}{ L | L } 
+	\begin{tabular}{|l|l|}
 		\hline
-		Classifier Result (fine-tuning only)  &   0.88    \\ 
+		Batch Size						&	896				\\ \hline
+		Max Sequence Length				&	128				\\ \hline
+		Max Predictions per Sequence	&	20 				\\ \hline
+		\# Hidden Layers				&	12				\\ \hline
+		\# Hidden Size					&	768				\\ \hline
+		Activation Function				& 	Gelu			\\ \hline
+		\# Attention Heads				& 	12 				\\ \hline
+		Optimizer						& 	Adam 			\\ \hline
+		$\beta_1$, $\beta_2$ 			& 	$0.9$, $0.999$ 	\\ \hline
+		Training Steps 					& 	100,000 		\\ \hline
+		Warmup Steps 					& 	10,000 			\\ \hline
 		\hline
-		Classifier Result (extra steps of pre-training)   &   0.90  \\
+		Masked LM Accuracy 		 		&   0.60    		\\ \hline
+		Next Sentence Accuracy   		&   0.98    		\\ \hline
+		
+	\end{tabular}
+	\caption{BERT Pre-Training Results for both MLM Task and Next Sentence Prediction Task along with the settings and Hyper-Parameters Used}
+	\label{results:table2}
+\end{table}
+
+The model we report results on is \ac{BERT}\_BASE uncased, TensorFlow version, pre-trained on the German Wikipedia dump. Table \ref{results:table2} shows the results we obtained for pre-training tasks, both \ac{MLM} and next sentence prediction and the settings used to achieve these results. We use batch size of $896$ sequences. Maximum sequence length and maximum predictions per sequence are set to $128$ and $20$ respectively. The number of hidden layers and the number of attention heads are both set to $12$. A vocab of size $105,944$ is used. We set the initial learning rate to $1\mathrm{e}{-4}$ using an Adam Optimizer with $\beta_1$ and $\beta_2$ values of $0.9$ and $0.999$ respectively. $100,000$ training steps are used with $10,000$ warmup steps. The hidden size is set to $768$ with a gelu activation function. Our dataset is $\approx700M$ words.
+
+
+
+
+\subsubsection{Fine-Tuning Results}
+\label{res:s2_sub2_subsub2}
+
+Fine-tuning was performed using the pre-trained model and the \acf{10KGNAD}. We report the results for fine-tuning in table \ref{results:table3}, showing the results for both fine-tuning directly and extra steps of pre-training on the classifier data before the fine-tuning stage. We use a batch size of $32$, and for both experiments fine-tune for $4$ epochs. A learning rate of $2\mathrm{e}{-5}$ is used for fine-tuning.
+
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|}
 		\hline
-	\end{tabulary}
-	\caption{BERT Fine-Tuning Results}
-	\label{results:table1}
+							& Batch Size	& Epochs & Learning Rate						&	Classifier Accuracy \\ \hline
+		Fine-Tuning Only  &  32 & 4 & $2\mathrm{e}{-5}$ & 0.88    \\ 
+		\hline
+		\begin{tabular}[c]{@{}c@{}}Fine-Tuning after extra \\steps of Pre-Training\end{tabular}   &  32 & 4 & $2\mathrm{e}{-5}$ & 0.90  \\
+		\hline
+	\end{tabular}
+	\caption{BERT Fine-Tuning Results. The first row shows the results when running fine-tuning directly after the pre-training stage. The second row shows the result after running extra steps of pre-training before fine-tuning.}
+	\label{results:table3}
 \end{table}
 
 

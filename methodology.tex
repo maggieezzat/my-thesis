@@ -398,7 +398,7 @@ We start off by installing the library and then turn to defining our problem. Th
 
 For the training data, we use the movies data along with CSS10 data as these two datasets were only added after epoch $13$ in the \ac{ASR} training process, hence we can use the model's output at epoch $13$ to transcribe these utterances. The training examples are made by pairing each transcribed output from the \ac{ASR} with its ground truth. When transcribing these utterances using greedy decoding, we obtain a total of $75,000$ training examples. For the sake of increasing the number of training examples, we use a $5$-gram model with beam-width $500$, $0.9$ alpha and $0.2$ beta, and get the best $100$ outputs. These outputs are paired with their corresponding ground truth. This technique increases our training examples by a factor of $100$ resulting in around $7.5$ Million training examples. 
 
-TODOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+TODO\#1 Insert Transformer Results
 
 We experiment with two hyper-parameter sets of the transformer: \texttt{transformer\_base\_single\_gpu} and \texttt{transformer\_big}. We train both instances for $x$ steps, using the 750K examples.
 The transformer\_big achieved $x\%$ \ac{WER}, and $x\%$ \ac{CER}, while the transformer\_base\_single\_gpu  achieved $x\%$ \ac{WER}, and $x\%$ \ac{CER}. 
@@ -410,16 +410,13 @@ We also train the transformer\_big using the 75K training examples, however, mor
 \subsection{Comparing with the Hybrid Model}
 \label{meth:s4_sub8}
 
-TODOOOOOOOOOOOOOOOOOOOOOOOOOO
-
 For the purpose of comparing our system with the hybrid kaldi-based model \cite{milde2018open} illustrated in section \ref{meth:s2_sub1}. We attempt to test the kaldi-based model on our test-set. We start by installing kaldi and \href{https://github.com/alumae/kaldi-gstreamer-server}{Kaldi GStreamer server} which is a real-time full-duplex speech recognition server. It is implemented in Python and based on GStreamer framework and Kaldi toolkit. Our test set is transcribed using the Kaldi GStreamer server and Kaldi's best model\footnote{\url{http://ltdata1.informatik.uni-hamburg.de/kaldi_tuda_de/de_400k_nnet3chain_tdnn1f_2048_sp_bi.tar.bz2}}. Then the output transcriptions are compared with the ground truth transcriptions in order to compute the \ac{WER} and the \ac{CER}. 
 
-TODOOOOOOOOOOOOOOOOOOOOOOOOOO
-After comparing the transcriptions, Kaldi's model achieved $x\%$ \ac{WER} and  $x\%$ \ac{CER} on our test set. This means that our best model outperforms the kaldi-based model with $x\%$ improvement in \ac{WER} and $x\%$ improvement in \ac{CER}
 
-TODOOOOOOOOOOOOOOOOOOOOOOOOOO
+After comparing the transcriptions, Kaldi's model achieved $25.06\%$ \ac{WER} on our test set, while our model achieves $15.587\%$ \ac{WER}. This means that our best model outperforms the kaldi-based model with $\approx10\%$ improvement in \ac{WER} on our test set.
 
-We also noticed that Kaldi-based model was tested on Tuda-De dataset excluding the realteck microphone since it's very low quality. We excluded all utterances recorded using this microphone, and tested our best model on the modified Tuda-De's test set. Our best model was after 19 epochs of training and coupled with a 5-gram language model decoding technique, beam-width value of x, using alpha and beta values of 0.9 and 0.2 respectively. We achieved $x\%$ \ac{WER} and $x\%$ \ac{CER} outperforming the kaldi-based model on this test set as well.
+
+We also noticed that Kaldi-based model was tested on Tuda-De dataset excluding the realteck microphone since it's very low quality. We excluded all utterances recorded using this microphone, and tested our best model on the modified Tuda-De's test set. Our best model was after 19 epochs of training and coupled with a 5-gram language model decoding technique, beam-width value of $500$, using alpha and beta values of $0.9$ and $0.2$ respectively. We achieved $14.912\%$ \ac{WER} outperforming the kaldi-based model on this test set by $\approx 1\%$ improvement, where Kaldi's \ac{WER} was $15.870\%$. A comparative table is provided in the results chapter in section \ref{res:s1_sub2_subsub3}.
 
 
 \newpage
@@ -541,7 +538,7 @@ We turn our attention, instead, to find a general classification dataset that co
 
 Fine-tuning \ac{BERT} as a classifier is a fairly simple task. Only one additional output layer is added therefore small number of parameters need to be learned from the scratch. The idea is to take the output of the Transformer (\textit{i.e.} final hidden layer) corresponding to the special classification token \texttt{[CLS]} as illustrated in figure \ref{Fig:28}. This vector is denoted as $C \in {\mathbb{R}}^{H}$ where $H=768$ is the hidden size. The parameters learned from the scratch during fine-tuning are those for the classification layer $W \in {\mathbb{R}}^{K\times H} $ where $K$ is the number of labels in our classification problem. For computing the label probabilities, standard softmax function is used. During fine-tuning, \ac{BERT}'s parameters and the classification layer's $W$ parameters are trained jointly to maximize the og-probability of the correct label.
 
-We keep most of the hyper-parameters same as the pre-training, however we change the batch size to 32 and start with an initial learning rate of $2\mathrm{e}{-5}$. We tokenize the input data using our vocab file then fine-tune for 4 epochs using the same cloud \ac{TPU}s used for pre-training. As for the result, we achieve an accuracy of $88\%$ on the test set.
+We keep most of the hyper-parameters same as the pre-training, however we change the batch size to $32$ and start with an initial learning rate of $2\mathrm{e}{-5}$. We tokenize the input data using our vocab file then fine-tune for $4$ epochs using the same cloud \ac{TPU}s used for pre-training. As for the result, we achieve an accuracy of $88\%$ on the test set.
 
 
 \subsubsection{Effect of Running Pre-Training on Fine-Tuning Data}

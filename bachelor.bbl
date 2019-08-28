@@ -133,6 +133,12 @@ Jeremy Howard and Sebastian Ruder.
 \newblock Universal language model fine-tuning for text classification.
 \newblock {\em arXiv preprint arXiv:1801.06146}, 2018.
 
+\bibitem{ioffe2015batch}
+Sergey Ioffe and Christian Szegedy.
+\newblock Batch normalization: Accelerating deep network training by reducing
+  internal covariate shift.
+\newblock {\em arXiv preprint arXiv:1502.03167}, 2015.
+
 \bibitem{jordan1986serial}
 MI~Jordan.
 \newblock Serial order: a parallel distributed processing approach. technical

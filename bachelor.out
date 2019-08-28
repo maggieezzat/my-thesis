@@ -5,54 +5,54 @@
 \BOOKMARK [1][-]{section.2.2}{Artificial Neural Networks}{chapter.2}% 5
 \BOOKMARK [2][-]{subsection.2.2.1}{Feed Forward Neural Networks}{section.2.2}% 6
 \BOOKMARK [2][-]{subsection.2.2.2}{Recurrent Neural Networks}{section.2.2}% 7
-\BOOKMARK [2][-]{subsection.2.2.3}{Convolution Neural Networks}{section.2.2}% 8
-\BOOKMARK [1][-]{section.2.3}{Speech Recognition}{chapter.2}% 9
-\BOOKMARK [2][-]{subsection.2.3.1}{HMM-Based ASR Systems}{section.2.3}% 10
-\BOOKMARK [2][-]{subsection.2.3.2}{Hybrid Systems}{section.2.3}% 11
-\BOOKMARK [2][-]{subsection.2.3.3}{End-to-End Systems}{section.2.3}% 12
-\BOOKMARK [2][-]{subsection.2.3.4}{Deep Speech 2: End-to-End Speech Recognition Model}{section.2.3}% 13
-\BOOKMARK [1][-]{section.2.4}{Text Analysis}{chapter.2}% 14
-\BOOKMARK [2][-]{subsection.2.4.1}{Encoder-Decoder Architecture}{section.2.4}% 15
-\BOOKMARK [2][-]{subsection.2.4.2}{Attention Mechanism}{section.2.4}% 16
-\BOOKMARK [2][-]{subsection.2.4.3}{The Transformer}{section.2.4}% 17
-\BOOKMARK [2][-]{subsection.2.4.4}{Bidirectional Encoder from Transformer \(BERT\)}{section.2.4}% 18
-\BOOKMARK [0][-]{chapter.3}{Methodology}{}% 19
-\BOOKMARK [1][-]{section.3.1}{System Overview}{chapter.3}% 20
-\BOOKMARK [2][-]{subsection.3.1.1}{Two sub-systems vs. One speech-based End-to-End System}{section.3.1}% 21
-\BOOKMARK [1][-]{section.3.2}{Automatic Speech Recognition Unit}{chapter.3}% 22
-\BOOKMARK [2][-]{subsection.3.2.1}{Hybrid Kaldi-based ASR Model}{section.3.2}% 23
-\BOOKMARK [2][-]{subsection.3.2.2}{Why End-to-End ASR?}{section.3.2}% 24
-\BOOKMARK [2][-]{subsection.3.2.3}{Deep Speech 2: Adapting to German}{section.3.2}% 25
-\BOOKMARK [2][-]{subsection.3.2.4}{Speech Recognition Data}{section.3.2}% 26
-\BOOKMARK [1][-]{section.3.3}{Deep Speech 2: TensorFlow}{chapter.3}% 27
-\BOOKMARK [2][-]{subsection.3.3.1}{Training on Google Colab GPUs}{section.3.3}% 28
-\BOOKMARK [2][-]{subsection.3.3.2}{Training on Google Cloud TPUs}{section.3.3}% 29
-\BOOKMARK [1][-]{section.3.4}{Deep Speech 2: PyTorch}{chapter.3}% 30
-\BOOKMARK [2][-]{subsection.3.4.1}{Training on Google Colab}{section.3.4}% 31
-\BOOKMARK [2][-]{subsection.3.4.2}{Microsoft Azure Platform}{section.3.4}% 32
-\BOOKMARK [2][-]{subsection.3.4.3}{Training I: Using Tuda-De, M-AILABS, Common Voice }{section.3.4}% 33
-\BOOKMARK [2][-]{subsection.3.4.4}{Training II: Adding all data}{section.3.4}% 34
-\BOOKMARK [2][-]{subsection.3.4.5}{Language Model Decoding}{section.3.4}% 35
-\BOOKMARK [2][-]{subsection.3.4.6}{Language Model Re-scoring}{section.3.4}% 36
-\BOOKMARK [2][-]{subsection.3.4.7}{Auto Correct With Transformer}{section.3.4}% 37
-\BOOKMARK [2][-]{subsection.3.4.8}{Comparing with the Hybrid Model}{section.3.4}% 38
-\BOOKMARK [1][-]{section.3.5}{Text Classifier Unit}{chapter.3}% 39
-\BOOKMARK [2][-]{subsection.3.5.1}{Why BERT?}{section.3.5}% 40
-\BOOKMARK [2][-]{subsection.3.5.2}{Implementation}{section.3.5}% 41
-\BOOKMARK [2][-]{subsection.3.5.3}{Pre-training Data}{section.3.5}% 42
-\BOOKMARK [2][-]{subsection.3.5.4}{Pre-Training Process}{section.3.5}% 43
-\BOOKMARK [2][-]{subsection.3.5.5}{Fine-Tuning Data}{section.3.5}% 44
-\BOOKMARK [2][-]{subsection.3.5.6}{Fine-Tuning Process}{section.3.5}% 45
-\BOOKMARK [0][-]{chapter.4}{Results}{}% 46
-\BOOKMARK [1][-]{section.4.1}{Automatic Speech Recognition Unit: Deep Speech 2}{chapter.4}% 47
-\BOOKMARK [2][-]{subsection.4.1.1}{ASR Evaluation Metrics}{section.4.1}% 48
-\BOOKMARK [2][-]{subsection.4.1.2}{ASR Results}{section.4.1}% 49
-\BOOKMARK [1][-]{section.4.2}{Text Classifier Unit: BERT}{chapter.4}% 50
-\BOOKMARK [2][-]{subsection.4.2.1}{BERT Evaluation Metrics}{section.4.2}% 51
-\BOOKMARK [2][-]{subsection.4.2.2}{BERT Results}{section.4.2}% 52
-\BOOKMARK [0][-]{chapter.5}{Conclusion, Limitations and Future Work}{}% 53
-\BOOKMARK [0][-]{section*.104}{Appendix}{}% 54
+\BOOKMARK [1][-]{section.2.3}{Automatic Speech Recognition}{chapter.2}% 8
+\BOOKMARK [2][-]{subsection.2.3.1}{HMM-Based ASR Systems}{section.2.3}% 9
+\BOOKMARK [2][-]{subsection.2.3.2}{End-to-End Systems}{section.2.3}% 10
+\BOOKMARK [2][-]{subsection.2.3.3}{Deep Speech 2: End-to-End Speech Recognition Model}{section.2.3}% 11
+\BOOKMARK [1][-]{section.2.4}{Text Analysis}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.4.1}{Encoder-Decoder Architecture}{section.2.4}% 13
+\BOOKMARK [2][-]{subsection.2.4.2}{Attention Mechanism}{section.2.4}% 14
+\BOOKMARK [2][-]{subsection.2.4.3}{The Transformer}{section.2.4}% 15
+\BOOKMARK [2][-]{subsection.2.4.4}{Bidirectional Encoder from Transformer \(BERT\)}{section.2.4}% 16
+\BOOKMARK [0][-]{chapter.3}{Methodology}{}% 17
+\BOOKMARK [1][-]{section.3.1}{System Overview}{chapter.3}% 18
+\BOOKMARK [2][-]{subsection.3.1.1}{Two sub-systems vs. One speech-based End-to-End System}{section.3.1}% 19
+\BOOKMARK [1][-]{section.3.2}{Automatic Speech Recognition Unit}{chapter.3}% 20
+\BOOKMARK [2][-]{subsection.3.2.1}{Hybrid Kaldi-based ASR Model}{section.3.2}% 21
+\BOOKMARK [2][-]{subsection.3.2.2}{Why End-to-End ASR?}{section.3.2}% 22
+\BOOKMARK [2][-]{subsection.3.2.3}{Deep Speech 2: Adapting to German}{section.3.2}% 23
+\BOOKMARK [2][-]{subsection.3.2.4}{Speech Recognition Data}{section.3.2}% 24
+\BOOKMARK [1][-]{section.3.3}{Deep Speech 2: TensorFlow}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.1}{Training on Google Colab GPUs}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.2}{Training on Google Cloud TPUs}{section.3.3}% 27
+\BOOKMARK [1][-]{section.3.4}{Deep Speech 2: PyTorch}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.4.1}{Training on Google Colab}{section.3.4}% 29
+\BOOKMARK [2][-]{subsection.3.4.2}{Microsoft Azure Platform}{section.3.4}% 30
+\BOOKMARK [2][-]{subsection.3.4.3}{Training I: Using Tuda-De, M-AILABS, Common Voice }{section.3.4}% 31
+\BOOKMARK [2][-]{subsection.3.4.4}{Training II: Adding all data}{section.3.4}% 32
+\BOOKMARK [2][-]{subsection.3.4.5}{Language Model Decoding}{section.3.4}% 33
+\BOOKMARK [2][-]{subsection.3.4.6}{Language Model Re-scoring}{section.3.4}% 34
+\BOOKMARK [2][-]{subsection.3.4.7}{Auto Correct With Transformer}{section.3.4}% 35
+\BOOKMARK [2][-]{subsection.3.4.8}{Comparing with the Hybrid Model}{section.3.4}% 36
+\BOOKMARK [1][-]{section.3.5}{Text Classifier Unit}{chapter.3}% 37
+\BOOKMARK [2][-]{subsection.3.5.1}{Why BERT?}{section.3.5}% 38
+\BOOKMARK [2][-]{subsection.3.5.2}{Implementation}{section.3.5}% 39
+\BOOKMARK [2][-]{subsection.3.5.3}{Pre-training Data}{section.3.5}% 40
+\BOOKMARK [2][-]{subsection.3.5.4}{Pre-Training Process}{section.3.5}% 41
+\BOOKMARK [2][-]{subsection.3.5.5}{Fine-Tuning Data}{section.3.5}% 42
+\BOOKMARK [2][-]{subsection.3.5.6}{Fine-Tuning Process}{section.3.5}% 43
+\BOOKMARK [0][-]{chapter.4}{Results}{}% 44
+\BOOKMARK [1][-]{section.4.1}{Automatic Speech Recognition Unit: Deep Speech 2}{chapter.4}% 45
+\BOOKMARK [2][-]{subsection.4.1.1}{ASR Evaluation Metrics}{section.4.1}% 46
+\BOOKMARK [2][-]{subsection.4.1.2}{ASR Results}{section.4.1}% 47
+\BOOKMARK [1][-]{section.4.2}{Text Classifier Unit: BERT}{chapter.4}% 48
+\BOOKMARK [2][-]{subsection.4.2.1}{BERT Evaluation Metrics}{section.4.2}% 49
+\BOOKMARK [2][-]{subsection.4.2.2}{BERT Results}{section.4.2}% 50
+\BOOKMARK [0][-]{chapter.5}{Conclusion and Future Work}{}% 51
+\BOOKMARK [1][-]{section.5.1}{Conclusion}{chapter.5}% 52
+\BOOKMARK [1][-]{section.5.2}{Future Work}{chapter.5}% 53
+\BOOKMARK [0][-]{section*.114}{Appendix}{}% 54
 \BOOKMARK [0][-]{appendix.A}{Lists}{}% 55
-\BOOKMARK [1][-]{section*.105}{List of Abbreviations}{appendix.A}% 56
-\BOOKMARK [1][-]{appendix*.106}{List of Figures}{appendix.A}% 57
-\BOOKMARK [0][-]{appendix*.107}{References}{}% 58
+\BOOKMARK [1][-]{section*.115}{List of Abbreviations}{appendix.A}% 56
+\BOOKMARK [1][-]{appendix*.116}{List of Figures}{appendix.A}% 57
+\BOOKMARK [0][-]{appendix*.117}{References}{}% 58

@@ -1,7 +1,7 @@
 \chapter{Literature Review}
-\label{chap:background}
+\label{chap:bg}
 
-%1st section
+
 \section{Natural Language Processing} 
 \label{bg:s1}
 
@@ -16,8 +16,32 @@ In this Literature Review, two sub-domains are explored: Speech Recognition and 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%2nd section
-\section{Artificial Neural Networks} \label{bg:s2} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Artificial Neural Networks} 
+\label{bg:s2} 
+
 \ac{ANN}s are models of computation modeled after the biological neural networks that constitute the human brain. 
 In early researches of Neural Networks, biological resemblance was emphasized \cite{hopfield1982neural} \cite{jordan1986serial} \cite{elman1990finding}, however, nowadays it is obvious that \ac{ANN}s have little in common compared to biological neural networks. That is due to the biological emphasis being abandoned in favor of achieving satisfying computational results.
 
@@ -35,7 +59,8 @@ There exist many variations of \ac{ANN}s, the simplest form of them are those wh
 
 
 \subsection{Feed Forward Neural Networks}
-\label{bg:sub1}
+\label{bg:s2_sub1}
+
 The most popular form of \ac{FNN}s is the \ac{MLP}s \cite{rumelhart1985learning} \cite{werbos1988generalization} \cite{bishop1995neural}.
 With the absence of cycles, the nodes are arranged into layers, as seen in Figure \ref{Fig:2}, where the layers are classified as an input layer, one or many hidden layers, and an output layer. 
 
@@ -48,7 +73,8 @@ Neural Networks learn by looking at input examples without being explicitly prog
 
 The algorithm for training neural networks is back-propagation \cite{rumelhart1985learning}. Back-propagation uses the chain rule to calculate the derivative of the loss function $L(\widehat{y}, y)$ with respect to each parameter in the network. The parameters (weights) are then adjusted in the direction of less error by an optimization algorithm called gradient descent. This is known as the \enquote{Backward Pass}
 
-\subsubsection{Sequence Models and the Problem with \ac{FNN}s}\label{bg:subsub1}
+\subsubsection{Sequence Models and the Problem with \ac{FNN}s}
+\label{bg:s2_sub1_subsub1}
 
 A distinctive feature of the \ac{FNN}s is the \enquote{independence assumption}. That is the presented examples (data points) are assumed to be independent of each other, rendering the \ac{FNN}s unable to correctly represent input or output sequences with dependencies either in time or space. Examples are words forming sentences, letters forming words, frames of video, snippets of audio clips, DNA sequences, etc. \ac{FNN}s knows no concept of “context” when analyzing the given examples, they simply are unable to capture dependencies. With the context being a crucial element when analyzing sequences, a simple solution that addresses that matter is the \enquote{time-window} solution, i.e. collect the data from either side of the current input into a window. The fact that the range of useful context (either on the left or the right) vary widely from sequence to sequence and in most cases is unknown makes this approach not very efficient.
 For example, a model trained using a finite-length context window of length $n$ could never be trained to answer the simple question, \enquote{what was the data point seen $n+\mathrm{1}$ time steps ago?}
@@ -59,9 +85,9 @@ Thus, it was required to extend these powerful and successful models to better s
 
 
 \subsection{Recurrent Neural Networks} 
-\label{bg:sub2}
+\label{bg:s2_sub2}
 
-\includefig{0.8}{RNN}{A Recurrent Neural Network}{Fig:4}
+\includefig{0.8}{rnn_c}{A Recurrent Neural Network}{Fig:4}
 
 \ac{ANN}s containing cycles are referred to as recursive, or recurrent neural networks. \ac{RNN}s are models which have the ability to pass information learnt across past data points, while processing sequential data points one by one. Thus they can model inputs and outputs which are correlated either in time or space. They are considered to be neural networks possessing memory.
 
@@ -82,7 +108,8 @@ Equation \ref{eq:1} explains how each hidden state nodes values are calculated. 
 
 
 \subsubsection{Bidirectional \ac{RNN}s}
-\label{bg:subsub3}
+\label{bg:s2_sub2_subsub1}
+
 A slight variation of the \ac{RNN}s is the \ac{BRNN}s \cite{schuster1997bidirectional}. The \ac{BRNN}s have a slight different architecture which allows it to take into consideration information not only from the present and the past input but also from the future input. Note that by past, present, and future, we not only refer to temporal sequences, but also sequences which have a strong emphasis of the order, but bear no explicit notion of time; this is actually the case with natural languages. In \ac{BRNN}s each hidden layer is duplicated into two layers (Figure \ref{Fig:5}), one layer takes as inputs the present data point and information from the past data point. This is referred to as the \enquote{forward direction}. The other layer takes as input the present data point and information from the future data point. This is referred to as the \enquote{backward direction}. The \ac{BRNN}s are fully described by equations \ref{eq:4}, \ref{eq:5} and \ref{eq:6}, where $ \mathbf{h_t^{<f>}} $ represents the forward direction of the hidden layers and $ \mathbf{h_t^{<b>}} $ represents the backward direction of the hidden layers. The predicted value $ \mathbf{\widehat{y_t}} $ is now a function of both the forward and the backward direction. Considering information from both sides of the sequence instead of the left side only adds much power to the network as the context is understood much better. Consider the following example: \enquote{She said, \enquote{Teddy bears are on sale.}}, \enquote{She said, \enquote{Teddy Roosevelt was an amazing president}} On these two examples, considering \enquote{Teddy} as the current data point, the left sequence is the same, however, the right sequence is crucial in understanding the context. Thus for an application like named-entity recognition, using \ac{BRNN}s adds much gain. One drawback about \ac{BRNN}s is that the entire sequence is needed before any predictions can be made, therefore for real-time systems it is a bit slow as it introduces some delay.
 
 \begin{equation}
@@ -104,66 +131,83 @@ A slight variation of the \ac{RNN}s is the \ac{BRNN}s \cite{schuster1997bidirect
 
 \includefig{0.9}{bidirectional}{A Bidirectional Recurrent Neural Network}{Fig:5}
 
-\subsubsection{Problems with \ac{RNN}s}
-\label{bg:subsub4}
-TODO: vanishing and exploding gradients \cite{hochreiter1991untersuchungen} \cite{hochreiter2001gradient} \cite{bengio1994learning}
+\subsubsection{Problems with \ac{RNN}s: Vanishing and Exploding Gradients}
+\label{bg:s2_sub2_subsub2}
+% vanishing and exploding gradients \cite{hochreiter1991untersuchungen} 
+
+Learning with \ac{RNN}s suffers difficulty at learning long-range dependencies. This problem was tackled by \cite{bengio1994learning} and \cite{hochreiter2001gradient}, where for learning long-range dependencies, errors need to back-propagate across several time steps. This leads to the problem of \enquote{vanishing and exploding gradients}. Whether the gradients will explode or vanish is relevant to whether the weight of the recurrent edge is greater than one or less than one. The gradients which come from deeper layers have to go through continuous matrix multiplications (due to the chain rule), and as they approach the first layers, they might decrease exponentially until they vanish if their values is less than one. If their values is larger than one, they increase exponentially to very high values. These are the vanishing and exploding gradients problems respectively. Unfortunately, they render the model unable to learn anything.
 
 
 \subsubsection{Long Short-Term Memory}
-\label{bg:subsub5}
+\label{bg:s2_sub2_subsub3}
+
 \ac{LSTM} \cite{hochreiter1997long} is a variation of vanilla \ac{RNN}s which was designed as a solution to the vanishing gradients problem. The main idea was to replace the ordinary node with a \enquote{memory cell}. The cell uses \enquote{gates} in order to make decisions about which information to keep and which to discard. It has three gates: output, input, and forget gate, which are analogous to read, write, and reset operations for the memory cell. The gates uses sigmoid as the activation function, where the values of the gates ranges from 0 to 1.
 
+\ac{LSTM}s are fully described by equations \ref{eq:100} , \ref{eq:101}, \ref{eq:102}, \ref{eq:103}, \ref{eq:104} and \ref{eq:105}, where $\mathbf{i_t}$, $\mathbf{f_t}$, $\mathbf{o_t}$, $\mathbf{\vec{c_t}}$, $\mathbf{c_t}$, $\mathbf{h_t}$ are respectively the input gate, forget gate, output gate, the cell candidate value, the new cell value and the hidden vector. 
 
-TODO 1: continue LSTM
+%\begin{equation}
+%\label{eq:8}
+%\mathbf{i_t } = \sigma(W^{ih} \; \mathbf{h_{t-1}} + W^{ix}\; \mathbf{x_t}  + \mathbf{b_i})
+%\end{equation}
 
+%\begin{equation}
+%\label{eq:7}
+%\mathbf{f_t} = \sigma(W^{fh}\;\mathbf{h_{t-1}}  + W^{fx} \; \mathbf{x_t}  + \mathbf{b_f})
+%\end{equation}
 
-\begin{equation}
-\label{eq:10}
-\mathbf{\vec{c_t}} = tanh(W^{ch} \; \mathbf{h_{t-1}} + W^{cx}\; \mathbf{x_t} + \mathbf{b_c})
-\end{equation}
-
-\begin{equation}
-\label{eq:7}
-\mathbf{f_t} = \sigma(W^{fh}\;\mathbf{h_{t-1}}  + W^{fx} \; \mathbf{x_t}  + \mathbf{b_f})
-\end{equation}
-
-\begin{equation}
-\label{eq:8}
-\mathbf{i_t } = \sigma(W^{ih} \; \mathbf{h_{t-1}} + W^{ix}\; \mathbf{x_t}  + \mathbf{b_i})
-\end{equation}
-
-\begin{equation}
-\label{eq:9}
-\mathbf{o_t} = \sigma(W^{oh} \; \mathbf{h_{t-1}} + W^{ox}\; \mathbf{x_t} + \mathbf{b_o})
-\end{equation}
-
-%candidate value
-
-
-
+%\begin{equation}
+%\label{eq:10}
+%\mathbf{\vec{c_t}} = tanh(W^{ch} \; \mathbf{h_{t-1}} + W^{cx}\; \mathbf{x_t} + \mathbf{b_c})
+%\end{equation}
 
 %new cell value
-\begin{equation}
-\label{eq:11}
-\mathbf{c_t} = \mathbf{i_t } \; \mathbf{\vec{c_t}} \; + \;  \mathbf{f_t} \; \mathbf{c_{t-1}}
-\end{equation}
+%\begin{equation}
+%\label{eq:11}
+%\mathbf{c_t} = \mathbf{i_t } \; \mathbf{\vec{c_t}} \; + \;  \mathbf{f_t} \; \mathbf{c_{t-1}}
+%\end{equation}
 
-\begin{equation}
-\label{eq:12}
-\mathbf{h_t} = tanh(\mathbf{c_t}) \; \mathbf{o_t}
-\end{equation}
+
+
+%\begin{equation}
+%\label{eq:9}
+%\mathbf{o_t} = \sigma(W^{oh} \; \mathbf{h_{t-1}} + W^{ox}\; \mathbf{x_t} + \mathbf{b_o})
+%\end{equation}
+
+
+%\begin{equation}
+%\label{eq:12}
+%\mathbf{h_t} = tanh(\mathbf{c_t}) \; \mathbf{o_t}
+%\end{equation}
+
+
+\begin{align}
+	\mathbf{i_t } & = \sigma(W^{ih} \; \mathbf{h_{t-1}} + W^{ix}\; \mathbf{x_t}  + \mathbf{b_i}) \label{eq:100} \\ 
+	\mathbf{f_t} & = \sigma(W^{fh}\;\mathbf{h_{t-1}}  + W^{fx} \; \mathbf{x_t}  + \mathbf{b_f}) \label{eq:101} \\
+	\mathbf{\vec{c_t}} & = tanh(W^{ch} \; \mathbf{h_{t-1}} + W^{cx}\; \mathbf{x_t} + \mathbf{b_c}) \label{eq:102} \\
+	\mathbf{c_t} & = \mathbf{i_t } \; \mathbf{\vec{c_t}} \; + \;  \mathbf{f_t} \; \mathbf{c_{t-1}} \label{eq:103} \\
+	\mathbf{o_t} & = \sigma(W^{oh} \; \mathbf{h_{t-1}} + W^{ox}\; \mathbf{x_t} + \mathbf{b_o}) \label{eq:104} \\
+	\mathbf{h_t} & = tanh(\mathbf{c_t}) \; \mathbf{o_t} \label{eq:105}  \\
+\end{align}
+
+
+%\mathbf{o_t}$ &= $\sigma(W^{oh} \; \mathbf{h_{t-1}} + W^{ox}\; \mathbf{x_t} + \mathbf{b_o}) \\
+%\mathbf{h_t}$ &= $tanh(\mathbf{c_t}) \; \mathbf{o_t}$ \\
+
+
+
+\ac{LSTM}s have many variations such as \ac{LSTM}s with peehole connections or \ac{GRU}s. \ac{LSTM}s were proven to offer better handling of long range dependencies.
 
 \includefig{0.8}{LSTM1}{An \ac{LSTM} Cell}{Fig:6}
 
 
 
-\subsubsection{Problems with \ac{LSTM}}
-\label{conc:subsub7}
-TODO 2: Problems with LSTMS
+%\subsubsection{Problems with \ac{LSTM}}
+%\label{conc:subsub7}
+%TODO 2: Problems with LSTMS
 
-\subsection{Convolution Neural Networks} 
-\label{bg:sub3}
-TODO 3: CNNs
+%\subsection{Convolution Neural Networks} 
+%\label{bg:sub3}
+%TODO 3: CNNs
 
 
 
@@ -173,13 +217,33 @@ TODO 3: CNNs
 Now that we have examined neural networks, we move forward to discussing the speech recognition problem in the next section.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %3rd section
-\section{Speech Recognition} \label{bg:s3}
+\section{Automatic Speech Recognition} 
+\label{bg:s3}
 
 The speech recognition problem is defined as follows: given an audio waveform, the task is to find the closest possible transcription to what an accurate human would generate upon listening to that audio. This problem dates back to 1960's, however, the basic \ac{HMM} speech recognition systems originated in mid 1980's. In this section we investigate the mechanics of the \ac{ASR} systems based on \ac{HMM}s, moving to the so called \enquote{hybrid models} and eventually the growingly popular \enquote{End-to-End Systems}.
 
-\subsection{HMM-Based \ac{ASR} Systems} 
-\label{bg:sub4}
+\subsection{HMM-Based ASR Systems} 
+\label{bg:s3_sub1}
 
 
 \includefig{0.8}{asr_colored}{An ASR System}{Fig:7}
@@ -202,7 +266,7 @@ We begin by shedding light on the feature extraction module.
 
 
 \subsubsection{Feature Extraction} 
-\label{bg:sub5}
+\label{bg:s3_sub1_subsub1}
 
 
 \includefig{0.8}{mfcc_colored}{MFCC}{Fig:7}
@@ -214,7 +278,7 @@ Afterward, we take the log of the filterbank energies. This is also done to mimi
 Then we compute the \ac{DCT} of the log filterbank energies. This is due to the fact that the filterbanks are overlapping, so we compute \ac{DCT} to reduce the correlation between filter bank amplitudes. The resulting \ac{DCT} coefficients are referred to as MFCC coefficients. Only 12 coefficients are kept and the rest are dropped, this is proven to improve the \ac{ASR} performance. These 12 coefficients, together with the normalized energy, they form the feature vector.
 
 \subsubsection{Acoustic Model} 
-\label{bg:subsub6}
+\label{bg:s3_sub1_subsub2}
 
 The acoustic model provides a mechanism for computing the probability of a sequence of acoustic vectors $Y$ given a word sequence $w$. 
 To be able to do this, each word is broken into its constituent phones using the pronouncing dictionary, and we model each phone as a \ac{HMM}. \ac{HMM}s are statistical models that are used to predict a sequence of unknown random variables - hence the name \enquote{hidden} -  from a set of observed variables. Here the unknown variable is the phones sequence, and the observed variables are the sequence of acoustic vectors. \ac{HMM}s are \ac{FSM} based on the \enquote{Markov Assumption} which states that, in order to predict the future (next state), all we need to know is the present  (current state) only, neglecting the past (previous states). \textit{i.e.} $ P(q_i|q_1,q_2,...,q_{i-1}) = P(q_i|q_{i-1}) $. Each phone model has an entry state and an exit state which are used to connect different phone models together forming words, and words to be connected together forming sentences. The states are connected by arrows which represent the probabilities of moving from one state to another. Thus, $a_{ij}$ represents the probability of moving from state $i$ to state $j$. Each time $t$, the \ac{HMM} changes state moving from state $i$ to $j$ with probability $a_{ij}$, and generating an acoustic vector $\mathbf{y_t}$ with probability $b_j(\mathbf{y_t})$. \ac{HMM}s are also based on the \enquote{Output Independence Assumption}, which states that the probability of an output observation $o_i$ depends solely on the state $q_i$ that generated that observation, not on any other state or any other output observation. From that, the \ac{HMM} is fully described by:
@@ -261,17 +325,17 @@ This method is guaranteed to find the best sequence of phones and thus words, ho
 
 
 \subsubsection{Language Model} 
-\label{bg:subsub5}
+\label{bg:s3_sub1_subsub3}
 
 The sole objective of the language model is to compute the probability of a word $w_k$ given the previous words $W_1^{k-1} = w_1,w_2,...,w_{k-1}$. \enquote{N-grams}, are one of the earliest and simplest, but still efficient methods used for language modeling. As implied by the name, n-grams make the assumption that the probability of a certain word $w_k$, depends only on the previous $n-1$ words. More formally, $P(w_k|W_1^{k-1}) = P(W_{k-n+1}^{k-1}) $. N-grams are pretty simple to compute; using frequency counts from textual data and storing them in look-up tables simply gets us the probability distribution. They also capture dependencies and semantics and hence are highly suitable for languages like English due to the fact that word order matters a lot and nearest neighbors contribute largely to the contextual meaning of a word. For more compound languages like German, higher order grams would be a more convenient choice.  
 
 
-\subsection{Hybrid Systems} 
-\label{bg:sub6}
-TODO 6 : Hybrid Systems
+%\subsection{Hybrid Systems} 
+%\label{bg:sub6}
+%TODO 6 : Hybrid Systems
 %%%%%%%%%%%%%% Problems with hybrid models
-PROBLEMS WITH HYBRID MODELS
-THE NEED TO SEGMENT THE DATA
+%PROBLEMS WITH HYBRID MODELS
+%THE NEED TO SEGMENT THE DATA
 
 
 Although \ac{RNN}s seemed to be the best suit for sequence models, their use in speech recognition has been limited to hybrid models which do not make use of the full capabilities of the \ac{RNN}s
@@ -280,7 +344,7 @@ Although \ac{RNN}s seemed to be the best suit for sequence models, their use in 
 
 
 \subsection{End-to-End Systems} 
-\label{bg:sub7}
+\label{bg:s3_sub2}
 
 
 In 2006, Graves \textit{et al.} introduced a novel way of using \ac{RNN}s for labeling unsegmented sequence data which they called \ac{CTC} \cite{graves2006connectionist}. We shall demonstrate their paper in this section. 
@@ -320,26 +384,61 @@ There are two efficient mechanisms for finding the most probable label sequence:
 
 
 \subsection{Deep Speech 2: End-to-End Speech Recognition Model} 
-\label{bg:sub8}
+\label{bg:s3_sub3}
 
-In this section, we examine a case study for end-to-end \ac{ASR} models which is Deep Speech 2 \cite{amodei2016deep}. We discuss the model architecture presented in the paper and refrain from describing the datasets used since they are language specific (The authors use their model for both English and Mandarin). We also do not discuss the training procedure or settings since we shall discuss our own settings for training this model on German in the methodology section \ref{chap:methodology}.
+In this section, we examine a case study for end-to-end \ac{ASR} models which is Deep Speech 2 \cite{amodei2016deep}. We discuss the model architecture presented in the paper and refrain from describing the datasets used since they are language specific (The authors use their model for both English and Mandarin). We also do not discuss the training procedure or settings since we shall discuss our own settings for training this model on German in the methodology chapter \ref{chap:methodology}.
 
 \includefig{0.8}{deepspeech2}{Deep Speech 2 Model Architecture \cite{amodei2016deep}}{Fig:12}
 
-Deep Speech 2 is an end-to-end \ac{ASR} model inspired by previous work both in \ac{ANN}s and speech recognition. It makes use of \ac{RNN}s, \ac{CNN}s and \ac{CTC}. The model itself is a deep neural network consisting of many \ac{RNN} layers preceded by one or more \ac{CNN} input layers, and  
+Deep Speech 2 is an end-to-end \ac{ASR} model inspired by previous work both in \ac{ANN}s and speech recognition. It makes use of \ac{RNN}s, \ac{CNN}s and \ac{CTC}. The model itself is a deep neural network consisting of many \ac{RNN} layers preceded by one or more \ac{CNN} input layers, and followed by one special layer called \enquote{Lookahead Convolution}, and a fully connected layer before a softmax layer. The inputs to the model are numerical feature vectors extracted from audio files, the outputs are the predicted sequence of alphabets for the chosen language.
+
+\subsubsection{Sorta Grad}
+\label{bg:s3_sub3_subsub1}
+
+The problem with \ac{CTC} is that training is found to be unstable in early phases. This is due to the fact that gradients need to be propagated through poorly estimated weights over deep layers. This might suffer from exploding gradients problem, in addition to the \ac{CTC} assigning around zero probability to long transcriptions. To overcome this obstacle, the authors suggest a mechanism they call \enquote{Sorta Grad}, where the longest utterances are considered to be the most difficult and the shortest ones are considered to be the easiest. During the first epoch in training, easier (\textit{i.e.} shorter) utterances are examined first, followed by the more difficult ones (\textit{i.e.} longer). During the following epochs, the data is shuffled and no longer processed in increasing order.
+
+\subsubsection{Batch Normalization}
+\label{bg:s3_sub3_subsub2}
+
+Training deep large recurrent neural network is not an easy task, it becomes more challenging as the depth and hidden size increases. Batch Normalization \cite{ioffe2015batch} can accelerate \ac{RNN}s training and sometimes improving generalization error. For this purpose, authors implement batch normalization technique as given by equation \ref{eq:30}, where the mean and variance over all items in the mini-batch over the length
+of the sequence for each hidden unit.
+
+\begin{equation}
+\label{eq:30}
+	{h_t}^l = f(B(W^l h^l_{t-1}) + U^l h^l_{t-1}) 
+\end{equation}
+
+
+\subsubsection{Look-ahead Convolution}
+\label{bg:s3_sub3_subsub3}
+
+It is intuitive to believe that a model utilizing bidirectional \ac{RNN}s will perform better than a model using unidirectional ones, since they lose the future context. Despite improving the performance, bidirectional \ac{RNN}s introduces delay and are difficult to deploy in an online real-time system.
+To overcome this issue, the authors use unidirectional \ac{RNN} network coupled with a special layer that they call \enquote{Look-ahead Convolution} which is illustrated in figure \ref{fig:50}. This layer allows us to specify the amount of required future context through a parameter $\tau$. It learns to combine the neuron's activations $\tau$ time steps in the future.
+
+\includefig{0.8}{lookahead_3}{Look-ahead Convolution architecture with future context size of 2}{fig:50}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 
 
-Sorta Grad
-Batch Norm
-Lookahead Convolution
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
 
 %4th section
-\section{Text Analysis} \label{bg:s4}
+\section{Text Analysis} 
+\label{bg:s4}
 
 Text analysis is defines as the procedure of extracting information and semantics from written text. Some famous text analysis tasks are text classification, document summarization, named-entity recognition and entity-relation extraction. 
 Text classification is a class of \ac{NLP} tasks which has been significant to many applications such as spam filtering, language identification, sentiment analysis, and email routing. 
@@ -360,7 +459,7 @@ Encoder-Decoder architecture has been marked broadly useful in modeling sequence
  % In the following section, we take a look into the encoder-encoder architecture.
 
 \subsection{Encoder-Decoder Architecture} 
-\label{bg:sub9}
+\label{bg:s4_sub1}
 
 The popular encoder-decoder architecture was first proposed by Cho \textit{et al.} (2014a) \cite{cho2014learning} and Sutskever \textit{et al.} (2014) \cite{sutskever2014sequence}. This system consists of two \ac{RNN}s which work together as an encoder-decoder pair (Figure \ref{Fig:7}). The encoder encodes a variable-length sequence (e.g.\ a sentence) into a fixed-length vector which we call summary vector $ \mathbf{c} $. The decoder then uses this fixed-length vector to generate a variable-length output sequence. The vector $ \mathbf{c} $ has information from each data point in the input sequence.
 
@@ -395,18 +494,18 @@ The problem with this architecture is that the performance deteriorates as the l
 
 
 \subsection{Attention Mechanism} 
-\label{bg:sub10}
+\label{bg:s4_sub2}
 
 Attention is the ability to focus on important details and discard irrelevant information. Dzmitry \textit{et al.} (2015) \cite{bahdanau2014neural} proposes modifying the encoder-decoder architecture through arming the decoder with \enquote{attention mechanism} which allows it to attend to only parts in the input sentence which are most relevant to the target word in the output sequence. The characteristic feature of this approach is that it doesn't encode all the input sequence into a fixed-length vector as the basic encoder-decoder approach explained in section \ref{bg:sub8}. Instead, it encodes the input sequence into a number of vectors, and chooses which of these vectors are relevant to the target word in order to make a prediction. This approach performs better on longer input sequences as it is no longer needed to suppress all the information given in the sentence in one fixed-length vector. We demonstrate the model proposed by Dzmitry \textit{et al.} (2015) \cite{bahdanau2014neural} starting by the encoder, then the decoder.
 
 \includefig{0.8}{attention}{The modified encoder-decoder system implementing the attention mechanism. The output $y_i$ has a corresponding context vector $\mathbf{c_i}$ which is a summation of the weighted annotations $h_j$. The most relevant annotations in the input sentence have the largest weights $\alpha_{ij}$, while the least relevant annotations have the smallest weights. }{Fig:8}
 
 \subsubsection{\RomanNumeralCaps{1}. Encoder} 
-\label{bg:subsub9}
+\label{bg:s4_sub2_subsub1}
 No major modifications were performed on the encoder, however, a \ac{BRNN} was used instead of a uni-directional one (Figure \ref{Fig:8}). This is done in order to gather left and right context as discussed in section \ref{bg:subsub3}. By concatenating the forward hidden state $ {\overrightarrow{{h_j}}}$ and the backward hidden state $ {\overleftarrow{{h_j}}}$ for each word $x_j$ in the sequence, an annotation ${h_j}=[{\overrightarrow{{{h_j}^T}}}, {\overleftarrow{{{h_j}^T}}}] $ for that word is obtained. The decoder would use these annotations later in the attention layer as we will explain.
 
 \subsubsection{\RomanNumeralCaps{2}. Decoder} 
-\label{bg:subsub10}
+\label{bg:s4_sub2_subsub2}
 
 The decoder searches through the input sentence for the most for the most relevant data points when generating an on output. It is composed of a  \ac{RNN} that also uses the hidden state $ \mathbf{s_i}$ to calculate $ y_i$. The hidden state $ \mathbf{s_i}$ of the decoder is calculated according to equation \ref{eq:16}, where it uses the previously generated symbol $y_{i-1}$, the previous hidden state $\mathbf{s_{i-1}}$ and a context vector $\mathbf{c_i}$ in predicting the target symbol. The conditional probability of the target symbol is given by \ref{eq:17}. The major difference here from the basic encoder-decoder approach is that there is a distinct context vector $\mathbf{c_i}$ for each target word $y_i$ (Figure \ref{Fig:8}). The context vector $\mathbf{c_i}$ is calculated as a weighted sum of the sequence of annotations produced by the encoder as seen in equation \ref{eq:18}. Each annotation $h_i$ carries information from the entire input sequence with strong emphasis on parts closer to the $i-$th point of the input. The weights of the annotations are given by equation \ref{eq:19}
 
@@ -450,12 +549,13 @@ Using the attention mechanism, there is no need to suppress all information of t
 In 2017, Google came up with a novel architecture using only the attention mechanism and eliminated the use of \ac{RNN}s, they called their model \enquote{The Transformer} \cite{vaswani2017attention} and we explain the idea behind it in the next section.
 
 \subsection{The Transformer} 
-\label{bg:sub12}
+\label{bg:s4_sub3}
 
 \includefig{0.8}{transformer}{The Transformer architecture }{Fig:9}
 
 \subsubsection{Problem with Recurrence} 
-\label{bg:subsub11}
+\label{bg:s4_sub3_subsub1}
+
 As seen in equation \ref{eq:12}, \ac{RNN}s calculate the hidden state as a function of the current data point and the previous hidden state. This sequential nature of calculation largely suits the sequential nature of natural languages, however, this introduces a major problem as it hinders parallelization among the training inputs. This issue is manifested when the input sequences are of longer lengths. The Transformer abandons recurrence in order to achieve more parallelization and efficiency in performance.
 
 
@@ -465,7 +565,7 @@ The Transformer follows the prominent encoder-decoder architecture, however, int
 
 
 \subsubsection{I. Encoder} 
-\label{bg:subsub12}
+\label{bg:s4_sub3_subsub2}
 
 The encoder consists of $N$ layers, each layer made up of two sub-layers. The first sub-layer is called  \enquote{Self-Attention} sub-layer. This is one of the most influential changes proposed in the Transformer. 
 What self-attention does is that it calculates the relevance of each word in the sequence to every other word in the same sequence. 
@@ -479,7 +579,7 @@ The second sub-layer is a simple fully-connected feed-forward neural network. A 
 
 
 \subsubsection{II. Decoder} 
-\label{bg:subsub13}
+\label{bg:s4_sub3_subsub3}
 
 The decoder is made up from $N$ layers as well, with each layer composed of three sub-layers: a self-attention layer similar to the self-attention layer implemented in the encoder, however, modified so that each word can attend only to words earlier in the sequence and not to consequent words, a feed-forward network, and an additional layer which implements the encoder-decoder attention as explained in section \ref{bg:sub9}. As in the encoder, residual connections are applied on each sub-layer followed by layer normalization.
 
@@ -498,13 +598,15 @@ The Transformer model utilizes the attention mechanism in three different ways:
 In 2018, Google released a general-purpose \enquote{language understanding} model based on the Transformer and called it \ac{BERT} (Bidirectional Encoder from Transformer) \cite{devlin2018bert}. We demonstrate the idea behind it in the next section.
 
 \subsection{Bidirectional Encoder from Transformer (BERT)} 
-\label{bg:sub13}
+\label{bg:s4_sub4}
 
 As discussed earlier, transfer learning in \ac{NLP} consists of pre-training a model using a large amount of unlabeled text data on a general task such as language modeling - \textit{i.e.} predicting the next word in a sentence. The next step is to then make use of the learned information in solving a downstream task, such as text classification, text summarization, etc. Previously, transfer learning has been limited to context-free word embeddings. That means that for every word, there is a single word embedding generated, regardless of the context. For example: the word \enquote{bank} would have the same word embedding in \enquote{bank deposit} and \enquote{river bank}. Limitations like such have motivated the use of deep neural language models that generate \enquote{contextual representations}. The idea is to train a neural network model that maps a vector to each word taking into consideration the entire sentence, instead of having only one vector for the word disregarding the context.
 
 \ac{BERT} \cite{devlin2018bert} is a method of pre-training contextual language representations, which has been inspired by similar works like Elmo \cite{Peters:2018} and ULMfit \cite{howard2018universal}. The distinctive feature of \ac{BERT} over these methods is that in these models, words are conditioned either on the left context only, or conditioned on a trivial concatenation of the left and right context. \ac{BERT}, in contrast, was described in the paper \cite{devlin2018bert} as \enquote{deeply bidirectional}, as each word is conditioned on both its left and right context in all layers in a deep neural network. We briefly demonstrate the model architecture and the pre-training tasks.
 
 \subsubsection{Model Architecture and Input Representation}
+\label{bg:s4_sub4_subsub1}
+
 \ac{BERT} is based upon the Transformer \cite{vaswani2017attention} described in section \ref{bg:sub1}, where it consists of a multi-layer bidirectional Transformer encoder. In \cite{devlin2018bert}, two versions of \ac{BERT} were introduced with different sizes; a relatively small model with 12 layers, 768 hidden size, and a total of 110M parameters, this model was used only for comparison purposes, and the authors refer to it as $BERT_{BASE}$. The larger model has 24 layers, 1024 hidden size, and a total of 340M parameters, they call it $BERT_{LARGE}$ and it achieves state of the art results on many \ac{NLP} tasks.
 
 As seen in figure \ref{Fig:9}, the input can represents either a sentence pair, or a single sentence. For sentence pairs, the two sentences are separated by a special $[SEP]$ token, and a sentence $A$ embedding is added to the first sentence tokens, while a sentence $B$ embedding is added to the second sentence tokens. For single sentences, only sentence $A$ embedding is used; these are called \enquote{segment embeddings}. In addition to the segment embeddings, positional embeddings \cite{gehring2017convolutional} are also added in order to model the sequential nature of text. For every token, its input representation is generated by summing its token embedding, its segment embedding, and its positional embedding. A special $[CLS]$ token is injected at the beginning of each sequence. The output corresponding to this token is used as the output for classification tasks. It should be noted that instead of using whole words as tokens, word pieces \cite{wu2016google} are used.
@@ -514,7 +616,7 @@ As seen in figure \ref{Fig:9}, the input can represents either a sentence pair, 
 
 
 \subsubsection{Pre-training Tasks}
-
+\label{bg:s4_sub4_subsub2}
 
 \begin{enumerate}
 	\item \textbf{Masked LM} \\
