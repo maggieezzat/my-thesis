@@ -16,17 +16,17 @@
 \contentsline {subsubsection}{Language Model}{11}{section*.35}
 \contentsline {subsection}{\numberline {2.3.2}End-to-End Systems}{12}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}Deep Speech 2: End-to-End Speech Recognition Model}{13}{subsection.2.3.3}
-\contentsline {subsubsection}{Sorta Grad}{13}{section*.39}
+\contentsline {subsubsection}{Sorta Grad}{14}{section*.39}
 \contentsline {subsubsection}{Batch Normalization}{14}{section*.40}
 \contentsline {subsubsection}{Look-ahead Convolution}{14}{section*.41}
-\contentsline {section}{\numberline {2.4}Text Analysis}{15}{section.2.4}
+\contentsline {section}{\numberline {2.4}Text Analysis}{14}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Encoder-Decoder Architecture}{15}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Attention Mechanism}{16}{subsection.2.4.2}
-\contentsline {subsubsection}{\MakeUppercase {i}. Encoder}{17}{section*.46}
+\contentsline {subsubsection}{\MakeUppercase {i}. Encoder}{16}{section*.46}
 \contentsline {subsubsection}{\MakeUppercase {ii}. Decoder}{17}{section*.47}
 \contentsline {subsection}{\numberline {2.4.3}The Transformer}{18}{subsection.2.4.3}
 \contentsline {subsubsection}{Problem with Recurrence}{18}{section*.49}
-\contentsline {subsubsection}{I. Encoder}{19}{section*.50}
+\contentsline {subsubsection}{I. Encoder}{18}{section*.50}
 \contentsline {subsubsection}{II. Decoder}{19}{section*.52}
 \contentsline {subsection}{\numberline {2.4.4}Bidirectional Encoder from Transformer (BERT)}{20}{subsection.2.4.4}
 \contentsline {subsubsection}{Model Architecture and Input Representation}{20}{section*.53}
@@ -47,10 +47,10 @@
 \contentsline {subsubsection}{\MakeUppercase {v}. Spoken Wikipedia Corpus}{27}{section*.68}
 \contentsline {subsubsection}{Transcriptions Cleaning}{28}{section*.70}
 \contentsline {section}{\numberline {3.3}Deep Speech 2: TensorFlow}{28}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Training on Google Colab GPUs}{28}{subsection.3.3.1}
-\contentsline {subsubsection}{Implementation Details}{28}{section*.73}
+\contentsline {subsection}{\numberline {3.3.1}TensorFlow GPU}{28}{subsection.3.3.1}
+\contentsline {subsubsection}{Implementation Details: Estimators}{28}{section*.73}
 \contentsline {subsubsection}{Training Data, Process and Results}{29}{section*.74}
-\contentsline {subsection}{\numberline {3.3.2}Training on Google Cloud TPUs}{29}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.2}TensorFlow TPU}{29}{subsection.3.3.2}
 \contentsline {subsubsection}{Migrating from Regular Estimator to TPU Estimator}{29}{section*.77}
 \contentsline {section}{\numberline {3.4}Deep Speech 2: PyTorch}{29}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Training on Google Colab}{30}{subsection.3.4.1}

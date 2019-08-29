@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2019.3.13)  28 AUG 2019 17:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2019.3.13)  29 AUG 2019 09:18
 entering extended mode
 **./bachelor.tex
 (bachelor.tex
@@ -415,20 +415,8 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
  (bachelor.aux
 (GUC_TitlePage.aux) (acknowledgments.aux) (abstract.aux) (introduction.aux)
-(background.aux
-
-LaTeX Warning: Label `Fig:7' multiply defined.
-
-
-LaTeX Warning: Label `Fig:7' multiply defined.
-
-
-LaTeX Warning: Label `Fig:9' multiply defined.
-
-
-LaTeX Warning: Label `Fig:9' multiply defined.
-
-) (methodology.aux) (results.aux) (conclusion.aux) (appendix.aux))
+(background.aux) (methodology.aux) (results.aux) (conclusion.aux) (appendix.aux
+))
 \openout1 = `bachelor.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
@@ -609,8 +597,6 @@ Package acronym Info: Label `acro:AI' newly defined as it shall be overridden
 although it is yet undefined on input line 4.
 Package acronym Info: Label `acro:NLP' newly defined as it shall be overridden
 although it is yet undefined on input line 4.
-Package acronym Info: Label `acro:ASR' newly defined as it shall be overridden
-although it is yet undefined on input line 8.
 ) [7] [8
 
 
@@ -630,6 +616,8 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 17.
+Package acronym Info: Label `acro:ASR' newly defined as it shall be overridden
+although it is yet undefined on input line 17.
  [1
 
 
@@ -646,7 +634,7 @@ Package acronym Info: Label `acro:NLU' newly defined as it shall be overridden
 although it is yet undefined on input line 11.
 Package acronym Info: Label `acro:ANN' newly defined as it shall be overridden
 although it is yet undefined on input line 45.
-<images/neuron.png, id=395, 594.22pt x 366.36874pt>
+<images/neuron.png, id=394, 594.22pt x 366.36874pt>
 File: images/neuron.png Graphic file (type png)
 <use images/neuron.png>
 Package pdftex.def Info: images/neuron.png  used on input line 52.
@@ -672,7 +660,7 @@ although it is yet undefined on input line 64.
 
 
 ]
-<images/simple_nn.png, id=427, 282.05376pt x 264.99pt>
+<images/simple_nn.png, id=426, 282.05376pt x 264.99pt>
 File: images/simple_nn.png Graphic file (type png)
 <use images/simple_nn.png>
 Package pdftex.def Info: images/simple_nn.png  used on input line 67.
@@ -684,150 +672,119 @@ Missing character: There is no ú in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
-<images/rnn_c.png, id=450, 734.2632pt x 236.082pt>
+<images/rnn_c.png, id=449, 734.2632pt x 236.082pt>
 File: images/rnn_c.png Graphic file (type png)
 <use images/rnn_c.png>
-Package pdftex.def Info: images/rnn_c.png  used on input line 90.
+Package pdftex.def Info: images/rnn_c.png  used on input line 88.
 (pdftex.def)             Requested size: 409.72125pt x 131.7331pt.
 Package acronym Info: Label `acro:RNN' newly defined as it shall be overridden
-although it is yet undefined on input line 92.
+although it is yet undefined on input line 90.
 Package acronym Info: Label `acro:BPTT' newly defined as it shall be overridden
 
-although it is yet undefined on input line 96.
+although it is yet undefined on input line 94.
  [5 <./images/rnn_c.png>]
 Package acronym Info: Label `acro:BRNN' newly defined as it shall be overridden
 
-although it is yet undefined on input line 113.
-<images/bidirectional.png, id=484, 690.9012pt x 332.9238pt>
+although it is yet undefined on input line 111.
+<images/bidirectional.png, id=483, 690.9012pt x 332.9238pt>
 File: images/bidirectional.png Graphic file (type png)
 <use images/bidirectional.png>
-Package pdftex.def Info: images/bidirectional.png  used on input line 132.
+Package pdftex.def Info: images/bidirectional.png  used on input line 129.
 (pdftex.def)             Requested size: 460.93153pt x 222.1129pt.
 Package acronym Info: Label `acro:LSTM' newly defined as it shall be overridden
 
-although it is yet undefined on input line 144.
+although it is yet undefined on input line 141.
  [6]
 Package acronym Info: Label `acro:GRU' newly defined as it shall be overridden
-although it is yet undefined on input line 198.
+although it is yet undefined on input line 161.
 <images/LSTM1.png, id=522, 824.07875pt x 511.9125pt>
 File: images/LSTM1.png Graphic file (type png)
 <use images/LSTM1.png>
-Package pdftex.def Info: images/LSTM1.png  used on input line 200.
+Package pdftex.def Info: images/LSTM1.png  used on input line 163.
 (pdftex.def)             Requested size: 409.72125pt x 254.51837pt.
 Package acronym Info: Label `acro:HMM' newly defined as it shall be overridden
-although it is yet undefined on input line 243.
- [7 <./images/bidirectional.png>]
-<images/asr_colored.png, id=546, 595.023pt x 542.9886pt>
+although it is yet undefined on input line 192.
+<images/asr_colored.png, id=528, 595.023pt x 542.9886pt>
 File: images/asr_colored.png Graphic file (type png)
 <use images/asr_colored.png>
-Package pdftex.def Info: images/asr_colored.png  used on input line 249.
+Package pdftex.def Info: images/asr_colored.png  used on input line 198.
 (pdftex.def)             Requested size: 409.72125pt x 373.90028pt.
- [8 <./images/LSTM1.png>]
-<images/mfcc_colored.png, id=563, 682.7106pt x 520.8258pt>
+ [7 <./images/bidirectional.png>]
+<images/mfcc_colored.png, id=558, 682.7106pt x 520.8258pt>
 File: images/mfcc_colored.png Graphic file (type png)
 <use images/mfcc_colored.png>
-Package pdftex.def Info: images/mfcc_colored.png  used on input line 272.
+Package pdftex.def Info: images/mfcc_colored.png  used on input line 221.
 (pdftex.def)             Requested size: 409.72125pt x 312.57736pt.
+ [8 <./images/LSTM1.png>]
 Package acronym Info: Label `acro:MFCC' newly defined as it shall be overridden
 
-although it is yet undefined on input line 274.
+although it is yet undefined on input line 223.
 Package acronym Info: Label `acro:FFT' newly defined as it shall be overridden
-although it is yet undefined on input line 276.
+although it is yet undefined on input line 225.
 Package acronym Info: Label `acro:DCT' newly defined as it shall be overridden
-although it is yet undefined on input line 278.
- [9 <./images/asr_colored.png>]
+although it is yet undefined on input line 227.
 Package acronym Info: Label `acro:FSM' newly defined as it shall be overridden
-although it is yet undefined on input line 284.
-[10 <./images/mfcc_colored.png>]
-
-LaTeX Warning: Reference `eq:12' on page 11 undefined on input line 312.
-
-
-LaTeX Warning: Reference `eq:25' on page 11 undefined on input line 312.
-
-[11]
+although it is yet undefined on input line 233.
+ [9 <./images/asr_colored.png>] [10 <./images/mfcc_colored.png>]
 Package acronym Info: Label `acro:CTC' newly defined as it shall be overridden
-although it is yet undefined on input line 350.
- [12]
-<images/deepspeech2.png, id=646, 481.04718pt x 462.22687pt>
+although it is yet undefined on input line 280.
+ [11] [12]
+<images/deepspeech2.png, id=652, 481.04718pt x 462.22687pt>
 File: images/deepspeech2.png Graphic file (type png)
 <use images/deepspeech2.png>
-Package pdftex.def Info: images/deepspeech2.png  used on input line 391.
+Package pdftex.def Info: images/deepspeech2.png  used on input line 321.
 (pdftex.def)             Requested size: 409.72125pt x 393.69873pt.
 Package acronym Info: Label `acro:CNN' newly defined as it shall be overridden
-although it is yet undefined on input line 393.
- [13]
-<images/lookahead_3.png, id=675, 623.4492pt x 269.3262pt>
+although it is yet undefined on input line 323.
+ [13 <./images/deepspeech2.png>]
+<images/lookahead_3.png, id=682, 623.4492pt x 269.3262pt>
 File: images/lookahead_3.png Graphic file (type png)
 <use images/lookahead_3.png>
-Package pdftex.def Info: images/lookahead_3.png  used on input line 418.
+Package pdftex.def Info: images/lookahead_3.png  used on input line 348.
 (pdftex.def)             Requested size: 409.72125pt x 176.99968pt.
-
-
-LaTeX Warning: Reference `bg:sub13' on page 14 undefined on input line 450.
-
 Package acronym Info: Label `acro:BERT' newly defined as it shall be overridden
 
-although it is yet undefined on input line 450.
-[14 <./images/deepspeech2.png>]
-<images/encoder-decoder.png, id=696, 828.2142pt x 346.4142pt>
+although it is yet undefined on input line 382.
+
+[14]
+<images/encoder-decoder.png, id=703, 828.2142pt x 346.4142pt>
 File: images/encoder-decoder.png Graphic file (type png)
 <use images/encoder-decoder.png>
-Package pdftex.def Info: images/encoder-decoder.png  used on input line 466.
+Package pdftex.def Info: images/encoder-decoder.png  used on input line 398.
 (pdftex.def)             Requested size: 409.72125pt x 171.37248pt.
  [15 <./images/lookahead_3.png>]
-
-LaTeX Warning: Reference `bg:sub8' on page 16 undefined on input line 499.
-
-<images/attention.png, id=722, 597.9138pt x 482.7636pt>
+<images/attention.png, id=733, 597.9138pt x 482.7636pt>
 File: images/attention.png Graphic file (type png)
 <use images/attention.png>
-Package pdftex.def Info: images/attention.png  used on input line 501.
+Package pdftex.def Info: images/attention.png  used on input line 433.
 (pdftex.def)             Requested size: 409.72125pt x 330.81628pt.
-
-LaTeX Warning: Reference `bg:subsub3' on page 16 undefined on input line 505.
-
-[16 <./images/encoder-decoder.png>] [17 <./images/attention.png>]
-<images/transformer.png, id=756, 740.5266pt x 332.442pt>
+ [16 <./images/encoder-decoder.png>]
+[17 <./images/attention.png>]
+<images/transformer.png, id=764, 740.5266pt x 332.442pt>
 File: images/transformer.png Graphic file (type png)
 <use images/transformer.png>
-Package pdftex.def Info: images/transformer.png  used on input line 554.
+Package pdftex.def Info: images/transformer.png  used on input line 475.
 (pdftex.def)             Requested size: 409.72125pt x 183.93935pt.
-
-
-LaTeX Warning: Reference `eq:12' on page 18 undefined on input line 559.
-
-[18 <./images/transformer.png>]
-<images/weights.png, id=769, 444.91219pt x 406.51875pt>
+<images/weights.png, id=770, 444.91219pt x 406.51875pt>
 File: images/weights.png Graphic file (type png)
 <use images/weights.png>
-Package pdftex.def Info: images/weights.png  used on input line 578.
+Package pdftex.def Info: images/weights.png  used on input line 499.
 (pdftex.def)             Requested size: 256.07481pt x 233.97597pt.
-
-
-LaTeX Warning: Reference `bg:sub9' on page 19 undefined on input line 584.
-
-
-LaTeX Warning: Reference `bg:sub10' on page 19 undefined on input line 594.
-
-[19 <./images/weights.png>]
-
-LaTeX Warning: Reference `bg:sub1' on page 20 undefined on input line 610.
-
-<images/bert_input.png, id=807, 682.04813pt x 215.30438pt>
+ [18 <./images/transformer.png>] [19 <./images/weights.png>]
+<images/bert_input.png, id=819, 682.04813pt x 215.30438pt>
 File: images/bert_input.png Graphic file (type png)
 <use images/bert_input.png>
-Package pdftex.def Info: images/bert_input.png  used on input line 615.
+Package pdftex.def Info: images/bert_input.png  used on input line 536.
 (pdftex.def)             Requested size: 512.14963pt x 161.68156pt.
 Package acronym Info: Label `acro:MLM' newly defined as it shall be overridden
-although it is yet undefined on input line 623.
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 624--633
+although it is yet undefined on input line 544.
+ [20]
+Underfull \hbox (badness 10000) in paragraph at lines 545--554
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 624--633
+Underfull \hbox (badness 10000) in paragraph at lines 545--554
 
  []
 
@@ -844,99 +801,92 @@ Chapter 3.
 Package hyperref Warning: Option `colorlinks' has already been used,
 (hyperref)                setting the option has no effect on input line 10.
 
-<images/my_system.png, id=839, 268.8444pt x 521.7894pt>
+<images/my_system.png, id=851, 268.8444pt x 521.7894pt>
 File: images/my_system.png Graphic file (type png)
 <use images/my_system.png>
 Package pdftex.def Info: images/my_system.png  used on input line 14.
 (pdftex.def)             Requested size: 204.85672pt x 397.59114pt.
 [23 <./images/my_system.png>]
 Package acronym Info: Label `acro:GMM' newly defined as it shall be overridden
-although it is yet undefined on input line 41.
+although it is yet undefined on input line 77.
 Package acronym Info: Label `acro:TDNN' newly defined as it shall be overridden
 
-although it is yet undefined on input line 41.
+although it is yet undefined on input line 77.
 Package acronym Info: Label `acro:SWC' newly defined as it shall be overridden
-although it is yet undefined on input line 41.
+although it is yet undefined on input line 77.
 Package acronym Info: Label `acro:WER' newly defined as it shall be overridden
-although it is yet undefined on input line 41.
+although it is yet undefined on input line 77.
  [24]
-
-LaTeX Warning: Reference `bg:sub8' on page 25 undefined on input line 51.
+Underfull \hbox (badness 10000) in paragraph at lines 97--97
+[][][][][]$\OT1/cmtt/m/n/10 https : / / voice-[]prod-[]bundler-[]ee1969a6ce8178
+826482b88e843c335139bd3fb4 . s3 . amazonaws . com /
+ []
 
 [25]
-<images/srt.jpg, id=927, 501.875pt x 501.875pt>
+<images/srt.jpg, id=946, 501.875pt x 501.875pt>
 File: images/srt.jpg Graphic file (type jpg)
 <use images/srt.jpg>
-Package pdftex.def Info: images/srt.jpg  used on input line 83.
+Package pdftex.def Info: images/srt.jpg  used on input line 119.
 (pdftex.def)             Requested size: 409.72125pt x 409.74052pt.
- [26]
+
+Overfull \hbox (2.15614pt too wide) in paragraph at lines 129--130
+\OT1/cmr/m/n/12 The Spo-ken Wikipedia Cor-pus ([])[] is an on-go-ing project wh
+ere vol-un-teer read-ers sub-mit Wikipedia
+ []
+
+[26]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [27 <./images/srt.jpg>]
 Missing character: There is no ¬ in font cmr12!
 Missing character: There is no £ in font cmr12!
 Package acronym Info: Label `acro:TPU' newly defined as it shall be overridden
-although it is yet undefined on input line 139.
+although it is yet undefined on input line 213.
 Package acronym Info: Label `acro:ASIC' newly defined as it shall be overridden
 
-although it is yet undefined on input line 139.
+although it is yet undefined on input line 213.
 Package acronym Info: Label `acro:CER' newly defined as it shall be overridden
-although it is yet undefined on input line 149.
+although it is yet undefined on input line 223.
  [28]
 Package acronym Info: Label `acro:HBM' newly defined as it shall be overridden
-although it is yet undefined on input line 156.
+although it is yet undefined on input line 230.
 Package acronym Info: Label `acro:XLA' newly defined as it shall be overridden
-although it is yet undefined on input line 161.
+although it is yet undefined on input line 235.
  [29]
 Package acronym Info: Label `acro:VM' newly defined as it shall be overridden
-although it is yet undefined on input line 188.
-<images/training.png, id=1040, 702.625pt x 451.6875pt>
+although it is yet undefined on input line 297.
+<images/training.png, id=1061, 702.625pt x 451.6875pt>
 File: images/training.png Graphic file (type png)
 <use images/training.png>
-Package pdftex.def Info: images/training.png  used on input line 246.
+Package pdftex.def Info: images/training.png  used on input line 355.
 (pdftex.def)             Requested size: 460.93153pt x 296.3227pt.
  [30]
-<images/trainingep19.png, id=1060, 918.43124pt x 397.485pt>
+<images/trainingep19.png, id=1085, 918.43124pt x 397.485pt>
 File: images/trainingep19.png Graphic file (type png)
 <use images/trainingep19.png>
-Package pdftex.def Info: images/trainingep19.png  used on input line 326.
+Package pdftex.def Info: images/trainingep19.png  used on input line 435.
 (pdftex.def)             Requested size: 460.93153pt x 199.48802pt.
- [31] [32 <./images/training.png>]
-
-LaTeX Warning: Reference `milde2018open' on page 33 undefined on input line 355
-.
-
-[33]
-
-LaTeX Warning: Reference `eq:25' on page 34 undefined on input line 364.
-
-[34 <./images/trainingep19.png>]
+ [31] [32 <./images/training.png>] [33] [34 <./images/trainingep19.png>]
 Package acronym Info: Label `acro:T2T' newly defined as it shall be overridden
-although it is yet undefined on input line 391.
+although it is yet undefined on input line 503.
 
-Overfull \hbox (0.11813pt too wide) in paragraph at lines 403--406
+Overfull \hbox (0.11813pt too wide) in paragraph at lines 515--519
 []\OT1/cmr/m/n/12 We ex-per-i-ment with two hyper-parameter sets of the trans-f
 ormer: \OT1/cmtt/m/n/12 transformer[]base[]single[]gpu
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 413--413
+Underfull \hbox (badness 10000) in paragraph at lines 526--526
 [][][][][]$\OT1/cmtt/m/n/10 http : / / ltdata1 . informatik . uni-[]hamburg . d
 e / kaldi _ tuda _ de / de _ 400k _ nnet3chain _ tdnn1f _ 2048 _ sp _ bi .
  []
 
 [35] [36]
-
-LaTeX Warning: Reference `bg:sub13' on page 37 undefined on input line 427.
-
 Package acronym Info: Label `acro:MRPC' newly defined as it shall be overridden
 
-although it is yet undefined on input line 432.
-
-LaTeX Warning: Reference `bg:sub13' on page 37 undefined on input line 432.
-
-[37]
-Underfull \hbox (badness 10000) in paragraph at lines 455--455
+although it is yet undefined on input line 579.
+ [37]
+Underfull \hbox (badness 10000) in paragraph at lines 602--602
 [][][][][]$\OT1/cmtt/m/n/10 https : / / github . com / tensorflow / tensor2tens
 or / blob / master / tensor2tensor / data _ generators / text _
  []
@@ -944,43 +894,25 @@ or / blob / master / tensor2tensor / data _ generators / text _
 [38] [39]
 Package acronym Info: Label `acro:10KGNAD' newly defined as it shall be overrid
 den
-although it is yet undefined on input line 487.
-<images/articles_per_class.png, id=1277, 627.09282pt x 443.40656pt>
+although it is yet undefined on input line 634.
+<images/articles_per_class.png, id=1310, 627.09282pt x 443.40656pt>
 File: images/articles_per_class.png Graphic file (type png)
 <use images/articles_per_class.png>
-Package pdftex.def Info: images/articles_per_class.png  used on input line 528.
+Package pdftex.def Info: images/articles_per_class.png  used on input line 675.
 
 (pdftex.def)             Requested size: 409.72125pt x 289.71962pt.
-
-
-LaTeX Warning: Reference `Fig:28' on page 40 undefined on input line 531.
-
-
-LaTeX Warning: Reference `table:10KGNAD' on page 40 undefined on input line 531
-.
-
-[40 <./images/articles_per_class.png>]
-<images/bert_classifier.png, id=1295, 468.24937pt x 356.83313pt>
+ [40 <./images/articles_per_class.png>]
+<images/bert_classifier.png, id=1330, 468.24937pt x 356.83313pt>
 File: images/bert_classifier.png Graphic file (type png)
 <use images/bert_classifier.png>
-Package pdftex.def Info: images/bert_classifier.png  used on input line 537.
+Package pdftex.def Info: images/bert_classifier.png  used on input line 684.
 (pdftex.def)             Requested size: 409.72125pt x 312.24998pt.
-
-
-LaTeX Warning: Reference `Fig:28' on page 41 undefined on input line 539.
-
-
-LaTeX Warning: Reference `meth:sub3' on page 41 undefined on input line 547.
-
-
-LaTeX Warning: Reference `meth:sub4' on page 41 undefined on input line 547.
-
-) [41 <./images/bert_classifier.png>] [42]
+ [41 <./images/bert_classifier.png>]) [42]
 \openout2 = `results.aux'.
 
  (results.tex
 Chapter 4.
-<images/asr_results.png, id=1326, 624.83438pt x 642.14906pt>
+<images/asr_results.png, id=1364, 624.83438pt x 642.14906pt>
 File: images/asr_results.png Graphic file (type png)
 <use images/asr_results.png>
 Package pdftex.def Info: images/asr_results.png  used on input line 42.
@@ -1044,23 +976,20 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 118.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 118.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 118.
 Package rerunfilecheck Info: File `bachelor.out' has not changed.
-(rerunfilecheck)             Checksum: C35D593961ABEDBCDCCA682675F5A3D2;4242.
+(rerunfilecheck)             Checksum: 3B3FA4CD5EB73BD8937E1B98A7B8A2D8;4212.
 
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
  10743 strings out of 493308
- 157804 string characters out of 3138750
- 280061 words of memory out of 3000000
- 13649 multiletter control sequences out of 15000+200000
+ 157840 string characters out of 3138750
+ 280587 words of memory out of 3000000
+ 13648 multiletter control sequences out of 15000+200000
  15268 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,15n,48p,2107b,524s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,15n,48p,2109b,524s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTe
@@ -1079,9 +1008,9 @@ e1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 s/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
 t12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/doublestroke/dsrom12.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on bachelor.pdf (65 pages, 1721093 bytes).
+Output written on bachelor.pdf (65 pages, 1730244 bytes).
 PDF statistics:
- 1613 PDF objects out of 1728 (max. 8388607)
- 389 named destinations out of 1000 (max. 500000)
+ 1657 PDF objects out of 1728 (max. 8388607)
+ 390 named destinations out of 1000 (max. 500000)
  585 words of extra memory for PDF output out of 10000 (max. 10000000)
 

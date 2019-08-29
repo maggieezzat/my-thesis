@@ -23,8 +23,8 @@
 \BOOKMARK [2][-]{subsection.3.2.3}{Deep Speech 2: Adapting to German}{section.3.2}% 23
 \BOOKMARK [2][-]{subsection.3.2.4}{Speech Recognition Data}{section.3.2}% 24
 \BOOKMARK [1][-]{section.3.3}{Deep Speech 2: TensorFlow}{chapter.3}% 25
-\BOOKMARK [2][-]{subsection.3.3.1}{Training on Google Colab GPUs}{section.3.3}% 26
-\BOOKMARK [2][-]{subsection.3.3.2}{Training on Google Cloud TPUs}{section.3.3}% 27
+\BOOKMARK [2][-]{subsection.3.3.1}{TensorFlow GPU}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.2}{TensorFlow TPU}{section.3.3}% 27
 \BOOKMARK [1][-]{section.3.4}{Deep Speech 2: PyTorch}{chapter.3}% 28
 \BOOKMARK [2][-]{subsection.3.4.1}{Training on Google Colab}{section.3.4}% 29
 \BOOKMARK [2][-]{subsection.3.4.2}{Microsoft Azure Platform}{section.3.4}% 30

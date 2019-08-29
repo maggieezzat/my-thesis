@@ -45,16 +45,16 @@ For our \ac{ASR} system, we use two evaluation metrics: \ac{WER} and \ac{CER}.
 \label{res:s1_sub2_subsub1}
 
 The model we report results on is Deep Speech 2 - PyTorch version, trained on the German data described in section \ref{meth:s2_sub4} except for \ac{SWC}.
-Table \ref{results:fig1} lists the \ac{WER} and \ac{CER} obtained with their corresponding settings. For each experiment, we report the model used (which epoch's output used in decoding), whether we use n-gram language model decoding, and the $n$ value if any, along with the alpha, beta and beam width. We also report the data used to make the language model. If language model re-scoring is performed, we describe the data used for the larger model in \enquote{rescoring data} column. Some results are reported both for our test set (Tuda-De + Common Voice) and Kaldi's model dataset (Tuda-De only excluding Realteck microphone). Some results are only reported for our test set. 
+Table \ref{results:fig1} lists the \ac{WER} and \ac{CER} obtained with their corresponding settings. For each experiment, we report the model used (which epoch's output used in decoding), whether we use n-gram language model decoding, and the $n$ value if any, along with the alpha, beta and beam width. We also report the data used to make the language model. If language model re-scoring is performed, we describe the data used for the larger model in \enquote{rescoring data} column. Some results are reported both for our test set (Tuda-De and Common Voice) and Kaldi's model dataset (Tuda-De). Some results are only reported for our test set. 
 
 \subsubsection{Our Best Model}
 \label{res:s1_sub2_subsub2}
-Our best model was achieved using language model decoding with a $5-$gram model and no re-scoring, using all the data collected for language modeling: German Wikipedia, $5M$ web sentences, $8M$ maryfied sentences and our \ac{ASR} transcriptions. Beam width was set to $500$. Alpha and beta were set to $0.9$ and $0.2$ respectively. The model achieves $15.587\%$ \ac{WER} and a \ac{CER} of $5.806\%$ on our test set.
+Our best model was achieved using language model decoding with a $5-$gram model and no re-scoring, using all the data collected for language modeling: German Wikipedia, $5M$ web sentences, $8M$ normalized Mary sentences and our \ac{ASR} transcriptions. Beam width was set to $500$. Alpha and beta were set to $0.9$ and $0.2$ respectively. The model achieves $15.587\%$ \ac{WER} and a \ac{CER} of $5.806\%$ on our test set.
 
 \subsubsection{Our Best Model vs Kaldi's Model}
 \label{res:s1_sub2_subsub3}
 
-In this experiment, we compare the Kaldi-based model to our best model. Since both models were evaluated and tested on different dev and test sets, we can not take the best models' results as an indication. In order to perform a fair comparison, we test Kaldi's best model on our test set (Tuda-De + Common Voice) and test our best model on Kaldi's Test set. It is to be noted that all results in the far right two columns in table \ref{results:fig1} are the results on the whole Tuda-De test set. On the contrary, it was found that Kaldi's model discarded the realteck microphone from Tuda-De's test set since it is of very low quality. In this experiment, we discard realteck as well in for the sake of reporting accurate results. The results are reported in table \ref{results:table1}.
+In this experiment, we compare the Kaldi-based model to our best model. Since both models were evaluated and tested on different dev and test sets, we can not take the best models' results as an indication. In order to perform a fair comparison, we test Kaldi's best model on our test set (Tuda-De and Common Voice) and test our best model on Kaldi's Test set. It is to be noted that all results in the far right two columns in table \ref{results:fig1} are the results on the whole Tuda-De test set. On the contrary, it was found that Kaldi's model discarded the Realtek microphone from Tuda-De's test set since it is of very low quality. In this experiment, we discard Realtek as well in for the sake of reporting accurate results. The results are reported in table \ref{results:table1}.
 
 \begin{table}[!ht]
 	\centering
@@ -105,7 +105,7 @@ In this section, we list the evaluation metrics used to evaluate our \ac{BERT} m
 		Training Steps 					& 	100,000 		\\ \hline
 		Warmup Steps 					& 	10,000 			\\ \hline
 		\hline
-		Masked LM Accuracy 		 		&   0.60    		\\ \hline
+		Masked LM Accuracy 		 		&   0.63    		\\ \hline
 		Next Sentence Accuracy   		&   0.98    		\\ \hline
 		
 	\end{tabular}

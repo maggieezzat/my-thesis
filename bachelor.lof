@@ -7,7 +7,7 @@
 \contentsline {figure}{\numberline {2.5}{\ignorespaces An \ac {LSTM} Cell\relax }}{8}{figure.caption.25}
 \contentsline {figure}{\numberline {2.6}{\ignorespaces An ASR System\relax }}{9}{figure.caption.27}
 \contentsline {figure}{\numberline {2.7}{\ignorespaces MFCC\relax }}{10}{figure.caption.29}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Deep Speech 2 Model Architecture \cite {amodei2016deep}\relax }}{14}{figure.caption.37}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Deep Speech 2 Model Architecture \cite {amodei2016deep}\relax }}{13}{figure.caption.37}
 \contentsline {figure}{\numberline {2.9}{\ignorespaces Look-ahead Convolution architecture with future context size of 2\relax }}{15}{figure.caption.42}
 \contentsline {figure}{\numberline {2.10}{\ignorespaces An Encoder-Decoder System. The encoder encodes a variable-length sequence into a fixed-length vector $\mathbf {c}$. The decoder uses the summary vector $\mathbf {c}$ along with the previously generated predicted symbol from the previous time step $y_{t-1}$ and the current hidden state $\mathbf {s_t}$ to generate an output $y_t$ \relax }}{16}{figure.caption.44}
 \contentsline {figure}{\numberline {2.11}{\ignorespaces The modified encoder-decoder system implementing the attention mechanism. The output $y_i$ has a corresponding context vector $\mathbf {c_i}$ which is a summation of the weighted annotations $h_j$. The most relevant annotations in the input sentence have the largest weights $\alpha _{ij}$, while the least relevant annotations have the smallest weights. \relax }}{17}{figure.caption.45}
@@ -15,12 +15,12 @@
 \contentsline {figure}{\numberline {2.13}{\ignorespaces Self Attention Weights \relax }}{19}{figure.caption.51}
 \contentsline {figure}{\numberline {2.14}{\ignorespaces BERT input representation\relax }}{21}{figure.caption.54}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper action accordingly.\relax }}{23}{figure.caption.57}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Automated Dispatcher Actions System comprising two sub-systems: Automatic Speech Recognition unit taking input as raw speech from the driver. The text output is fed into a trained Text Classifier which issues the proper actions accordingly.\relax }}{23}{figure.caption.57}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Format of \texttt {srt} Files\relax }}{27}{figure.caption.67}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Training Summary after Epoch 13\relax }}{32}{figure.caption.84}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Training Summary after Epoch 19\relax }}{34}{figure.caption.90}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Training summary from epoch 1 to epoch 13. The graph shows the \ac {WER}, \ac {CER} and loss.\relax }}{32}{figure.caption.84}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Training summary till epoch 19. The graph shows the \ac {WER}, \ac {CER} and the loss.\relax }}{34}{figure.caption.90}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces 10KGNAD: Articles per Class\relax }}{40}{figure.caption.102}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch\relax }}{41}{figure.caption.103}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces The task specific models are formed by building an output layer on top of BERT, so that small number of parameters need to be learned from scratch. The final hidden layer corresponding to the special classification token is used as the classifier output. \relax }}{41}{figure.caption.103}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces ASR Results\relax }}{46}{figure.caption.105}
 \addvspace {10\p@ }
